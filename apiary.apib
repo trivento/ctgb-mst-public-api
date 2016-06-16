@@ -11,7 +11,7 @@ Voor het opvragen van toelatingen maakt deze API gebruik van de [jsonapi](http:/
 jsonapi maakt voor zommige query parameters gebruik van een categorie typering. Dwz de categorie, b.v. `filter` gevolgd door `[` veldnaam `]`. 
 De hier gebruikte categorieen zijn:
 - Filteren: `filter[veldNaam]`
-- Paginatie: `page[number]` en `page[size]`. Deze parameters dienen samen gebruikt te worden. B.v. `/toelatingen?page[size]=25&page[number]=5` slaat de toelatingen 0-100 (pagina 1 - 4) over and retourneert 101-125
+- Paginatie: `page[offset]` en `page[limit]`. Deze parameters dienen samen gebruikt te worden. B.v. `/toelatingen?page[offset]=100&page[limit]=25` slaat de toelatingen 0-100 over and retourneert 101-125
 
 Omdat in query parameter blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden. 
 Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
@@ -291,7 +291,7 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
 
 ## Toelating Biocide [/public-api/1.0/toelatingen/22222]
 
-Apiray ondersteund nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) opgevraagd kunnen worden.
+Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) opgevraagd kunnen worden.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 22222. Deze retourneerd vervolgens de toelating van een *Biocide*.
 
@@ -471,7 +471,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 ## Toelating Gewas [/public-api/1.0/toelatingen/55555]
 
-Apiray ondersteund nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) opgevraagd kunnen worden.
+Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) opgevraagd kunnen worden.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 55555. Deze retourneerd vervolgens de toelating van een *Gewasbeschermingsmiddel*.
 
@@ -662,7 +662,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 ## Toelating ToevoegingsStof [/public-api/1.0/toelatingen/88888]
 
-Apiray ondersteund nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) opgevraagd kunnen worden.
+Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) opgevraagd kunnen worden.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 88888. Deze retourneerd vervolgens de toelating van een *Toevoeingsstof*.
 
@@ -732,7 +732,7 @@ Endpoint om geldige toelating nummers te kunnen zoeken.
         + Default: `100`
 
 
-### Opvragen Stoffen [GET]
+### Opvragen Toelatingnummers [GET]
 
 + Response 200 (application/json)
 
@@ -790,7 +790,7 @@ Endpoint om geldige toelating nummers te kunnen zoeken.
         + Default: `100`
 
 
-### Opvragen Stoffen [GET]
+### Opvragen Toelatinghouders [GET]
 
 + Response 200 (application/json)
 
