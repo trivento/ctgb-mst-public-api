@@ -5,7 +5,7 @@ HOST: http://polls.apiblueprint.org/
 
 De MST public API faciliteert het doorzoeken en opvragen van toegelaten biocides, gewasbeschermingsmiddelen en toevoegingsstoffen.
 
-## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BcasNummer%5D,filter%5BtoelatingHouder%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Bsize%5D,page%5Bnumber%5D}]
+## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BcasNummer%5D,filter%5BtoelatingHouder%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
 
 Voor het opvragen van toelatingen maakt deze API gebruik van de [jsonapi](http://jsonapi.org/recommendations/) standaard.
 jsonapi maakt voor zommige query parameters gebruik van een categorie typering. Dwz de categorie, b.v. `filter` gevolgd door `[` veldnaam `]`. 
@@ -17,7 +17,7 @@ Omdat in query parameter blokhaken (`[]`) niet toegestaan zijn dienen deze url-e
 Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
 
 + Parameters
-    + filter%5BmiddelNaam%5D (string, optional) - de naam van het middel of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains(naam)` niet hoofdlettergevoelig  
+    + filter%5BmiddelNaam%5D (string, optional) - de naam van het middel of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains(naam)` niet hoofdlettergevoelig.  
     + filter%5BmiddelStatus%5D (enum[middelStatus], optional) - de status van een middel. Meerdere middel statussen worden in de zoekvraag vertaald naar: `OR`. 
         + Members
             + `Toegelaten`
@@ -40,10 +40,10 @@ Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
     + filter%5BdatumOndertekeningTot%5D (string, optional) - datum ondertekening tot en met in formaat: `yyyy-MM-dd`
     + sort (string optional) - koma separated lijst van veldnamen waarop gesorteerd dient te worden. Default is de sortering _oplopend_. Door een `-` aan de veldnaam toe te voegen is de sortering _aflopend_. B.v. `sort=naam,toelating.toelatingNummer,-toelating.datumOndertekening`.
         Er kunnen op de volgende velden gesorteerd worden: `naam`, `categorieType`, `toelating.toelatingNummer`, `toelating.expiratieDatum`, `toelating.datumOndertekening` 
-    + page%5Bsize%5D (number, optional) -  aantaal toelatingen per pagina
+    + page%5Boffset%5D (number, optional) -  aantal toelatingen die overgeslagen worden voor het retourneren van het resultaat
+        + Default: `0`
+    + page%5Blimit%5D (number, optional) - aantal te retourneren toelatingen  
         + Default: `50`
-    + page%5Bnumber%5D (number, optional) - het pagina nummer van de geretourneerde toelatingen  ( deze is "zero-based", dwz de eerste pagina is 1, niet 0)
-        + Default: `1`
 
 ### Opvragen Toelatingen [GET]
 
@@ -51,9 +51,9 @@ Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
 
             {
                "meta": {
-                "total-count": 1255,
-                "pageSize":25,
-                "pageNumber":3
+                "total": 1255,
+                "offset":0,
+                "limit":50
             },
             "data": [
               {
@@ -120,6 +120,7 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
 + Response 200 (application/json)
 
         {
+        "data": {
           "id" : "23456",
           "naam": "Mirazyl",
           "categorieType": "Biocide",
@@ -285,6 +286,7 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
             }
           ]
         }
+        }
         
 
 ## Toelating Biocide [/public-api/1.0/toelatingen/22222]
@@ -298,6 +300,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 + Response 200 (application/json)
 
         {
+         "data": {
           "id" : "22222",
           "naam": "Mirazyl",
           "categorieType": "Biocide",
@@ -463,6 +466,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
             }
           ]
         }
+        }
         
 
 ## Toelating Gewas [/public-api/1.0/toelatingen/55555]
@@ -476,11 +480,13 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 + Response 200 (application/json)
 
             {
+            "data":{
               "id" : "55555",
               "naam": "TRIFOCIDE VLOEIBAAR DNOC",
               "categorieType": "Gewas",
               "gebruiker": "Beide",
               "toelatingHouder": {
+                "id":"234232332d" ser, 
                 "companyName": "Techno Trading Holland",
                 "address": {
                   "street": "Groesweg",
@@ -651,6 +657,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 }
               ]
             }
+            }
 
 
 ## Toelating ToevoegingsStof [/public-api/1.0/toelatingen/88888]
@@ -664,46 +671,139 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 + Response 200 (application/json)
 
             {
-              "id" : "88888",
-              "naam": "ACTIROB B",
-              "categorieType": "ToevoegingsStof",
-              "gebruik": "Professioneel",
-              "toelatingHouder": {
-                "companyName": "FA. S. V.D. WERF",
-                "address": {
-                  "street": "Cartografenweg",
-                  "number": "34",
-                  "postalcode": "5141 MT",
-                  "city": "Waalwijk",
-                  "country": "Nederland"
-                }
-              },
-              "toelating": {
-                "toelatingNummer": {
-                  "nl": 343421,
-                  "ingangsDatum": "2016-01-21T00:00:00.000+01:00"
-                },
-                "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
-              },
-              "besluiten": [
-                {
-                  "documentNaam": "ExternalBesluit.doc",
-                  "besluitType": {
-                    "id": 563,
-                    "result": "Accept",
-                    "descriptionNL": "Uitbreiding toelating",
-                    "descriptionEN": "Extention of an authorisation"
+                "data": {
+                  "id" : "88888",
+                  "naam": "ACTIROB B",
+                  "categorieType": "ToevoegingsStof",
+                  "gebruik": "Professioneel",
+                  "toelatingHouder": {
+                    "id":"2323asdfsdf32", 
+                    "companyName": "FA. S. V.D. WERF",
+                    "address": {
+                      "street": "Cartografenweg",
+                      "number": "34",
+                      "postalcode": "5141 MT",
+                      "city": "Waalwijk",
+                      "country": "Nederland"
+                    }
                   },
-                  "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
-                },
-                {
-                  "documentNaam": "Bijlage.doc",
-                  "besluitType": {
-                    "id": 700,
-                    "descriptionNL": "Actueel gebruiksvoorschrift",
-                    "descriptionEN": ""
+                  "toelating": {
+                    "toelatingNummer": {
+                      "nl": 343421,
+                      "ingangsDatum": "2016-01-21T00:00:00.000+01:00"
+                    },
+                    "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
                   },
-                  "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                  "besluiten": [
+                    {
+                      "documentNaam": "ExternalBesluit.doc",
+                      "besluitType": {
+                        "id": 563,
+                        "result": "Accept",
+                        "descriptionNL": "Uitbreiding toelating",
+                        "descriptionEN": "Extention of an authorisation"
+                      },
+                      "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                    },
+                    {
+                      "documentNaam": "Bijlage.doc",
+                      "besluitType": {
+                        "id": 700,
+                        "descriptionNL": "Actueel gebruiksvoorschrift",
+                        "descriptionEN": ""
+                      },
+                      "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                    }
+                  ]
                 }
-              ]
             }
+            
+            
+
+## Stamdata Toelatingnummers [/public-api/1.0/stamdata/toelatingnummers{?filter%5Bquery%5D,page%5Boffset%5D,page%5Blimit%5D}]
+
+Endpoint om geldige toelating nummers te kunnen zoeken.
+
++ Parameters
+    + filter%5Bquery%5D: 421 (string, required) - query parameter met een deel van het toelating nummer van het middel (nl of eu). In de zoekvraag wordt dit vertaald naar `contains(query)` niet hoofdlettergevoelig
+    + page%5Boffset%5D (number, optional) -  aantal toelatingnummers die overgeslagen worden voor het retourneren van het resultaat
+        + Default: `0`
+    + page%5Blimit%5D (number, optional) - aantal te retourneren toelatingnummers  
+        + Default: `100`
+
+
+### Opvragen Stoffen [GET]
+
++ Response 200 (application/json)
+
+        {
+            "meta": {
+                "total": 1255,
+                "offset":0,
+                "limit":100
+            },
+            "data": ["234211", "23421", "421663", "NL-0003421-0000"]
+            }
+
+            
+## Stamdata Stoffen [/public-api/1.0/stamdata/stoffen{?filter%5Bquery%5D,page%5Boffset%5D,page%5Blimit%5D}]
+
+Endpoint om geldige toelating nummers te kunnen zoeken.
+
++ Parameters
+    + filter%5Bquery%5D: ben (string, required) - query parameter met een deel van een stof attribute zijnde, `naamNL`, `naamEN`, `ecNumme`r of `casNummer`. In de zoekvraag wordt dit vertaald naar: `naamNL`, `naamEN`, `ecNummer` of `casNummer` `contains(query)` niet hoofdlettergevoelig
+    + page%5Boffset%5D (number, optional) -  aantal stoffen die overgeslagen worden voor het retourneren van het resultaat
+        + Default: `0`
+    + page%5Blimit%5D (number, optional) - aantal te retourneren stoffen 
+        + Default: `100`
+
+
+### Opvragen Stoffen [GET]
+
++ Response 200 (application/json)
+
+        {
+            "meta": {
+                "total": 734,
+                "offset":0,
+                "limit":100
+            },
+            "data": [
+                {"naamEN":"(1-methylethyl)benzenesulfonic acid, sodium salt","naamNL":"(1-methylethyl)benzeensulfonzuur, natriumzout","casNummer":"28348-53-0","id":10601},
+                {"ecNummer":"230-515-8","naamEN":"(2-bromo-2-nitroethenyl)benzene","naamNL":"(2-broom-2-nitrovinyl)benzeen","casNummer":"7166-19-0","id":6939},
+                {"ecNummer":"244-445-0","naamEN":"(benzothiazol-2-ylthio)methyl thiocyanate","naamNL":"(benzothiazool-2-ylthio)methylthiocyanaat","casNummer":"21564-17-0","id":7218},
+                {"ecNummer":"238-588-8","naamEN":"benzylhemiformal","naamNL":"(benzyloxy)methanol","casNummer":"14548-60-8","id":10022},
+                {"ecNummer":"215-551-4","naamEN":"(dodecylbenzyl)trimethylammonium chloride","naamNL":"(dodecylbenzyl)trimethylammonium chloride","casNummer":"1330-85-4","id":2372}
+                ]   
+            }
+
+
+## Stamdata Toelatinghouders [/public-api/1.0/stamdata/toelatinghouders{?filter%5Bnaam%5D,page%5Boffset%5D,page%5Blimit%5D}]
+
+Endpoint om geldige toelating nummers te kunnen zoeken.
+
++ Parameters
+    + filter%5Bnaam%5D: a (string, required) -  naam van het bedrijf or een deel ervan. In de zoekvraag wordt dit vertaald naar `contains(naam)` niet hoofdlettergevoelig
+    + page%5Boffset%5D (number, optional) -  aantal toelatinghouders die overgeslagen worden voor het retourneren van het resultaat
+        + Default: `0`
+    + page%5Blimit%5D (number, optional) - aantal te retourneren toelatinghouders  
+        + Default: `100`
+
+
+### Opvragen Stoffen [GET]
+
++ Response 200 (application/json)
+
+        {
+            "meta": {
+                "total": 1255,
+                "offset":0,
+                "limit":100
+            },
+            "data": [
+                {"id":"9384adf1212", "companyName" : "BAYER", "address" : {"street" : "Bayernslaan","number" : "888", "postalcode" : "5635 AE", "city" : "Ede", "country" : "England"}},
+                {"id":"32323ad1213", "companyName":"Wacon Aquaven B.V.","address":{"street":"Noorderhaven","number":"100","postalcode":"8861 AR","city":"Harlingen","country":"Nederland"}},
+                {"id":"12ddaerwe17", "companyName":"FA. S. V.D. WERF","address":{"street":"Cartografenweg","number":"34","postalcode":"5141 MT","city":"Waalwijk","country":"Nederland"}},
+                {"id":"33434ss1230", "companyName":"Techno Trading Holland","address":{"street":"Groesweg","number":"13","postalcode":"5993 NN","city":"Maasbree","country":"Nederland"}}
+            ]
+        }
