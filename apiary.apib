@@ -17,7 +17,7 @@ Omdat in query parameter blokhaken (`[]`) niet toegestaan zijn dienen deze url-e
 Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
 
 + Parameters
-    + filter%5BmiddelNaam%5D (string, optional) - de naam van het middel of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains(naam)` niet hoofdlettergevoelig.  
+    + filter%5BmiddelNaam%5D (string, optional) - de naam van het middel of een deel ervan.  In de zoekvraag wordt dit vertaald naar `contains naam,` niet hoofdlettergevoelig.  
     + filter%5BmiddelStatus%5D (enum[middelStatus], optional) - de status van een middel. Meerdere middel statussen worden in de zoekvraag vertaald naar: `OR`. 
         + Members
             + `Toegelaten`
@@ -291,7 +291,7 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
 
 ## Toelating Biocide [/public-api/1.0/toelatingen/22222]
 
-Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) opgevraagd kunnen worden.
+Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) op te vragen.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 22222. Deze retourneerd vervolgens de toelating van een *Biocide*.
 
@@ -471,7 +471,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 ## Toelating Gewas [/public-api/1.0/toelatingen/55555]
 
-Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) opgevraagd kunnen worden.
+Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) op te vragen.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 55555. Deze retourneerd vervolgens de toelating van een *Gewasbeschermingsmiddel*.
 
@@ -662,7 +662,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 ## Toelating ToevoegingsStof [/public-api/1.0/toelatingen/88888]
 
-Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) opgevraagd kunnen worden.
+Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) op te vragen.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 88888. Deze retourneerd vervolgens de toelating van een *Toevoeingsstof*.
 
@@ -725,7 +725,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 Endpoint om geldige toelating nummers te kunnen zoeken.
 
 + Parameters
-    + filter%5Bquery%5D: 421 (string, required) - query parameter met een deel van het toelating nummer van het middel (nl of eu). In de zoekvraag wordt dit vertaald naar `contains(query)` niet hoofdlettergevoelig
+    + filter%5Bquery%5D: 421 (string, required) - query parameter met een deel van het toelating nummer van het middel (nl of eu). In de zoekvraag wordt dit vertaald naar `contains query`, niet hoofdlettergevoelig
     + page%5Boffset%5D (number, optional) -  aantal toelatingnummers die overgeslagen worden voor het retourneren van het resultaat
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren toelatingnummers  
@@ -751,7 +751,7 @@ Endpoint om geldige toelating nummers te kunnen zoeken.
 Endpoint om geldige toelating nummers te kunnen zoeken.
 
 + Parameters
-    + filter%5Bquery%5D: ben (string, required) - query parameter met een deel van een stof attribute zijnde, `naamNL`, `naamEN`, `ecNumme`r of `casNummer`. In de zoekvraag wordt dit vertaald naar: `naamNL`, `naamEN`, `ecNummer` of `casNummer` `contains(query)` niet hoofdlettergevoelig
+    + filter%5Bquery%5D: ben (string, required) - query parameter met een deel van een stof attribute zijnde, `naamNL`, `naamEN`, `ecNumme`r of `casNummer`. In de zoekvraag wordt dit vertaald naar: `naamNL`, `naamEN`, `ecNummer` of `casNummer` `contains query`, niet hoofdlettergevoelig
     + page%5Boffset%5D (number, optional) -  aantal stoffen die overgeslagen worden voor het retourneren van het resultaat
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren stoffen 
@@ -783,7 +783,7 @@ Endpoint om geldige toelating nummers te kunnen zoeken.
 Endpoint om geldige toelating nummers te kunnen zoeken.
 
 + Parameters
-    + filter%5Bnaam%5D: a (string, required) -  naam van het bedrijf or een deel ervan. In de zoekvraag wordt dit vertaald naar `contains(naam)` niet hoofdlettergevoelig
+    + filter%5Bnaam%5D: a (string, required) -  naam van het bedrijf or een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
     + page%5Boffset%5D (number, optional) -  aantal toelatinghouders die overgeslagen worden voor het retourneren van het resultaat
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren toelatinghouders  
