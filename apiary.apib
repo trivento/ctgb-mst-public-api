@@ -5,10 +5,7 @@ HOST: http://polls.apiblueprint.org/
 
 De MST public API faciliteert het doorzoeken en opvragen van toegelaten biocides, gewasbeschermingsmiddelen en toevoegingsstoffen.
 
-## Toelatingen summary [public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BcasNummer%5D,filter%5BtoelatingHouder%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Bsize%5D,page%5Bnumber%5D}]
-
-
-### Opvragen Toelatingen [GET]
+## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BcasNummer%5D,filter%5BtoelatingHouder%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Bsize%5D,page%5Bnumber%5D}]
 
 Voor het opvragen van toelatingen maakt deze API gebruik van de [jsonapi](http://jsonapi.org/recommendations/) standaard.
 jsonapi maakt voor zommige query parameters gebruik van een categorie typering. Dwz de categorie, b.v. `filter` gevolgd door `[` veldnaam `]`. 
@@ -48,6 +45,8 @@ Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
     + page%5Bnumber%5D (number, optional) - het pagina nummer van de geretourneerde toelatingen  ( deze is "zero-based", dwz de eerste pagina is 1, niet 0)
         + Default: `1`
 
+### Opvragen Toelatingen [GET]
+
 + Response 200 (application/json)
 
             {
@@ -68,7 +67,7 @@ Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
                 }
               },
               {
-                "id" : "23457",
+                "id" : "22222",
                 "naam": "Hema Goodbye Mosquito Anti-muggen roller with DEET",
                 "categorieType": "Biocide",
                 "toelating": {
@@ -88,7 +87,7 @@ Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
                 }
               },
               {
-                "id" : "77777",
+                "id" : "88888",
                 "naam": "Biopower",
                 "categorieType": "ToevoegingsStof",
                 "toelating": {
@@ -101,9 +100,7 @@ Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
             }
         
 
-## Toelating [public-api/1.0/toelatingen/{id}]
-
-### Opvragen Toelating [GET]
+## Toelating [/public-api/1.0/toelatingen/{id}]
 
 Het opvragen van een toelating kan resulteren in 3 verschillende types antwoorden:
 - Toelating voor Bicode
@@ -116,8 +113,9 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
 - `ToevoegingsStof`
 
 + Parameters
+    + id: 23456 (number, required) - id van het middel.
 
-    + id: (number, required) - id van het middel.
+### Opvragen Toelating  [GET]
 
 + Response 200 (application/json)
 
@@ -139,7 +137,8 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
           },
           "toelating": {
             "toelatingNummer": {
-              "nl": 4,
+              "nl": 13406,
+              "eu": "NL-0006252-0000"
               "ingangsDatum": "2016-01-21T00:00:00.000+01:00"
             },
             "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
@@ -286,3 +285,425 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
             }
           ]
         }
+        
+
+## Toelating Biocide [/public-api/1.0/toelatingen/22222]
+
+Apiray ondersteund nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) opgevraagd kunnen worden.
+
+Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 22222. Deze retourneerd vervolgens de toelating van een *Biocide*.
+
+### Opvragen Toelating Biocide [GET]        
+
++ Response 200 (application/json)
+
+        {
+          "id" : "22222",
+          "naam": "Mirazyl",
+          "categorieType": "Biocide",
+          "gebruiker": "Professioneel",
+          "toelatingHouder": {
+            "id": "3948jfiu9838uije9",
+            "companyName": "Techno Trading Holland",
+            "address": {
+              "street": "Groesweg",
+              "number": "13",
+              "postalcode": "5993 NN",
+              "city": "Maasbree",
+              "country": "Nederland"
+            }
+          },
+          "toelating": {
+            "toelatingNummer": {
+              "nl": 13406,
+              "eu": "NL-0006252-0000"
+              "ingangsDatum": "2016-01-21T00:00:00.000+01:00"
+            },
+            "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
+            "opgebruikTermijn": "2016-01-17T00:00:00.000+01:00",
+            "afleverTermijn": "2016-01-16T00:00:00.000+01:00"
+          },
+          "toepassingen": [
+            {
+              "naamVanGebruik": "Toepassing 1",
+              "productSoort": {
+                "id": 1,
+                "code": "PT01",
+                "descriptionNL": "Biociden voor menselijke hygiëne",
+                "descriptionEN": "Human hygiene (Disinfectants)"
+              },
+              "beschrijvingToegelatenGebruik": "bla",
+              "toepassingsGebieden": [
+                "Binnenshuis"
+              ],
+              "beschrijvingGebruiksGebied": "Bla",
+              "gebruikersCategorieen": [
+                "Industrieel"
+              ],
+              "doelOrganismen": [
+                {
+                  "id": "1001_9746664019095792_0002",
+                  "wetenschappelijkeNaam": {
+                    "id": 12,
+                    "description": "Aerobacter spp",
+                    "helpText": "bacteria, aerobic Gram-negative"
+                  },
+                  "trivialeNaam": {
+                    "id": 13,
+                    "descriptionNL": "Acarid mites",
+                    "descriptionEN": "Acarid mites NL"
+                  },
+                  "ontwikkelingsStadium": {
+                    "id": 5,
+                    "descriptionNL": "Adults",
+                    "descriptionEN": "Ouderen",
+                    "helpText": "Insects, mammals (e.g. rodents)"
+                  }
+                }
+              ],
+              "toepassingsMethoden": [
+                {
+                  "id": "1001_9746664022216701_0003",
+                  "methode": {
+                    "id": 6044,
+                    "descriptionNL": "Spreading",
+                    "descriptionEN": "Spreading"
+                  },
+                  "beschrijving": "Bla",
+                  "toepassingsDosering": "bla",
+                  "verdunning": 12,
+                  "toepassingsFrequentie": "frequentie"
+                }
+              ],
+              "gebruiksAanwijzing": {
+                "specifiekeInstructies": "bla",
+                "risicoBeperkendeMaatregelen": "bla",
+                "bijzonderheden": "bla",
+                "voorwaarden": "bla"
+              }
+            }
+          ],
+          "samenstellingen": {
+            "formuleringType": {
+              "id": 72,
+              "code": "RB",
+              "descriptionNL": "Lokmiddel (klaar voor gebruik)",
+              "descriptionEN": "Bait (ready for use)"
+            },
+            "werkzamestoffen": [
+              {
+                "stof": {
+                  "id": 11287,
+                  "naamNL": "(2-butoxyethoxy)azijnzuur",
+                  "naamEN": "(2-butoxyethoxy)acetic acid",
+                  "casNummer": "82941-26-2"
+                },
+                "gehalte": "12",
+                "concentratie": {
+                  "id": 2,
+                  "unit": "%V/V",
+                  "description": "volumeprocent"
+                }
+              },
+              {
+                "stof": {
+                  "id": 11287,
+                  "naamNL": "(2-butoxyethoxy)azijnzuur",
+                  "naamEN": "(2-butoxyethoxy)acetic acid",
+                  "casNummer": "82941-26-2"
+                },
+                "gehalte": "1",
+                "concentratie": {
+                  "id": 4,
+                  "unit": "CFU/G",
+                  "description": "kolonievormende sporen per gram"
+                }
+              }
+            ]
+          },
+          "gebruiksvoorschriften": [
+            {
+              "gebruiker": "NietProfessioneel",
+              "documenten": [
+                {
+                  "document": {
+                    "docId": "doc-1",
+                    "documentNaam": "Gebruiksvoorschrift.doc"
+                  },
+                  "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
+                  "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
+                }
+              ]
+            }
+          ],
+          "besluiten": [
+            {
+              "document": {
+                "docId": "doc-1",
+                "documentNaam": "Besluit.doc"
+              },
+              "besluitType": {
+                "id": 563,
+                "descriptionNL": "Uitbreiding toelating",
+                "descriptionEN": "Extention of an authorisation"
+              },
+              "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+            },
+            {
+              "document": {
+                "docId": "doc-Id-2",
+                "documentNaam": "Bijlage.doc"
+              },
+              "besluitType": {
+                "id": 700,
+                "descriptionNL": "Actueel gebruiksvoorschrift",
+                "descriptionEN": ""
+              },
+              "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+            }
+          ]
+        }
+        
+
+## Toelating Gewas [/public-api/1.0/toelatingen/55555]
+
+Apiray ondersteund nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) opgevraagd kunnen worden.
+
+Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 55555. Deze retourneerd vervolgens de toelating van een *Gewasbeschermingsmiddel*.
+
+### Opvragen Toelating Gewas [GET]        
+        
++ Response 200 (application/json)
+
+            {
+              "id" : "55555",
+              "naam": "TRIFOCIDE VLOEIBAAR DNOC",
+              "categorieType": "Gewas",
+              "gebruiker": "Beide",
+              "toelatingHouder": {
+                "companyName": "Techno Trading Holland",
+                "address": {
+                  "street": "Groesweg",
+                  "number": "13",
+                  "postalcode": "5993 NN",
+                  "city": "Maasbree",
+                  "country": "Nederland"
+                }
+              },
+              "toelating": {
+                "toelatingNummer": {
+                  "nl": 3204,
+                  "eu": "NL-0005643-0000"
+                  "ingangsDatum": "2016-01-21T00:00:00.000+01:00"
+                },
+                "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
+                "actueel": [
+                  {
+                    "gebruiker": "NietProfessioneel",
+                    "wCode": "W3",
+                    "gebruiksvoorschrift": {
+                        "document": {
+                          "docId": "doc-1",
+                          "documentNaam": "Gebruiksvoorschrift.doc"
+                        },
+                        "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
+                        "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
+                      }
+                  },
+                  {
+                    "gebruiker": "Professioneel",
+                    "wCode": "W1",
+                    "gebruiksvoorschrift": {
+                      "document": {
+                        "docId": "doc-1",
+                        "documentNaam": "Gebruiksvoorschrift.doc"
+                      },
+                      "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
+                      "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
+                    }
+                  }
+                ],
+                "voorgaand": [
+                  {
+                    "gebruiker": "NietProfessioneel",
+                    "wCoderingen": [
+                      {
+                        "wCode": "W2",
+                        "gebruiksvoorschrift": {
+                          "document": {
+                            "docId": "doc-1",
+                            "documentNaam": "Gebruiksvoorschrift.doc"
+                          },
+                          "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
+                          "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
+                        },
+                        "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
+                        "opgebruikTermijn": "2016-01-17T00:00:00.000+01:00",
+                        "afleverTermijn": "2016-01-16T00:00:00.000+01:00"
+                      },
+                      {
+                        "wCode": "W1",
+                        "gebruiksvoorschrift": {
+                          "document": {
+                            "docId": "doc-1",
+                            "documentNaam": "Gebruiksvoorschrift.doc"
+                          },
+                          "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
+                          "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
+                        },
+                        "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
+                        "opgebruikTermijn": "2016-01-17T00:00:00.000+01:00",
+                        "afleverTermijn": "2016-01-16T00:00:00.000+01:00"
+                      },
+                      {
+                        "gebruiksvoorschrift": {
+                          "document": {
+                            "docId": "doc-1",
+                            "documentNaam": "Gebruiksvoorschrift.doc"
+                          },
+                          "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
+                          "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
+                        },
+                        "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
+                        "opgebruikTermijn": "2016-01-17T00:00:00.000+01:00",
+                        "afleverTermijn": "2016-01-16T00:00:00.000+01:00"
+                      }
+                    ]
+                  },
+                  {
+                    "gebruiker": "Professioneel",
+                    "wCoderingen": [
+                      {
+                        "gebruiksvoorschrift": {
+                          "document": {
+                            "docId": "doc-1",
+                            "documentNaam": "Gebruiksvoorschrift.doc"
+                          },
+                          "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
+                          "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
+                        },
+                        "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
+                        "opgebruikTermijn": "2016-01-17T00:00:00.000+01:00",
+                        "afleverTermijn": "2016-01-16T00:00:00.000+01:00"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "toepassingen": "TBD",
+              "samenstellingen": {
+                "formuleringType": {
+                  "id": 72,
+                  "code": "RB",
+                  "descriptionNL": "Lokmiddel (klaar voor gebruik)",
+                  "descriptionEN": "Bait (ready for use)"
+                },
+                "werkzamestoffen": [
+                  {
+                    "stof": {
+                      "id": 11287,
+                      "naamNL": "(2-butoxyethoxy)azijnzuur",
+                      "naamEN": "(2-butoxyethoxy)acetic acid",
+                      "casNummer": "82941-26-2"
+                    },
+                    "gehalte": "12",
+                    "concentratie": {
+                      "id": 2,
+                      "unit": "%V/V",
+                      "description": "volumeprocent"
+                    }
+                  },
+                  {
+                    "stof": {
+                      "id": 11287,
+                      "naamNL": "(2-butoxyethoxy)azijnzuur",
+                      "naamEN": "(2-butoxyethoxy)acetic acid",
+                      "casNummer": "82941-26-2"
+                    },
+                    "gehalte": "1",
+                    "concentratie": {
+                      "id": 4,
+                      "unit": "CFU/G",
+                      "description": "kolonievormende sporen per gram"
+                    }
+                  }
+                ]
+              },
+              "besluiten": [
+                {
+                  "documentNaam": "ExternalBesluit.doc",
+                  "besluitType": {
+                    "id": 563,
+                    "result": "Accept",
+                    "descriptionNL": "Uitbreiding toelating",
+                    "descriptionEN": "Extention of an authorisation"
+                  },
+                  "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                },
+                {
+                  "documentNaam": "Bijlage.doc",
+                  "besluitType": {
+                    "id": 700,
+                    "descriptionNL": "Actueel gebruiksvoorschrift",
+                    "descriptionEN": ""
+                  },
+                  "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                }
+              ]
+            }
+
+
+## Toelating ToevoegingsStof [/public-api/1.0/toelatingen/88888]
+
+Apiray ondersteund nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) opgevraagd kunnen worden.
+
+Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 88888. Deze retourneerd vervolgens de toelating van een *Toevoeingsstof*.
+
+### Opvragen Toelating Toevoegingsstof [GET]        
+        
++ Response 200 (application/json)
+
+            {
+              "id" : "88888",
+              "naam": "ACTIROB B",
+              "categorieType": "ToevoegingsStof",
+              "gebruik": "Professioneel",
+              "toelatingHouder": {
+                "companyName": "FA. S. V.D. WERF",
+                "address": {
+                  "street": "Cartografenweg",
+                  "number": "34",
+                  "postalcode": "5141 MT",
+                  "city": "Waalwijk",
+                  "country": "Nederland"
+                }
+              },
+              "toelating": {
+                "toelatingNummer": {
+                  "nl": 343421,
+                  "ingangsDatum": "2016-01-21T00:00:00.000+01:00"
+                },
+                "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
+              },
+              "besluiten": [
+                {
+                  "documentNaam": "ExternalBesluit.doc",
+                  "besluitType": {
+                    "id": 563,
+                    "result": "Accept",
+                    "descriptionNL": "Uitbreiding toelating",
+                    "descriptionEN": "Extention of an authorisation"
+                  },
+                  "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                },
+                {
+                  "documentNaam": "Bijlage.doc",
+                  "besluitType": {
+                    "id": 700,
+                    "descriptionNL": "Actueel gebruiksvoorschrift",
+                    "descriptionEN": ""
+                  },
+                  "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                }
+              ]
+            }
