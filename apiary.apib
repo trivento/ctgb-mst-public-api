@@ -5,16 +5,19 @@ HOST: http://polls.apiblueprint.org/
 
 De MST public API faciliteert het doorzoeken en opvragen van toegelaten biocides, gewasbeschermingsmiddelen en toevoegingsstoffen.
 
-## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BcasNummer%5D,filter%5BtoelatingHouder%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
-
-Voor het opvragen van toelatingen maakt deze API gebruik van de [jsonapi](http://jsonapi.org/recommendations/) standaard.
-jsonapi maakt voor zommige query parameters gebruik van een categorie typering. Dwz de categorie, b.v. `filter` gevolgd door `[` veldnaam `]`. 
-De hier gebruikte categorieen zijn:
+VoorDeze API maakt gebruik van de [jsonapi](http://jsonapi.org/recommendations/) standaard.
+jsonapi maakt voor zommige query parameters gebruik van een typering. B.v. het type `filter` gevolgd door `[` veldnaam `]`. 
+De hier gebruikte types zijn:
 - Filteren: `filter[veldNaam]`
 - Paginatie: `page[offset]` en `page[limit]`. Deze parameters dienen samen gebruikt te worden. B.v. `/toelatingen?page[offset]=100&page[limit]=25` slaat de toelatingen 0-100 over and retourneert 101-125
 
-Omdat in query parameter blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden. 
-Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
+**Belangrijk**
+
+Omdat in query parameters blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden. 
+Dit betekent dat b.v. `filter[veldNaam]` vertaald dient te worden naar: `filter%5BveldNaam%5D`
+
+## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BcasNummer%5D,filter%5BtoelatingHouder%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
+
 
 + Parameters
     + filter%5BmiddelNaam%5D (string, optional) - de naam van het middel of een deel ervan.  In de zoekvraag wordt dit vertaald naar `contains naam,` niet hoofdlettergevoelig.  
