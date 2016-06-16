@@ -22,13 +22,11 @@ Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
         + Members
             + `Toegelaten`
             + `Vervallen`
-        + Default: `Toegelaten`, `Vervallen`
     + filter%5BcategorieType%5D (enum[categorieType], optional) - het categorie type van een middel. Meerdere categorie types worden in de zoekvraag vertaald naar: `OR`. 
         + Members
             + `Biocide`
             + `Gewas`
             + `ToevoegingsStof`
-        + Default: `Biocide`,`Gewas`,`ToevoegingsStof`
     + filter%5BtoelatingNummer%5D (string, optional) - het toelating nummer van het middel (nl of eu???)
     + filter%5BwerkzameStoffen%5D (number, optional) - id's van werkzamestoffen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BbeschermStoffen%5D (number, optional) - id's van beschermstoffen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
