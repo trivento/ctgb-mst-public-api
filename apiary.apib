@@ -20,14 +20,14 @@ Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
     + filter%5BmiddelNaam%5D (string, optional) - de naam van het middel of een deel ervan.  In de zoekvraag wordt dit vertaald naar `contains naam,` niet hoofdlettergevoelig.  
     + filter%5BmiddelStatus%5D (enum[middelStatus], optional) - de status van een middel. Meerdere middel statussen worden in de zoekvraag vertaald naar: `OR`. 
         + Members
-            + `Toegelaten`
-            + `Vervallen`
+            + `Valid`
+            + `Expired`
     + filter%5BcategorieType%5D (enum[categorieType], optional) - het categorie type van een middel. Meerdere categorie types worden in de zoekvraag vertaald naar: `OR`. 
         + Members
             + `Biocide`
             + `Gewas`
             + `ToevoegingsStof`
-    + filter%5BtoelatingNummer%5D (string, optional) - het toelating nummer van het middel (nl of eu???)
+    + filter%5BtoelatingNummer%5D (string, optional) - het toelating nummer van het middel, nl of eu
     + filter%5BwerkzameStoffen%5D (number, optional) - id's van werkzamestoffen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BbeschermStoffen%5D (number, optional) - id's van beschermstoffen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BcasNummer%5D (string, optional)  - stof id van geselecteerde stof ???
@@ -36,9 +36,9 @@ Dus b.v. `filter[veldNaam]` wordt daadwerkelijk: `filter%5BveldNaam%5D`
     + filter%5BexpiratieDatumTot%5D (string, optional) - expiratie datum tot en met in formaat: `yyyy-MM-dd` 
     + filter%5BdatumOndertekeningVan%5D (string, optional) - datum ondertekening vanaf in formaat: `yyyy-MM-dd` 
     + filter%5BdatumOndertekeningTot%5D (string, optional) - datum ondertekening tot en met in formaat: `yyyy-MM-dd`
-    + sort (string optional) - koma separated lijst van veldnamen waarop gesorteerd dient te worden. Default is de sortering _oplopend_. Door een `-` aan de veldnaam toe te voegen is de sortering _aflopend_. B.v. `sort=naam,toelating.toelatingNummer,-toelating.datumOndertekening`.
+    + sort (string optional) - koma separated lijst van veldnamen waarop gesorteerd dient te worden. Default is de sortering _oplopend_. Door een '`-`' aan de veldnaam toe te voegen is de sortering _aflopend_. B.v. `sort=naam,-toelating.datumOndertekening`.
         Er kunnen op de volgende velden gesorteerd worden: `naam`, `categorieType`, `toelating.toelatingNummer`, `toelating.expiratieDatum`, `toelating.datumOndertekening` 
-    + page%5Boffset%5D (number, optional) -  aantal toelatingen die overgeslagen worden voor het retourneren van het resultaat
+    + page%5Boffset%5D (number, optional) -  aantal toelatingen die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren toelatingen  
         + Default: `50`
@@ -724,7 +724,7 @@ Endpoint om geldige toelating nummers te kunnen zoeken.
 
 + Parameters
     + filter%5Bquery%5D: 421 (string, required) - query parameter met een deel van het toelating nummer van het middel (nl of eu). In de zoekvraag wordt dit vertaald naar `contains query`, niet hoofdlettergevoelig
-    + page%5Boffset%5D (number, optional) -  aantal toelatingnummers die overgeslagen worden voor het retourneren van het resultaat
+    + page%5Boffset%5D (number, optional) -  aantal toelatingnummers die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren toelatingnummers  
         + Default: `100`
@@ -750,7 +750,7 @@ Endpoint om geldige toelating nummers te kunnen zoeken.
 
 + Parameters
     + filter%5Bquery%5D: ben (string, required) - query parameter met een deel van een stof attribute zijnde, `naamNL`, `naamEN`, `ecNumme`r of `casNummer`. In de zoekvraag wordt dit vertaald naar: `naamNL`, `naamEN`, `ecNummer` of `casNummer` `contains query`, niet hoofdlettergevoelig
-    + page%5Boffset%5D (number, optional) -  aantal stoffen die overgeslagen worden voor het retourneren van het resultaat
+    + page%5Boffset%5D (number, optional) -  aantal stoffen die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren stoffen 
         + Default: `100`
@@ -782,7 +782,7 @@ Endpoint om geldige toelating nummers te kunnen zoeken.
 
 + Parameters
     + filter%5Bnaam%5D: a (string, required) -  naam van het bedrijf or een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
-    + page%5Boffset%5D (number, optional) -  aantal toelatinghouders die overgeslagen worden voor het retourneren van het resultaat
+    + page%5Boffset%5D (number, optional) -  aantal toelatinghouders die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren toelatinghouders  
         + Default: `100`
