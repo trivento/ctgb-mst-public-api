@@ -17,7 +17,7 @@ De hier gebruikte types zijn:
 Omdat in query parameters blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden. 
 Dit betekent dat b.v. `filter[veldNaam]` vertaald dient te worden naar: `filter%5BveldNaam%5D`
 
-## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,Ofilter%5BtoelatingHouder%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
+## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouder%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen toelatingen op basis van een groot aantal parameters doorzocht worden. Daarnaast biedt deze service sortering en paginatie. 
 
@@ -163,6 +163,74 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
                 }
               ]
             },
+            "toepassingen": [
+                {
+                  "id": 13,
+                  "naamVanGebruik": "Arctische Flora",
+                  "productSoort": {
+                    "id": 10,
+                    "code": "PT01",
+                    "descriptionNL": "Biociden voor menselijke hygiëne",
+                    "descriptionEN": "Human hygiene (Disinfectants)"
+                  },
+                  "beschrijvingToegelatenGebruik": "Dit is een beschrijving toegelaten gebruik",
+                  "toepassingsGebieden": [
+                    "Binnenshuis",
+                    "Buitenshuis"
+                  ],
+                  "beschrijvingGebruiksGebied": "beschrijvingGebruiksgebied",
+                  "gebruikersCategorieen": [
+                    {
+                      "type": "AlgemeenPubliek",
+                      "gebruik": "NietProfessioneel"
+                    },
+                    {
+                      "type": "Professional",
+                      "gebruik": "Professioneel"
+                    }
+                  ],
+                  "doelOrganismen": [
+                    {
+                      "wetenschappelijkeNaam": {
+                        "id": 12,
+                        "description": "Aerobacter spp",
+                        "helpText": "bacteria, aerobic Gram-negative"
+                      },
+                      "trivialeNaam": {
+                        "id": 13,
+                        "descriptionNL": "Acarid mites",
+                        "descriptionEN": "Acarid mites NL"
+                      },
+                      "ontwikkelingsStadium": {
+                        "id": 5,
+                        "descriptionNL": "Adults",
+                        "descriptionEN": "Ouderen",
+                        "helpText": "Insects, mammals (e.g. rodents)"
+                      }
+                    }
+                  ],
+                  "toepassingsMethoden": [
+                    {
+                      "methode": {
+                        "id": 13,
+                        "descriptionNL": "Bait application",
+                        "descriptionEN": "Aas Applicatie"
+                      },
+                      "beschrijving": "beschrijving",
+                      "toepassingsDosering": "toepassingsDosering",
+                      "verdunning": 1,
+                      "toepassingsFrequentie": "aantalTiming"
+                    }
+                  ],
+                  "gebruiksAanwijzing": {
+                    "specifiekeInstructies": "specifieke instructies",
+                    "risicoBeperkendeMaatregelen": "risicoBeperkendemaatregelen",
+                    "bijzonderheden": "Bijzonderheden",
+                    "verwijdering": "verwijdering",
+                    "voorwaarden": "voorwaarden"
+                  }
+                }
+              ],
             "samenstellingen": {
               "formuleringType": {
                 "id": 72,
@@ -297,7 +365,75 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 }
               ]
             },
-            "samenstellingen": {
+            "toepassingen": [
+                {
+                  "id": 13,
+                  "naamVanGebruik": "Arctische Flora",
+                  "productSoort": {
+                    "id": 10,
+                    "code": "PT01",
+                    "descriptionNL": "Biociden voor menselijke hygiëne",
+                    "descriptionEN": "Human hygiene (Disinfectants)"
+                  },
+                  "beschrijvingToegelatenGebruik": "Dit is een beschrijving toegelaten gebruik",
+                  "toepassingsGebieden": [
+                    "Binnenshuis",
+                    "Buitenshuis"
+                  ],
+                  "beschrijvingGebruiksGebied": "beschrijvingGebruiksgebied",
+                  "gebruikersCategorieen": [
+                    {
+                      "type": "AlgemeenPubliek",
+                      "gebruik": "NietProfessioneel"
+                    },
+                    {
+                      "type": "Professional",
+                      "gebruik": "Professioneel"
+                    }
+                  ],
+                  "doelOrganismen": [
+                    {
+                      "wetenschappelijkeNaam": {
+                        "id": 12,
+                        "description": "Aerobacter spp",
+                        "helpText": "bacteria, aerobic Gram-negative"
+                      },
+                      "trivialeNaam": {
+                        "id": 13,
+                        "descriptionNL": "Acarid mites",
+                        "descriptionEN": "Acarid mites NL"
+                      },
+                      "ontwikkelingsStadium": {
+                        "id": 5,
+                        "descriptionNL": "Adults",
+                        "descriptionEN": "Ouderen",
+                        "helpText": "Insects, mammals (e.g. rodents)"
+                      }
+                    }
+                  ],
+                  "toepassingsMethoden": [
+                    {
+                      "methode": {
+                        "id": 13,
+                        "descriptionNL": "Bait application",
+                        "descriptionEN": "Aas Applicatie"
+                      },
+                      "beschrijving": "beschrijving",
+                      "toepassingsDosering": "toepassingsDosering",
+                      "verdunning": 1,
+                      "toepassingsFrequentie": "aantalTiming"
+                    }
+                  ],
+                  "gebruiksAanwijzing": {
+                    "specifiekeInstructies": "specifieke instructies",
+                    "risicoBeperkendeMaatregelen": "risicoBeperkendemaatregelen",
+                    "bijzonderheden": "Bijzonderheden",
+                    "verwijdering": "verwijdering",
+                    "voorwaarden": "voorwaarden"
+                  }
+                }
+              ],
+           "samenstellingen": {
               "formuleringType": {
                 "id": 72,
                 "code": "RB",
