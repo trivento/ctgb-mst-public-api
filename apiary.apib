@@ -17,7 +17,7 @@ De hier gebruikte types zijn:
 Omdat in query parameters blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden. 
 Dit betekent dat b.v. `filter[veldNaam]` vertaald dient te worden naar: `filter%5BveldNaam%5D`
 
-## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouder%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
+## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouder%5D,filter%5BbiocideToepassingInfo%5D,filter%5BbiocideToepassingDoelorganismen%5D,filter%5BgewasToepassingGewassen%5D,filter%5BgewasToepassingOrganismen%5D,filter%5BgewasToepassingLocaties%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen toelatingen op basis van een groot aantal parameters doorzocht worden. Daarnaast biedt deze service sortering en paginatie. 
 
@@ -31,11 +31,16 @@ Met deze service kunnen toelatingen op basis van een groot aantal parameters doo
         + Members
             + `Biocide`
             + `Gewas`
-            + `ToevoegingsStof`
+            + `ToevoegingsStof` 
     + filter%5BtoelatingNummer%5D (string, optional) - het toelating nummer van het middel, nl of eu
     + filter%5BwerkzameStoffen%5D (number, optional) - id's van werkzamestoffen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BbeschermStoffen%5D (number, optional) - id's van beschermstoffen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BtoelatingHouder%5D (string, optional) - id's van toelatinghouders, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
+    + filter%5BbiocideToepassingInfo%5D (string, optional) - vrije tekst die zoekt in de toepassingen informatie van biocides.
+    + filter%5BbiocideToepassingDoelorganismen%5D (number, optional) - id's van triviale doelorganisme namen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
+    + filter%5BgewasToepassingGewassen%5D (string, optional) - paden van nederlandse DTG lijst elementen, bestaande uit `groepNL` elementen of `groepNL` elementen met aan het einde een `gewasNL` element, geconcateneerd met `::`. Meerdere paden worden koma separated, deze worden in de zoekvraag vertaald naar: `OR`. Voorbeeld: Toepassingsgebieden voor een gewasbeschermingsmiddel voor `Appel` of `Steenvruchten`: `Fruitgewassen::Groot fruit::Appel,Fruitgewassen::Steenvruchten`. De hierarchie dient van de DTGLijst afgeleid te worden, met name de elementen `groepNL` en `gewasNL`.
+    + filter%5BgewasToepassingOrganismen%5D (number, optional) - id's van geclaimde organismen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
+    + filter%5BgewasToepassingLocaties%5D (number, optional) - id's van toepassingslocaties, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BexpiratieDatumVan%5D (string, optional) - expiratie datum vanaf in formaat: `yyyy-MM-dd` 
     + filter%5BexpiratieDatumTot%5D (string, optional) - expiratie datum tot en met in formaat: `yyyy-MM-dd` 
     + filter%5BdatumOndertekeningVan%5D (string, optional) - datum ondertekening vanaf in formaat: `yyyy-MM-dd` 
@@ -1005,4 +1010,173 @@ Met deze service kunnen toelatinghouders opgezocht worden. Deze service onderste
                 {"id":"12ddaerwe17", "companyName":"FA. S. V.D. WERF","address":{"street":"Cartografenweg","number":"34","postalcode":"5141 MT","city":"Waalwijk","country":"Nederland"}},
                 {"id":"33434ss1230", "companyName":"Techno Trading Holland","address":{"street":"Groesweg","number":"13","postalcode":"5993 NN","city":"Maasbree","country":"Nederland"}}
             ]
+        }
+        
+## Doelorganismes voor Biocides [/public-api/1.0/stamdata/doelorganismen{?filter%5Bquery%5D,page%5Boffset%5D,page%5Blimit%5D}]
+
+Met deze service kunnen triviale namen van doelorganismen voor Biocides opgezocht worden. Deze service ondersteunt paginatie.
+
++ Parameters
+    + filter%5Bquery%5D: Acarid (string, required) - query parameter met een triviale organisme naam of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
+    + page%5Boffset%5D (number, optional) -  aantal doelorganismes die overgeslagen worden voordat het resultaat geretourneerd wordt
+        + Default: `0`
+    + page%5Blimit%5D (number, optional) - aantal te retourneren doelorganismes  
+        + Default: `100`
+
+
+### Opvragen Doelorganismes voor Biocides [GET]
+
++ Response 200 (application/json)
+
+        {
+            "meta": {
+                "total": 1255,
+                "offset":0,
+                "limit":100
+            },
+            "data": [
+                {"id": 1, "echaCode": "4998", "descriptionNL": "Acarid mites", "descriptionEN": "Acarid mites"},
+                {"id": 205, "descriptionNL": "Adults | Ants","descriptionEN": "Adults | Ants"},
+                {"id": 2, "echaCode": "4999", "descriptionNL": "Aedes mosquitoes","descriptionEN": "Aedes mosquitoes"},
+                {"id": 3, "echaCode": "5794", "descriptionNL": "Algae","descriptionEN": "Algae"}
+              ]
+        }        
+        
+        
+## DTGLijst voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/dtglijsten{?filter%5Bversie%5D}]
+
+Met deze service kunnen Definitielijsten Toepassingsgebieden Gewasbeschermingsmiddelen (DTG) opgevraagd worden. 
+
++ Parameters
+    + filter%5Bversie%5D (string, optional) - versie van de DTGLijst, b.v. `2.1`. Als geen versie opgegeven wordt, worden alle bestaande lijsten geretourneerd.
+    
+
+### Opvragen DTGLijst voor Gewasbeschermingsmiddelen [GET]
+
++ Response 200 (application/json)
+
+        {
+            "data": [
+            {
+                "versie": "1.0",
+                "expiratieDatum": "2022-08-31T22:00:00.000Z",
+                "gewaslijst": [
+                  {
+                    "groepNL": "Fruitgewassen",
+                    "groepEN": "Fruit crops",
+                    "items": [
+                      {
+                        "groepNL": "Groot fruit",
+                        "groepEN": "Large fruits",
+                        "items": [
+                          {
+                            "groepNL": "Pitvruchten",
+                            "groepEN": "Pome fruit",
+                            "items": [
+                              {
+                                "gewasNL": "Appel",
+                                "gewasEN": "Apple",
+                                "eppo": "MABSD",
+                                "bijaantrekkelijk": true,
+                                "teeltOnbedektJaar": "1"
+                              },
+                              {
+                                "gewasNL": "Peer",
+                                "gewasEN": "Pear",
+                                "eppo": "PYUCO, PYUPC",
+                                "opmerkingenNL": "Incl. Japanse peer",
+                                "opmerkingenEN": "Including Oriental pear",
+                                "bijaantrekkelijk": true,
+                                "teeltOnbedektJaar": "1"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "groepNL": "Kleinfruit",
+                        "groepEN": "Small fruits",
+                        "items": [
+                          {
+                            "groepNL": "Aardbei",
+                            "groepEN": "Strawberries",
+                            "eppo": "FRAAN",
+                            "bijenopmerkingNL": "Op het moment dat bloei plaatsvindt",
+                            "bijenopmerkingEN": "When flowering occurs",
+                            "bijaantrekkelijk": true,
+                            "teeltOnbedektJaar": "1",
+                            "teeltBedektJaar": "1 - 2",
+                            "items": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "groepNL": "Steenvruchten",
+                    "groepEN": "Stone fruit",
+                    "items": [
+                      {
+                        "gewasNL": "Kers",
+                        "gewasEN": "Cherry",
+                        "eppo": "PRNAV, PRNCE",
+                        "opmerkingenNL": "Zoete kers\nZure kers",
+                        "opmerkingenEN": "Sweet cherry\nSour cherry",
+                        "bijaantrekkelijk": true,
+                        "teeltOnbedektJaar": "1",
+                        "teeltBedektJaar": "1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "versie": "2.1",
+                "gewaslijst": [
+                  {
+                    "groepNL": "Peulgroenten",
+                    "groepEN": "Peulgroenten",
+                    "items": [
+                      {
+                        "groepNL": "Boon met peul",
+                        "groepEN": "Boon met peul",
+                        "items": [
+                          {
+                            "gewasNL": "Stamslaboon",
+                            "gewasEN": "Stamslaboon",
+                            "eppo": "PHSVN",
+                            "opmerkingenNL": "sperzieboon, boterboon\nwasboon",
+                            "opmerkingenEN": "sperzieboon, boterboon\nwasboon"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+        }                
+        
+        
+## Toepassingslocaties voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/toepassinglocatiesgewas{?filter%5Bquery%5D,page%5Boffset%5D,page%5Blimit%5D}]
+
+Met deze service kunnen toepassingslocaties voor Gewasbeschermingsmiddelen opgezocht worden. Deze service ondersteunt paginatie.
+
++ Parameters
+    + filter%5Bquery%5D: Bede (string, required) - query parameter met een toepassingslocatie naam of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
+    + page%5Boffset%5D (number, optional) -  aantal toepassingslocaties die overgeslagen worden voordat het resultaat geretourneerd wordt
+        + Default: `0`
+    + page%5Blimit%5D (number, optional) - aantal te retourneren toepassingslocaties  
+        + Default: `100`
+
+
+### Opvragen DTGLijst voor Gewasbeschermingsmiddelen [GET]        
+
++ Response 200 (application/json)
+
+        {
+            "data": [
+                    {"id": 1, "descriptionNL": "Bedekt", "descriptionEN": "Covered"},
+                    {"id": 2, "descriptionNL": "Onbedekt", "descriptionEN": "Uncovered"}
+                ]
         }
