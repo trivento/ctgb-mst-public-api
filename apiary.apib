@@ -163,7 +163,13 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
                 }
               ]
             },
-            "toepassingen": [
+            "toepassingen": {
+              "algemeen": {
+                "gebruiksAanwijzing": "Gebruiksaanwijzing",
+                "risicoBeperkendeMaatregelen": "RisicoBeperkendemaatregel",
+                "effectenEnMaatregelen": "effecten en maatregelen"
+              },
+              "toepassingen": [
                 {
                   "id": 13,
                   "naamVanGebruik": "Arctische Flora",
@@ -230,87 +236,89 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
                     "voorwaarden": "voorwaarden"
                   }
                 }
-              ],
-            "samenstellingen": {
-              "formuleringType": {
-                "id": 72,
-                "code": "RB",
-                "descriptionNL": "Lokmiddel (klaar voor gebruik)",
-                "descriptionEN": "Bait (ready for use)"
-              },
-              "stoffen": [
-                {
-                  "stof": {
-                    "id": 11287,
-                    "naamNL": "(2-butoxyethoxy)azijnzuur",
-                    "naamEN": "(2-butoxyethoxy)acetic acid",
-                    "casNummer": "82941-26-2"
-                  },
-                  "functie": {
-                    "id": 5,
-                    "descriptionNL": "Werkzame stof",
-                    "descriptionEN": "Active substance"
-                  },
-                  "gehalte": "12",
-                  "concentratie": {
-                    "id": 2,
-                    "unitNL": "%V/V",
-                    "unitEN": "%V/V",
-                    "descriptionNL": "volumeprocent",
-                    "descriptionEN": "volumeprocent"
-                  }
-                },
-                {
-                  "stof": {
-                    "id": 11287,
-                    "naamNL": "(2-butoxyethoxy)azijnzuur",
-                    "naamEN": "(2-butoxyethoxy)acetic acid",
-                    "casNummer": "82941-26-2"
-                  },
-                  "functie": {
-                    "id": 5,
-                    "descriptionNL": "Werkzame stof",
-                    "descriptionEN": "Active substance"
-                  },
-                  "gehalte": "1",
-                  "concentratie": {
-                    "id": 4,
-                    "unitNL": "CFU/G",
-                    "unitEN": "CFU/G",
-                    "descriptionNL": "kolonievormende sporen per gram",
-                    "descriptionEN": "kolonievormende sporen per gram"
-                  }
-                }
               ]
+            }
+          },
+          "samenstellingen": {
+            "formuleringType": {
+              "id": 72,
+              "code": "RB",
+              "descriptionNL": "Lokmiddel (klaar voor gebruik)",
+              "descriptionEN": "Bait (ready for use)"
             },
-            "besluiten": [
+            "stoffen": [
               {
-                "document": {
-                  "docId": "doc-1",
-                  "documentNaam": "Besluit.doc"
+                "stof": {
+                  "id": 11287,
+                  "naamNL": "(2-butoxyethoxy)azijnzuur",
+                  "naamEN": "(2-butoxyethoxy)acetic acid",
+                  "casNummer": "82941-26-2"
                 },
-                "besluitType": {
-                  "id": 563,
-                  "descriptionNL": "Uitbreiding toelating",
-                  "descriptionEN": "Extention of an authorisation"
+                "functie": {
+                  "id": 5,
+                  "descriptionNL": "Werkzame stof",
+                  "descriptionEN": "Active substance"
                 },
-                "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                "gehalte": "12",
+                "concentratie": {
+                  "id": 2,
+                  "unitNL": "%V/V",
+                  "unitEN": "%V/V",
+                  "descriptionNL": "volumeprocent",
+                  "descriptionEN": "volumeprocent"
+                }
               },
               {
-                "document": {
-                  "docId": "doc-Id-2",
-                  "documentNaam": "Bijlage.doc"
+                "stof": {
+                  "id": 11287,
+                  "naamNL": "(2-butoxyethoxy)azijnzuur",
+                  "naamEN": "(2-butoxyethoxy)acetic acid",
+                  "casNummer": "82941-26-2"
                 },
-                "besluitType": {
-                  "id": 700,
-                  "descriptionNL": "Actueel gebruiksvoorschrift",
-                  "descriptionEN": ""
+                "functie": {
+                  "id": 5,
+                  "descriptionNL": "Werkzame stof",
+                  "descriptionEN": "Active substance"
                 },
-                "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                "gehalte": "1",
+                "concentratie": {
+                  "id": 4,
+                  "unitNL": "CFU/G",
+                  "unitEN": "CFU/G",
+                  "descriptionNL": "kolonievormende sporen per gram",
+                  "descriptionEN": "kolonievormende sporen per gram"
+                }
               }
             ]
-          }
+          },
+          "besluiten": [
+            {
+              "document": {
+                "docId": "doc-1",
+                "documentNaam": "Besluit.doc"
+              },
+              "besluitType": {
+                "id": 563,
+                "descriptionNL": "Uitbreiding toelating",
+                "descriptionEN": "Extention of an authorisation"
+              },
+              "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+            },
+            {
+              "document": {
+                "docId": "doc-Id-2",
+                "documentNaam": "Bijlage.doc"
+              },
+              "besluitType": {
+                "id": 700,
+                "descriptionNL": "Actueel gebruiksvoorschrift",
+                "descriptionEN": ""
+              },
+              "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+            }
+          ]
         }
+
 
 
 ## Toelating Biocide [/public-api/1.0/toelatingen/22222]
@@ -323,9 +331,9 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 + Response 200 (application/json)
 
-        {
+         {
           "data": {
-            "id": "22222",
+            "id": "23456",
             "naam": "Mirazyl",
             "categorieType": "Biocide",
             "gebruiker": "Professioneel",
@@ -365,7 +373,13 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 }
               ]
             },
-            "toepassingen": [
+            "toepassingen": {
+              "algemeen": {
+                "gebruiksAanwijzing": "Gebruiksaanwijzing",
+                "risicoBeperkendeMaatregelen": "RisicoBeperkendemaatregel",
+                "effectenEnMaatregelen": "effecten en maatregelen"
+              },
+              "toepassingen": [
                 {
                   "id": 13,
                   "naamVanGebruik": "Arctische Flora",
@@ -432,87 +446,89 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                     "voorwaarden": "voorwaarden"
                   }
                 }
-              ],
-           "samenstellingen": {
-              "formuleringType": {
-                "id": 72,
-                "code": "RB",
-                "descriptionNL": "Lokmiddel (klaar voor gebruik)",
-                "descriptionEN": "Bait (ready for use)"
-              },
-              "stoffen": [
-                {
-                  "stof": {
-                    "id": 11287,
-                    "naamNL": "(2-butoxyethoxy)azijnzuur",
-                    "naamEN": "(2-butoxyethoxy)acetic acid",
-                    "casNummer": "82941-26-2"
-                  },
-                  "functie": {
-                    "id": 5,
-                    "descriptionNL": "Werkzame stof",
-                    "descriptionEN": "Active substance"
-                  },
-                  "gehalte": "12",
-                  "concentratie": {
-                    "id": 2,
-                    "unitNL": "%V/V",
-                    "unitEN": "%V/V",
-                    "descriptionNL": "volumeprocent",
-                    "descriptionEN": "volumeprocent"
-                  }
-                },
-                {
-                  "stof": {
-                    "id": 11287,
-                    "naamNL": "(2-butoxyethoxy)azijnzuur",
-                    "naamEN": "(2-butoxyethoxy)acetic acid",
-                    "casNummer": "82941-26-2"
-                  },
-                  "functie": {
-                    "id": 5,
-                    "descriptionNL": "Werkzame stof",
-                    "descriptionEN": "Active substance"
-                  },
-                  "gehalte": "1",
-                  "concentratie": {
-                    "id": 4,
-                    "unitNL": "CFU/G",
-                    "unitEN": "CFU/G",
-                    "descriptionNL": "kolonievormende sporen per gram",
-                    "descriptionEN": "kolonievormende sporen per gram"
-                  }
-                }
-              ],
-              "besluiten": [
-                {
-                  "document": {
-                    "docId": "doc-1",
-                    "documentNaam": "Besluit.doc"
-                  },
-                  "besluitType": {
-                    "id": 563,
-                    "descriptionNL": "Uitbreiding toelating",
-                    "descriptionEN": "Extention of an authorisation"
-                  },
-                  "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
-                },
-                {
-                  "document": {
-                    "docId": "doc-Id-2",
-                    "documentNaam": "Bijlage.doc"
-                  },
-                  "besluitType": {
-                    "id": 700,
-                    "descriptionNL": "Actueel gebruiksvoorschrift",
-                    "descriptionEN": ""
-                  },
-                  "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
-                }
               ]
             }
-          }
+          },
+          "samenstellingen": {
+            "formuleringType": {
+              "id": 72,
+              "code": "RB",
+              "descriptionNL": "Lokmiddel (klaar voor gebruik)",
+              "descriptionEN": "Bait (ready for use)"
+            },
+            "stoffen": [
+              {
+                "stof": {
+                  "id": 11287,
+                  "naamNL": "(2-butoxyethoxy)azijnzuur",
+                  "naamEN": "(2-butoxyethoxy)acetic acid",
+                  "casNummer": "82941-26-2"
+                },
+                "functie": {
+                  "id": 5,
+                  "descriptionNL": "Werkzame stof",
+                  "descriptionEN": "Active substance"
+                },
+                "gehalte": "12",
+                "concentratie": {
+                  "id": 2,
+                  "unitNL": "%V/V",
+                  "unitEN": "%V/V",
+                  "descriptionNL": "volumeprocent",
+                  "descriptionEN": "volumeprocent"
+                }
+              },
+              {
+                "stof": {
+                  "id": 11287,
+                  "naamNL": "(2-butoxyethoxy)azijnzuur",
+                  "naamEN": "(2-butoxyethoxy)acetic acid",
+                  "casNummer": "82941-26-2"
+                },
+                "functie": {
+                  "id": 5,
+                  "descriptionNL": "Werkzame stof",
+                  "descriptionEN": "Active substance"
+                },
+                "gehalte": "1",
+                "concentratie": {
+                  "id": 4,
+                  "unitNL": "CFU/G",
+                  "unitEN": "CFU/G",
+                  "descriptionNL": "kolonievormende sporen per gram",
+                  "descriptionEN": "kolonievormende sporen per gram"
+                }
+              }
+            ]
+          },
+          "besluiten": [
+            {
+              "document": {
+                "docId": "doc-1",
+                "documentNaam": "Besluit.doc"
+              },
+              "besluitType": {
+                "id": 563,
+                "descriptionNL": "Uitbreiding toelating",
+                "descriptionEN": "Extention of an authorisation"
+              },
+              "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+            },
+            {
+              "document": {
+                "docId": "doc-Id-2",
+                "documentNaam": "Bijlage.doc"
+              },
+              "besluitType": {
+                "id": 700,
+                "descriptionNL": "Actueel gebruiksvoorschrift",
+                "descriptionEN": ""
+              },
+              "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+            }
+          ]
         }
+
         
 
 ## Toelating Gewas [/public-api/1.0/toelatingen/55555]
@@ -642,6 +658,126 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 }
               ]
             },
+            "toepassingen": [
+              {
+                "id": "1337",
+                "naamVanGebruik": "Herbiciden",
+                "geclaimdOrganisme": "Geclaimd organisme",
+                "toepassingsLocaties": [
+                  {
+                    "id": 1,
+                    "descriptionNL": "Bedekt",
+                    "descriptionEN": "Covered"
+                  },
+                  {
+                    "id": 2,
+                    "descriptionNL": "Onbedekt",
+                    "descriptionEN": "Uncovered"
+                  }
+                ],
+                "dtgLijstVersion": "2.1",
+                "toepassingsGebieden": [
+                  {
+                    "groepNL": "Fruitgewassen",
+                    "groepEN": "Fruit crops",
+                    "items": [
+                      {
+                        "groepNL": "Groot fruit",
+                        "groepEN": "Large fruits",
+                        "items": [
+                          {
+                            "groepNL": "Pitvruchten",
+                            "groepEN": "Pome fruit",
+                            "items": [
+                              {
+                                "gewasNL": "Appel",
+                                "gewasEN": "Apple",
+                                "eppo": "MABSD",
+                                "bijaantrekkelijk": true,
+                                "teeltOnbedektJaar": "1"
+                              },
+                              {
+                                "gewasNL": "Peer",
+                                "gewasEN": "Pear",
+                                "eppo": "PYUCO, PYUPC",
+                                "opmerkingenNL": "Incl. Japanse peer",
+                                "opmerkingenEN": "Including Oriental pear",
+                                "bijaantrekkelijk": true,
+                                "teeltOnbedektJaar": "1"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "groepNL": "Kleinfruit",
+                        "groepEN": "Small fruits",
+                        "items": [
+                          {
+                            "groepNL": "Aardbei",
+                            "groepEN": "Strawberries",
+                            "beperktTotNL": "wilde Aardbei",
+                            "beperktTotEN": "wild Strawberries",
+                            "eppo": "FRAAN",
+                            "bijenopmerkingNL": "Op het moment dat bloei plaatsvindt",
+                            "bijenopmerkingEN": "When flowering occurs",
+                            "bijaantrekkelijk": true,
+                            "teeltOnbedektJaar": "1",
+                            "teeltBedektJaar": "1 - 2",
+                            "items": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "groepNL": "Steenvruchten",
+                    "groepEN": "Stone fruit",
+                    "items": [
+                      {
+                        "gewasNL": "Kers",
+                        "gewasEN": "Cherry",
+                        "beperktTotNL": "rode Kers",
+                        "beperktTotEN": "red Cherry",
+                        "eppo": "PRNAV, PRNCE",
+                        "opmerkingenNL": "Zoete kers\nZure kers",
+                        "opmerkingenEN": "Sweet cherry\nSour cherry",
+                        "bijaantrekkelijk": true,
+                        "teeltOnbedektJaar": "1",
+                        "teeltBedektJaar": "1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "1340",
+                "naamVanGebruik": "Besproeing",
+                "geclaimdOrganisme": "Geclaimd organisme",
+                "dtgLijstVersion": "2.1",
+                "toepassingsGebieden": [
+                  {
+                    "groepNL": "Peulgroenten",
+                    "groepEN": "Peulgroenten",
+                    "items": [
+                      {
+                        "groepNL": "Boon met peul",
+                        "groepEN": "Boon met peul",
+                        "items": [
+                          {
+                            "gewasNL": "Stamslaboon",
+                            "gewasEN": "Stamslaboon",
+                            "eppo": "PHSVN",
+                            "opmerkingenNL": "sperzieboon, boterboon\nwasboon",
+                            "opmerkingenEN": "sperzieboon, boterboon\nwasboon"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
             "samenstellingen": {
               "formuleringType": {
                 "id": 72,
