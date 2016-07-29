@@ -45,8 +45,8 @@ Met deze service kunnen toelatingen op basis van een groot aantal parameters doo
     + filter%5BexpiratieDatumTot%5D (string, optional) - expiratie datum tot en met in formaat: `yyyy-MM-dd` 
     + filter%5BdatumOndertekeningVan%5D (string, optional) - datum ondertekening vanaf in formaat: `yyyy-MM-dd` 
     + filter%5BdatumOndertekeningTot%5D (string, optional) - datum ondertekening tot en met in formaat: `yyyy-MM-dd`
-    + sort (string optional) - koma separated lijst van veldnamen waarop gesorteerd dient te worden. Default is de sortering _oplopend_. Door een '`-`' aan de veldnaam toe te voegen is de sortering _aflopend_. B.v. `sort=naam,-toelating.datumOndertekening`.
-        Er kunnen op de volgende velden gesorteerd worden: `naam`, `categorieType`, `toelating.toelatingNummer`, `toelating.expiratieDatum`, `toelating.datumOndertekening` 
+    + sort (string optional) - koma separated lijst van veldnamen waarop gesorteerd dient te worden. Default is de sortering _oplopend_. Door een '`-`' aan de veldnaam toe te voegen is de sortering _aflopend_. B.v. `sort=naam,-datumOndertekening`.
+        Er kunnen op de volgende velden gesorteerd worden: `naam`, `categorieType`, `toelatingNummer`, `expiratieDatum`, `datumOndertekening` 
     + page%5Boffset%5D (number, optional) -  aantal toelatingen die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren toelatingen  
@@ -67,44 +67,36 @@ Met deze service kunnen toelatingen op basis van een groot aantal parameters doo
                 "id" : "23456",
                 "naam": "Mirazyl",
                 "categorieType": "Biocide",
-                "toelating": {
-                  "toelatingNummer": "NL-0006252-0000",
-                  "expiratieDatum": "2019-02-10T00:00:00.000+01:00",
-                  "datumOndertekening": "2015-01-08T00:00:00.000+01:00"
-                }
+                "toelatingNummer": "NL-0006252-0000",
+                "expiratieDatum": "2019-02-10T00:00:00.000+01:00",
+                "datumOndertekening": "2015-01-08T00:00:00.000+01:00"
               },
               {
                 "id" : "22222",
                 "naam": "Hema Goodbye Mosquito Anti-muggen roller with DEET",
                 "categorieType": "Biocide",
-                "toelating": {
-                  "toelatingNummer": "12569",
-                  "expiratieDatum": "2017-01-18T00:00:00.000+01:00",
-                  "datumOndertekening": "2013-01-17T00:00:00.000+01:00"
-                }
+                "toelatingNummer": "12569",
+                "expiratieDatum": "2017-01-18T00:00:00.000+01:00",
+                "datumOndertekening": "2013-01-17T00:00:00.000+01:00"
               },
               {
                 "id" : "55555",
                 "naam": "TRIFOCIDE VLOEIBAAR DNOC",
                 "categorieType": "Gewas",
-                "toelating": {
-                  "toelatingNummer": "3204",
-                  "expiratieDatum": "2020-01-01T00:00:00.000+01:00",
-                  "datumOndertekening": "2013-05-13T00:00:00.000+01:00"
-                }
+                "toelatingNummer": "3204",
+                "expiratieDatum": "2020-01-01T00:00:00.000+01:00",
+                "datumOndertekening": "2013-05-13T00:00:00.000+01:00"
               },
               {
                 "id" : "88888",
                 "naam": "Biopower",
                 "categorieType": "ToevoegingsStof",
-                "toelating": {
-                  "toelatingNummer": "13760",
-                  "expiratieDatum": "8888-08-07T00:00:00.000+01:00",
-                  "datumOndertekening": "2014-06-17T00:00:00.000+01:00"
-                }
+                "toelatingNummer": "13760",
+                "expiratieDatum": "8888-08-07T00:00:00.000+01:00",
+                "datumOndertekening": "2014-06-17T00:00:00.000+01:00"
               }
             ]
-            }
+        }
         
 
 ## Toelating [/public-api/1.0/toelatingen/{id}]
