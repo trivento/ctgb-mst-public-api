@@ -17,13 +17,13 @@ De hier gebruikte types zijn:
 Omdat in query parameters blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden. 
 Dit betekent dat b.v. `filter[veldNaam]` vertaald dient te worden naar: `filter%5BveldNaam%5D`
 
-## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouder%5D,filter%5BbiocideToepassingInfo%5D,filter%5BbiocideDoelorganismen%5D,filter%5BgewasToepassingsgebieden%5D,filter%5BgewasDoelorganismen%5D,filter%5BgewasToepassingslocaties%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
+## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouder%5D,filter%5BbiocideToepassingInfo%5D,filter%5BbiocideDoelorganismen%5D,filter%5BgewasToepassingsgebieden%5D,filter%5BgewasToepassingsgebiedenLang%5D,filter%5BgewasDoelorganismen%5D,filter%5BgewasToepassingslocaties%5D,filter%5BgewasAardWerkingen%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen toelatingen op basis van een groot aantal parameters doorzocht worden. Daarnaast biedt deze service sortering en paginatie.
 
-    + Parameters
-        + filter%5BmiddelNaam%5D (string, optional) - de naam van het middel of een deel ervan.  In de zoekvraag wordt dit vertaald naar `contains naam,` niet hoofdlettergevoelig.
-        + filter%5BmiddelStatus%5D (enum%5BmiddelStatus%5D, optional) - de status van een middel. Meerdere middel statussen worden in de zoekvraag vertaald naar: `OR`.
++ Parameters
+    + filter%5BmiddelNaam%5D (string, optional) - de naam van het middel of een deel ervan.  In de zoekvraag wordt dit vertaald naar `contains naam,` niet hoofdlettergevoelig.
+    + filter%5BmiddelStatus%5D (enum%5BmiddelStatus%5D, optional) - de status van een middel. Meerdere middel statussen worden in de zoekvraag vertaald naar: `OR`.
         + Members
             + `Valid`
             + `Expired`
@@ -37,9 +37,13 @@ Met deze service kunnen toelatingen op basis van een groot aantal parameters doo
     + filter%5BbeschermStoffen%5D (number, optional) - id's van beschermstoffen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BtoelatingHouder%5D (string, optional) - id's van toelatinghouders, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BbiocideToepassingInfo%5D (string, optional) - vrije tekst die zoekt in de toepassingen informatie van biocides.
-    + filter%5BbiocideToepassingDoelorganismen%5D (number, optional) - id's van triviale doelorganisme namen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
+    + filter%5BbiocideDoelorganismen%5D (number, optional) - id's van triviale doelorganisme namen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BgewasDoelorganismen%5D (number, optional) - id's van geclaimde organismen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
-    + filter%5BgewasToepassingsgebieden%5D (string, optional) - paden van nederlandse DTG lijst elementen, bestaande uit `groepNL` elementen of `groepNL` elementen met aan het einde een `gewasNL` element, geconcateneerd met `::`. Meerdere paden worden koma separated, deze worden in de zoekvraag vertaald naar: `OR`. Voorbeeld: Toepassingsgebieden voor een gewasbeschermingsmiddel voor `Appel` of `Steenvruchten`: `Fruitgewassen::Groot fruit::Appel,Fruitgewassen::Steenvruchten`. De hierarchie dient van de DTGLijst afgeleid te worden, met name de elementen `groepNL` en `gewasNL`.
+    + filter%5BgewasToepassingsgebieden%5D (string, optional) - namen van gewassen gevolgd door locatie in de DTG hierarchie zijnde `groep, subgroep, gewas`, geconcateneerd met `::`. Meerdere paden worden koma separated, deze worden in de zoekvraag vertaald naar: `OR`. Voorbeeld: Toepassingsgebieden voor een gewasbeschermingsmiddel voor `Appel` of `Steenvruchten`: `Appel::gewas,Steenvruchten::subgroep`.
+    + filter%5BgewasToepassingsgebiedenLang%5D: nl (enum[lang], optional) - language parameter voor toepassingsgebieden met de afkorting van de gewenste taal. Default is `nl`.
+        + Members
+                + `nl`
+                + `en`
     + filter%5BgewasToepassingslocaties%5D (number, optional) - id's van toepassingslocaties, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BgewasAardWerkingen%5D (number, optional) - id's van aard werkingen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BexpiratieDatumVan%5D (string, optional) - expiratie datum vanaf in formaat: `yyyy-MM-dd`
@@ -1095,7 +1099,7 @@ Met deze service kunnen toepassingsgebieden van gewasbeschermingsmiddelen gebase
         }                
         
         
-## Toepassingslocaties voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/toepassingslocaties{?filter%5Bquery%5D,filter%5Blang%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Toepassingslocaties voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/gewas/toepassingslocaties{?filter%5Bquery%5D,filter%5Blang%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen toepassingslocaties voor Gewasbeschermingsmiddelen opgezocht worden. Deze service ondersteunt paginatie.
 
@@ -1130,7 +1134,7 @@ Met deze service kunnen toepassingslocaties voor Gewasbeschermingsmiddelen opgez
         
         
         
-## Aard Werking voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/aardwerkingen{?filter%5Bquery%5D,filter%5Blang%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Aard Werking voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/gewas/aardwerkingen{?filter%5Bquery%5D,filter%5Blang%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen aard werkingen voor Gewasbeschermingsmiddelen opgezocht worden. Deze service ondersteunt paginatie.
 
