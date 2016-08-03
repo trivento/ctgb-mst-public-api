@@ -17,11 +17,15 @@ De hier gebruikte types zijn:
 Omdat in query parameters blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden. 
 Dit betekent dat b.v. `filter[veldNaam]` vertaald dient te worden naar: `filter%5BveldNaam%5D`
 
-## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouder%5D,filter%5BbiocideToepassingInfo%5D,filter%5BbiocideDoelorganismen%5D,filter%5BgewasToepassingsgebieden%5D,filter%5BgewasToepassingsgebiedenLang%5D,filter%5BgewasDoelorganismen%5D,filter%5BgewasToepassingslocaties%5D,filter%5BgewasAardWerkingen%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
+## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BLocale%5D,filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouder%5D,filter%5BbiocideToepassingInfo%5D,filter%5BbiocideDoelorganismen%5D,filter%5BgewasToepassingsgebieden%5D,filter%5BgewasDoelorganismen%5D,filter%5BgewasToepassingslocaties%5D,filter%5BgewasAardWerkingen%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen toelatingen op basis van een groot aantal parameters doorzocht worden. Daarnaast biedt deze service sortering en paginatie.
 
 + Parameters
+    + filter%5BLocale%5D: nl (enum[locale], optional) - locale parameter voor toepassingsgebieden met de afkorting van de gewenste taal. Default is `nl`.
+        + Members
+                + `nl`
+                + `en`
     + filter%5BmiddelNaam%5D (string, optional) - de naam van het middel of een deel ervan.  In de zoekvraag wordt dit vertaald naar `contains naam,` niet hoofdlettergevoelig.
     + filter%5BmiddelStatus%5D (enum%5BmiddelStatus%5D, optional) - de status van een middel. Meerdere middel statussen worden in de zoekvraag vertaald naar: `OR`.
         + Members
@@ -40,10 +44,6 @@ Met deze service kunnen toelatingen op basis van een groot aantal parameters doo
     + filter%5BbiocideDoelorganismen%5D (number, optional) - id's van triviale doelorganisme namen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BgewasDoelorganismen%5D (number, optional) - id's van geclaimde organismen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BgewasToepassingsgebieden%5D (string, optional) - namen van gewassen gevolgd door locatie in de DTG hierarchie zijnde `groep, subgroep, gewas`, geconcateneerd met `::`. Meerdere paden worden koma separated, deze worden in de zoekvraag vertaald naar: `OR`. Voorbeeld: Toepassingsgebieden voor een gewasbeschermingsmiddel voor `Appel` of `Steenvruchten`: `Appel::gewas,Steenvruchten::subgroep`.
-    + filter%5BgewasToepassingsgebiedenLang%5D: nl (enum[lang], optional) - language parameter voor toepassingsgebieden met de afkorting van de gewenste taal. Default is `nl`.
-        + Members
-                + `nl`
-                + `en`
     + filter%5BgewasToepassingslocaties%5D (number, optional) - id's van toepassingslocaties, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BgewasAardWerkingen%5D (number, optional) - id's van aard werkingen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BexpiratieDatumVan%5D (string, optional) - expiratie datum vanaf in formaat: `yyyy-MM-dd`
@@ -104,7 +104,7 @@ Met deze service kunnen toelatingen op basis van een groot aantal parameters doo
         }
         
 
-## Toelating [/public-api/1.0/toelatingen/{id}]
+## Toelating [/public-api/1.0/toelatingen/{id}?filter%5BLocale%5D]
 
 Het opvragen van een toelating kan resulteren in 3 verschillende types antwoorden:
 - Toelating voor Bicode
@@ -118,6 +118,11 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
 
 + Parameters
     + id: 23456 (number, required) - id van het middel.
+    + filter%5BLocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
+        + Members
+                + `nl`
+                + `en`
+
 
 ### Opvragen Toelating  [GET]
 
@@ -125,335 +130,361 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
 
         {
           "data": {
-              "id" : "7544cbc1eff64f79a5185a7f4afca547",
-              "naam" : "Wizard",
-              "categorieType" : "Biocide",
-              "gebruiker" : "Professioneel",
-              "toelatingHouder" : {
-                "companyName" : "BAYER",
-                "address" : {
-                  "street" : "Bayernslaan",
-                  "number" : "888",
-                  "postalcode" : "5635 AE",
-                  "city" : "Ede",
-                  "country" : "England"
+              "id": "30754eb76d1548269b5ab237ec29b78c",
+              "naam": "Wizard",
+              "categorieType": "Biocide",
+              "gebruiker": "Beide",
+              "toelatingHouder": {
+                "companyName": "BAYER",
+                "address": {
+                  "street": "Bayernslaan",
+                  "number": "888",
+                  "postalcode": "5635 AE",
+                  "city": "Ede",
+                  "country": "England"
                 }
               },
-              "toelating" : {
-                "toelatingNummer" : {
-                  "nl" : 121212,
-                  "eu" : "EU-1234-9999-000",
-                  "ingangsDatum" : "2016-08-02T08:46:41.662+02:00"
+              "toelating": {
+                "toelatingNummer": {
+                  "nl": 121212,
+                  "eu": "EU-1234-9999-000",
+                  "ingangsDatum": "2016-08-03T11:49:34.267+02:00"
                 },
-                "expiratieDatum" : "2019-08-02T08:46:41.663+02:00",
-                "opgebruikTermijn" : "2018-08-02T08:46:41.663+02:00",
-                "afleverTermijn" : "2019-08-02T08:46:41.663+02:00",
-                "gebruiksvoorschriften" : [ {
-                  "gebruiker" : "Professioneel",
-                  "documenten" : [ {
-                    "document" : {
-                      "docId" : "doc-1",
-                      "documentNaam" : "Besluit.doc"
-                    },
-                    "ingangsDatum" : "2016-08-02T08:46:41.675+02:00",
-                    "expiratieDatum" : "2019-08-02T08:46:41.663+02:00"
-                  } ]
-                } ]
-              },
-              "samenstellingen" : {
-                "formuleringType" : {
-                  "id" : 1,
-                  "code" : "AE",
-                  "descriptionNL" : "Aerosol spuitbus",
-                  "descriptionEN" : "Aerosol dispenser"
-                },
-                "stoffen" : [ {
-                  "stof" : {
-                    "id" : 19,
-                    "naamNL" : "acefaat",
-                    "naamEN" : "acephate",
-                    "ecNummer" : "250-241-2",
-                    "casNummer" : "30560-19-1"
-                  },
-                  "functie" : {
-                    "id" : 40,
-                    "descriptionNL" : "Werkzame stof",
-                    "descriptionEN" : "Active Ingredient"
-                  },
-                  "gehalte" : "456",
-                  "concentratie" : {
-                    "id" : 20,
-                    "unitNL" : "G/L",
-                    "unitEN" : "G/L",
-                    "descriptionNL" : "gram per liter",
-                    "descriptionEN" : "gram per litre"
+                "expiratieDatum": "2019-08-03T11:49:34.268+02:00",
+                "opgebruikTermijn": "2018-08-03T11:49:34.268+02:00",
+                "afleverTermijn": "2019-08-03T11:49:34.269+02:00",
+                "gebruiksvoorschriften": [
+                  {
+                    "gebruiker": "Professioneel",
+                    "documenten": [
+                      {
+                        "document": {
+                          "docId": "doc-1",
+                          "documentNaam": "Besluit.doc"
+                        },
+                        "ingangsDatum": "2016-08-03T11:49:34.296+02:00",
+                        "expiratieDatum": "2019-08-03T11:49:34.268+02:00"
+                      }
+                    ]
                   }
-                } ]
+                ]
               },
-              "toepassingen" : {
-                "algemeen" : {
-                  "gebruiksAanwijzing" : "Gebruiksaanwijzing",
-                  "risicoBeperkendeMaatregelen" : "RisicoBeperkendemaatregel",
-                  "effectenEnMaatregelen" : "effecten en maatregelen"
+              "samenstellingen": {
+                "formuleringType": {
+                  "id": 1,
+                  "code": "AE",
+                  "description": "Aerosol spuitbus"
                 },
-                "toepassingen" : [ {
-                  "naamVanGebruik" : "Arctische Flora",
-                  "productSoort" : {
-                    "id" : 10,
-                    "code" : "PT01",
-                    "descriptionNL" : "Biociden voor menselijke hygiëne",
-                    "descriptionEN" : "Human hygiene (Disinfectants)"
-                  },
-                  "beschrijvingToegelatenGebruik" : "Dit is een beschrijving toegelaten gebruik",
-                  "toepassingsGebieden" : [ {
-                    "type" : "Binnenshuis",
-                    "descriptionEN" : "Indoor",
-                    "descriptionNL" : "Binnenshuis"
-                  }, {
-                    "type" : "Buitenshuis",
-                    "descriptionEN" : "Outdoor or field use",
-                    "descriptionNL" : "Buitenshuis"
-                  } ],
-                  "beschrijvingGebruiksGebied" : "beschrijvingGebruiksgebied",
-                  "gebruikersCategorieen" : [ {
-                    "type" : "AlgemeenPubliek",
-                    "descriptionEN" : "Non-professional",
-                    "descriptionNL" : "Algemeen Publiek",
-                    "gebruik" : "NietProfessioneel"
-                  }, {
-                    "type" : "Professional",
-                    "descriptionEN" : "Professional",
-                    "descriptionNL" : "Professional",
-                    "gebruik" : "Professioneel"
-                  } ],
-                  "doelOrganismen" : [ {
-                    "id" : 13,
-                    "descriptionNL" : "Acarid mites",
-                    "descriptionEN" : "Acarid mites NL"
-                  } ],
-                  "toepassingsMethoden" : [ {
-                    "methode" : {
-                      "id" : 13,
-                      "descriptionNL" : "Bait application",
-                      "descriptionEN" : "Aas Applicatie"
+                "stoffen": [
+                  {
+                    "stof": {
+                      "id": 19,
+                      "naam": "acefaat",
+                      "ecNummer": "250-241-2",
+                      "casNummer": "30560-19-1"
                     },
-                    "beschrijving" : "beschrijving",
-                    "toepassingsDosering" : "toepassingsDosering",
-                    "verdunning" : 1,
-                    "toepassingsFrequentie" : "aantalTiming"
-                  } ],
-                  "gebruiksAanwijzing" : {
-                    "specifiekeInstructies" : "specifieke instructies",
-                    "risicoBeperkendeMaatregelen" : "risicoBeperkendemaatregelen",
-                    "bijzonderheden" : "Bijzonderheden",
-                    "verwijdering" : "verwijdering",
-                    "voorwaarden" : "voorwaarden"
+                    "functie": {
+                      "id": 40,
+                      "description": "Werkzame stof"
+                    },
+                    "gehalte": "456",
+                    "concentratie": {
+                      "id": 20,
+                      "unit": "G/L",
+                      "description": "gram per liter"
+                    }
                   }
-                } ]
+                ]
               },
-              "besluiten" : [ {
-                "document" : {
-                  "docId" : "doc-2",
-                  "documentNaam" : "Bijlage.html"
+              "toepassingen": {
+                "algemeen": {
+                  "gebruiksAanwijzing": "Gebruiksaanwijzing",
+                  "risicoBeperkendeMaatregelen": "RisicoBeperkendemaatregel",
+                  "effectenEnMaatregelen": "effecten en maatregelen"
                 },
-                "besluitType" : {
-                  "id" : 15,
-                  "descriptionNL" : "Bijlage",
-                  "descriptionEN" : "Appendix",
-                  "public" : true
+                "toepassingen": [
+                  {
+                    "naamVanGebruik": "Arctische Flora",
+                    "productSoort": {
+                      "id": 10,
+                      "code": "PT01",
+                      "description": "Biociden voor menselijke hygiëne"
+                    },
+                    "beschrijvingToegelatenGebruik": "Dit is een beschrijving toegelaten gebruik",
+                    "toepassingsGebieden": [
+                      {
+                        "type": "Binnenshuis",
+                        "description": "Binnenshuis"
+                      },
+                      {
+                        "type": "Buitenshuis",
+                        "description": "Buitenshuis"
+                      }
+                    ],
+                    "beschrijvingGebruiksGebied": "beschrijvingGebruiksgebied",
+                    "gebruikersCategorieen": [
+                      {
+                        "type": "AlgemeenPubliek",
+                        "description": "Algemeen Publiek",
+                        "gebruik": "NietProfessioneel"
+                      },
+                      {
+                        "type": "Professional",
+                        "description": "Professional",
+                        "gebruik": "Professioneel"
+                      }
+                    ],
+                    "doelOrganismen": [
+                      {
+                        "id": 13,
+                        "description": "Acarid mites"
+                      }
+                    ],
+                    "toepassingsMethoden": [
+                      {
+                        "methode": {
+                          "id": 13,
+                          "description": "Bait application"
+                        },
+                        "beschrijving": "beschrijving",
+                        "toepassingsDosering": "toepassingsDosering",
+                        "verdunning": 1,
+                        "toepassingsFrequentie": "aantalTiming"
+                      }
+                    ],
+                    "gebruiksAanwijzing": {
+                      "specifiekeInstructies": "specifieke instructies",
+                      "risicoBeperkendeMaatregelen": "risicoBeperkendemaatregelen",
+                      "bijzonderheden": "Bijzonderheden",
+                      "verwijdering": "verwijdering",
+                      "voorwaarden": "voorwaarden"
+                    }
+                  }
+                ]
+              },
+              "besluiten": [
+                {
+                  "document": {
+                    "docId": "doc-2",
+                    "documentNaam": "Bijlage.html"
+                  },
+                  "besluitType": {
+                    "id": 15,
+                    "description": "Bijlage",
+                    "public": true
+                  },
+                  "datumOndertekening": "2016-08-03T11:49:34.296+02:00"
                 },
-                "datumOndertekening" : "2016-08-02T08:46:41.675+02:00"
-              }, {
-                "document" : {
-                  "docId" : "doc-1",
-                  "documentNaam" : "Besluit.doc"
-                },
-                "besluitType" : {
-                  "id" : 12,
-                  "result" : "Accept",
-                  "descriptionNL" : "Van rechtswege toelating",
-                  "descriptionEN" : "Authorisation until EU-decision is implemented",
-                  "public" : true
-                },
-                "datumOndertekening" : "2016-08-02T08:46:41.674+02:00"
-              } ]
+                {
+                  "document": {
+                    "docId": "doc-1",
+                    "documentNaam": "Besluit.doc"
+                  },
+                  "besluitType": {
+                    "id": 12,
+                    "result": "Accept",
+                    "description": "Van rechtswege toelating",
+                    "public": true
+                  },
+                  "datumOndertekening": "2016-08-03T11:49:34.285+02:00"
+                }
+              ]
             }
         }
 
 
-## Toelating Biocide [/public-api/1.0/toelatingen/22222]
+## Toelating Biocide [/public-api/1.0/toelatingen/22222?filter%5BLocale%5D]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) op te vragen.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 22222. Deze retourneerd vervolgens de toelating van een *Biocide*.
 
++ Parameters
+    + filter%5BLocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
+        + Members
+                + `nl`
+                + `en`
+
 ### Opvragen Toelating Biocide [GET]        
 
 + Response 200 (application/json)
 
-         {
+        {
           "data": {
-              "id" : "7544cbc1eff64f79a5185a7f4afca547",
-              "naam" : "Wizard",
-              "categorieType" : "Biocide",
-              "gebruiker" : "Professioneel",
-              "toelatingHouder" : {
-                "companyName" : "BAYER",
-                "address" : {
-                  "street" : "Bayernslaan",
-                  "number" : "888",
-                  "postalcode" : "5635 AE",
-                  "city" : "Ede",
-                  "country" : "England"
+              "id": "30754eb76d1548269b5ab237ec29b78c",
+              "naam": "Wizard",
+              "categorieType": "Biocide",
+              "gebruiker": "Beide",
+              "toelatingHouder": {
+                "companyName": "BAYER",
+                "address": {
+                  "street": "Bayernslaan",
+                  "number": "888",
+                  "postalcode": "5635 AE",
+                  "city": "Ede",
+                  "country": "England"
                 }
               },
-              "toelating" : {
-                "toelatingNummer" : {
-                  "nl" : 121212,
-                  "eu" : "EU-1234-9999-000",
-                  "ingangsDatum" : "2016-08-02T08:46:41.662+02:00"
+              "toelating": {
+                "toelatingNummer": {
+                  "nl": 121212,
+                  "eu": "EU-1234-9999-000",
+                  "ingangsDatum": "2016-08-03T11:49:34.267+02:00"
                 },
-                "expiratieDatum" : "2019-08-02T08:46:41.663+02:00",
-                "opgebruikTermijn" : "2018-08-02T08:46:41.663+02:00",
-                "afleverTermijn" : "2019-08-02T08:46:41.663+02:00",
-                "gebruiksvoorschriften" : [ {
-                  "gebruiker" : "Professioneel",
-                  "documenten" : [ {
-                    "document" : {
-                      "docId" : "doc-1",
-                      "documentNaam" : "Besluit.doc"
-                    },
-                    "ingangsDatum" : "2016-08-02T08:46:41.675+02:00",
-                    "expiratieDatum" : "2019-08-02T08:46:41.663+02:00"
-                  } ]
-                } ]
-              },
-              "samenstellingen" : {
-                "formuleringType" : {
-                  "id" : 1,
-                  "code" : "AE",
-                  "descriptionNL" : "Aerosol spuitbus",
-                  "descriptionEN" : "Aerosol dispenser"
-                },
-                "stoffen" : [ {
-                  "stof" : {
-                    "id" : 19,
-                    "naamNL" : "acefaat",
-                    "naamEN" : "acephate",
-                    "ecNummer" : "250-241-2",
-                    "casNummer" : "30560-19-1"
-                  },
-                  "functie" : {
-                    "id" : 40,
-                    "descriptionNL" : "Werkzame stof",
-                    "descriptionEN" : "Active Ingredient"
-                  },
-                  "gehalte" : "456",
-                  "concentratie" : {
-                    "id" : 20,
-                    "unitNL" : "G/L",
-                    "unitEN" : "G/L",
-                    "descriptionNL" : "gram per liter",
-                    "descriptionEN" : "gram per litre"
+                "expiratieDatum": "2019-08-03T11:49:34.268+02:00",
+                "opgebruikTermijn": "2018-08-03T11:49:34.268+02:00",
+                "afleverTermijn": "2019-08-03T11:49:34.269+02:00",
+                "gebruiksvoorschriften": [
+                  {
+                    "gebruiker": "Professioneel",
+                    "documenten": [
+                      {
+                        "document": {
+                          "docId": "doc-1",
+                          "documentNaam": "Besluit.doc"
+                        },
+                        "ingangsDatum": "2016-08-03T11:49:34.296+02:00",
+                        "expiratieDatum": "2019-08-03T11:49:34.268+02:00"
+                      }
+                    ]
                   }
-                } ]
+                ]
               },
-              "toepassingen" : {
-                "algemeen" : {
-                  "gebruiksAanwijzing" : "Gebruiksaanwijzing",
-                  "risicoBeperkendeMaatregelen" : "RisicoBeperkendemaatregel",
-                  "effectenEnMaatregelen" : "effecten en maatregelen"
+              "samenstellingen": {
+                "formuleringType": {
+                  "id": 1,
+                  "code": "AE",
+                  "description": "Aerosol spuitbus"
                 },
-                "toepassingen" : [ {
-                  "naamVanGebruik" : "Arctische Flora",
-                  "productSoort" : {
-                    "id" : 10,
-                    "code" : "PT01",
-                    "descriptionNL" : "Biociden voor menselijke hygiëne",
-                    "descriptionEN" : "Human hygiene (Disinfectants)"
-                  },
-                  "beschrijvingToegelatenGebruik" : "Dit is een beschrijving toegelaten gebruik",
-                  "toepassingsGebieden" : [ {
-                    "type" : "Binnenshuis",
-                    "descriptionEN" : "Indoor",
-                    "descriptionNL" : "Binnenshuis"
-                  }, {
-                    "type" : "Buitenshuis",
-                    "descriptionEN" : "Outdoor or field use",
-                    "descriptionNL" : "Buitenshuis"
-                  } ],
-                  "beschrijvingGebruiksGebied" : "beschrijvingGebruiksgebied",
-                  "gebruikersCategorieen" : [ {
-                    "type" : "AlgemeenPubliek",
-                    "descriptionEN" : "Non-professional",
-                    "descriptionNL" : "Algemeen Publiek",
-                    "gebruik" : "NietProfessioneel"
-                  }, {
-                    "type" : "Professional",
-                    "descriptionEN" : "Professional",
-                    "descriptionNL" : "Professional",
-                    "gebruik" : "Professioneel"
-                  } ],
-                  "doelOrganismen" : [ {
-                    "id" : 13,
-                    "descriptionNL" : "Acarid mites",
-                    "descriptionEN" : "Acarid mites NL"
-                  } ],
-                  "toepassingsMethoden" : [ {
-                    "methode" : {
-                      "id" : 13,
-                      "descriptionNL" : "Bait application",
-                      "descriptionEN" : "Aas Applicatie"
+                "stoffen": [
+                  {
+                    "stof": {
+                      "id": 19,
+                      "naam": "acefaat",
+                      "ecNummer": "250-241-2",
+                      "casNummer": "30560-19-1"
                     },
-                    "beschrijving" : "beschrijving",
-                    "toepassingsDosering" : "toepassingsDosering",
-                    "verdunning" : 1,
-                    "toepassingsFrequentie" : "aantalTiming"
-                  } ],
-                  "gebruiksAanwijzing" : {
-                    "specifiekeInstructies" : "specifieke instructies",
-                    "risicoBeperkendeMaatregelen" : "risicoBeperkendemaatregelen",
-                    "bijzonderheden" : "Bijzonderheden",
-                    "verwijdering" : "verwijdering",
-                    "voorwaarden" : "voorwaarden"
+                    "functie": {
+                      "id": 40,
+                      "description": "Werkzame stof"
+                    },
+                    "gehalte": "456",
+                    "concentratie": {
+                      "id": 20,
+                      "unit": "G/L",
+                      "description": "gram per liter"
+                    }
                   }
-                } ]
+                ]
               },
-              "besluiten" : [ {
-                "document" : {
-                  "docId" : "doc-2",
-                  "documentNaam" : "Bijlage.html"
+              "toepassingen": {
+                "algemeen": {
+                  "gebruiksAanwijzing": "Gebruiksaanwijzing",
+                  "risicoBeperkendeMaatregelen": "RisicoBeperkendemaatregel",
+                  "effectenEnMaatregelen": "effecten en maatregelen"
                 },
-                "besluitType" : {
-                  "id" : 15,
-                  "descriptionNL" : "Bijlage",
-                  "descriptionEN" : "Appendix",
-                  "public" : true
+                "toepassingen": [
+                  {
+                    "naamVanGebruik": "Arctische Flora",
+                    "productSoort": {
+                      "id": 10,
+                      "code": "PT01",
+                      "description": "Biociden voor menselijke hygiëne"
+                    },
+                    "beschrijvingToegelatenGebruik": "Dit is een beschrijving toegelaten gebruik",
+                    "toepassingsGebieden": [
+                      {
+                        "type": "Binnenshuis",
+                        "description": "Binnenshuis"
+                      },
+                      {
+                        "type": "Buitenshuis",
+                        "description": "Buitenshuis"
+                      }
+                    ],
+                    "beschrijvingGebruiksGebied": "beschrijvingGebruiksgebied",
+                    "gebruikersCategorieen": [
+                      {
+                        "type": "AlgemeenPubliek",
+                        "description": "Algemeen Publiek",
+                        "gebruik": "NietProfessioneel"
+                      },
+                      {
+                        "type": "Professional",
+                        "description": "Professional",
+                        "gebruik": "Professioneel"
+                      }
+                    ],
+                    "doelOrganismen": [
+                      {
+                        "id": 13,
+                        "description": "Acarid mites"
+                      }
+                    ],
+                    "toepassingsMethoden": [
+                      {
+                        "methode": {
+                          "id": 13,
+                          "description": "Bait application"
+                        },
+                        "beschrijving": "beschrijving",
+                        "toepassingsDosering": "toepassingsDosering",
+                        "verdunning": 1,
+                        "toepassingsFrequentie": "aantalTiming"
+                      }
+                    ],
+                    "gebruiksAanwijzing": {
+                      "specifiekeInstructies": "specifieke instructies",
+                      "risicoBeperkendeMaatregelen": "risicoBeperkendemaatregelen",
+                      "bijzonderheden": "Bijzonderheden",
+                      "verwijdering": "verwijdering",
+                      "voorwaarden": "voorwaarden"
+                    }
+                  }
+                ]
+              },
+              "besluiten": [
+                {
+                  "document": {
+                    "docId": "doc-2",
+                    "documentNaam": "Bijlage.html"
+                  },
+                  "besluitType": {
+                    "id": 15,
+                    "description": "Bijlage",
+                    "public": true
+                  },
+                  "datumOndertekening": "2016-08-03T11:49:34.296+02:00"
                 },
-                "datumOndertekening" : "2016-08-02T08:46:41.675+02:00"
-              }, {
-                "document" : {
-                  "docId" : "doc-1",
-                  "documentNaam" : "Besluit.doc"
-                },
-                "besluitType" : {
-                  "id" : 12,
-                  "result" : "Accept",
-                  "descriptionNL" : "Van rechtswege toelating",
-                  "descriptionEN" : "Authorisation until EU-decision is implemented",
-                  "public" : true
-                },
-                "datumOndertekening" : "2016-08-02T08:46:41.674+02:00"
-              } ]
+                {
+                  "document": {
+                    "docId": "doc-1",
+                    "documentNaam": "Besluit.doc"
+                  },
+                  "besluitType": {
+                    "id": 12,
+                    "result": "Accept",
+                    "description": "Van rechtswege toelating",
+                    "public": true
+                  },
+                  "datumOndertekening": "2016-08-03T11:49:34.285+02:00"
+                }
+              ]
             }
         }
 
 
-## Toelating Gewas [/public-api/1.0/toelatingen/55555]
+## Toelating Gewas [/public-api/1.0/toelatingen/55555?filter%5BLocale%5D]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) op te vragen.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 55555. Deze retourneerd vervolgens de toelating van een *Gewasbeschermingsmiddel*.
+
++ Parameters
+    + filter%5BLocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
+        + Members
+                + `nl`
+                + `en`
 
 ### Opvragen Toelating Gewas [GET]        
         
@@ -584,42 +615,34 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 "toepassingsLocaties": [
                   {
                     "id": 1,
-                    "descriptionNL": "Bedekt",
-                    "descriptionEN": "Covered"
+                    "description": "Bedekt"
                   },
                   {
                     "id": 2,
-                    "descriptionNL": "Onbedekt",
-                    "descriptionEN": "Uncovered"
+                    "description": "Uncovered"
                   }
                 ],
                 "dtgLijstVersion": "2.1",
                 "toepassingsGebieden": [
                   {
-                    "groepNL": "Fruitgewassen",
-                    "groepEN": "Fruit crops",
+                    "groep": "Fruitgewassen",
                     "items": [
                       {
-                        "groepNL": "Groot fruit",
-                        "groepEN": "Large fruits",
+                        "groep": "Groot fruit",
                         "items": [
                           {
-                            "groepNL": "Pitvruchten",
-                            "groepEN": "Pome fruit",
+                            "groep": "Pitvruchten",
                             "items": [
                               {
-                                "gewasNL": "Appel",
-                                "gewasEN": "Apple",
+                                "gewas": "Appel",
                                 "eppo": "MABSD",
                                 "bijaantrekkelijk": true,
                                 "teeltOnbedektJaar": "1"
                               },
                               {
-                                "gewasNL": "Peer",
-                                "gewasEN": "Pear",
+                                "gewas": "Peer",
                                 "eppo": "PYUCO, PYUPC",
-                                "opmerkingenNL": "Incl. Japanse peer",
-                                "opmerkingenEN": "Including Oriental pear",
+                                "opmerkingen": "Incl. Japanse peer",
                                 "bijaantrekkelijk": true,
                                 "teeltOnbedektJaar": "1"
                               }
@@ -628,17 +651,13 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                         ]
                       },
                       {
-                        "groepNL": "Kleinfruit",
-                        "groepEN": "Small fruits",
+                        "groep": "Kleinfruit",
                         "items": [
                           {
-                            "groepNL": "Aardbei",
-                            "groepEN": "Strawberries",
-                            "beperktTotNL": "wilde Aardbei",
-                            "beperktTotEN": "wild Strawberries",
+                            "groep": "Aardbei",
+                            "beperktTot": "wilde Aardbei",
                             "eppo": "FRAAN",
-                            "bijenopmerkingNL": "Op het moment dat bloei plaatsvindt",
-                            "bijenopmerkingEN": "When flowering occurs",
+                            "bijenopmerking": "Op het moment dat bloei plaatsvindt",
                             "bijaantrekkelijk": true,
                             "teeltOnbedektJaar": "1",
                             "teeltBedektJaar": "1 - 2",
@@ -649,17 +668,13 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                     ]
                   },
                   {
-                    "groepNL": "Steenvruchten",
-                    "groepEN": "Stone fruit",
+                    "groep": "Steenvruchten",
                     "items": [
                       {
-                        "gewasNL": "Kers",
-                        "gewasEN": "Cherry",
-                        "beperktTotNL": "rode Kers",
-                        "beperktTotEN": "red Cherry",
+                        "gewas": "Kers",
+                        "beperktTot": "rode Kers",
                         "eppo": "PRNAV, PRNCE",
-                        "opmerkingenNL": "Zoete kers\nZure kers",
-                        "opmerkingenEN": "Sweet cherry\nSour cherry",
+                        "opmerkingen": "Zoete kers\nZure kers",
                         "bijaantrekkelijk": true,
                         "teeltOnbedektJaar": "1",
                         "teeltBedektJaar": "1"
@@ -675,19 +690,15 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 "dtgLijstVersion": "2.1",
                 "toepassingsGebieden": [
                   {
-                    "groepNL": "Peulgroenten",
-                    "groepEN": "Peulgroenten",
+                    "groep": "Peulgroenten",
                     "items": [
                       {
-                        "groepNL": "Boon met peul",
-                        "groepEN": "Boon met peul",
+                        "groep": "Boon met peul",
                         "items": [
                           {
-                            "gewasNL": "Stamslaboon",
-                            "gewasEN": "Stamslaboon",
+                            "gewas": "Stamslaboon",
                             "eppo": "PHSVN",
-                            "opmerkingenNL": "sperzieboon, boterboon\nwasboon",
-                            "opmerkingenEN": "sperzieboon, boterboon\nwasboon"
+                            "opmerkingen": "sperzieboon, boterboon\nwasboon"
                           }
                         ]
                       }
@@ -700,50 +711,41 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
               "formuleringType": {
                 "id": 72,
                 "code": "RB",
-                "descriptionNL": "Lokmiddel (klaar voor gebruik)",
-                "descriptionEN": "Bait (ready for use)"
+                "description": "Lokmiddel (klaar voor gebruik)"
               },
               "stoffen": [
                 {
                   "stof": {
                     "id": 11287,
-                    "naamNL": "(2-butoxyethoxy)azijnzuur",
-                    "naamEN": "(2-butoxyethoxy)acetic acid",
+                    "naam": "(2-butoxyethoxy)azijnzuur",
                     "casNummer": "82941-26-2"
                   },
                   "functie": {
                     "id": 5,
-                    "descriptionNL": "Werkzame stof",
-                    "descriptionEN": "Active substance"
+                    "description": "Werkzame stof"
                   },
                   "gehalte": "12",
                   "concentratie": {
                     "id": 2,
-                    "unitNL": "%V/V",
-                    "unitEN": "%V/V",
-                    "descriptionNL": "volumeprocent",
-                    "descriptionEN": "volumeprocent"
+                    "unit": "%V/V",
+                    "description": "volumeprocent"
                   }
                 },
                 {
                   "stof": {
                     "id": 11287,
-                    "naamNL": "(2-butoxyethoxy)azijnzuur",
-                    "naamEN": "(2-butoxyethoxy)acetic acid",
+                    "naam": "(2-butoxyethoxy)azijnzuur",
                     "casNummer": "82941-26-2"
                   },
                   "functie": {
                     "id": 6,
-                    "descriptionNL": "Beschermstof",
-                    "descriptionEN": "Protective substance"
+                    "description": "Beschermstof"
                   },
                   "gehalte": "1",
                   "concentratie": {
                     "id": 4,
-                    "unitNL": "CFU/G",
-                    "unitEN": "CFU/G",
-                    "descriptionNL": "kolonievormende sporen per gram",
-                    "descriptionEN": "kolonievormende sporen per gram"
+                    "unit": "CFU/G",
+                    "description": "kolonievormende sporen per gram"
                   }
                 }
               ]
@@ -754,8 +756,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 "besluitType": {
                   "id": 563,
                   "result": "Accept",
-                  "descriptionNL": "Uitbreiding toelating",
-                  "descriptionEN": "Extention of an authorisation"
+                  "description": "Uitbreiding toelating"
                 },
                 "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
               },
@@ -763,8 +764,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 "documentNaam": "Bijlage.doc",
                 "besluitType": {
                   "id": 700,
-                  "descriptionNL": "Actueel gebruiksvoorschrift",
-                  "descriptionEN": ""
+                  "description": "Actueel gebruiksvoorschrift"
                 },
                 "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
               }
@@ -773,12 +773,18 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
         }
 
 
-## Toelating ToevoegingsStof [/public-api/1.0/toelatingen/88888]
+## Toelating ToevoegingsStof [/public-api/1.0/toelatingen/88888?filter%5BLocale%5D]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) op te vragen.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 88888. Deze retourneerd vervolgens de toelating van een *Toevoeingsstof*.
 
++ Parameters
+    + filter%5BLocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
+        + Members
+                + `nl`
+                + `en`
+                
 ### Opvragen Toelating Toevoegingsstof [GET]        
         
 + Response 200 (application/json)
@@ -813,8 +819,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                       "besluitType": {
                         "id": 563,
                         "result": "Accept",
-                        "descriptionNL": "Uitbreiding toelating",
-                        "descriptionEN": "Extention of an authorisation"
+                        "description": "Uitbreiding toelating"
                       },
                       "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
                     },
@@ -822,8 +827,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                       "documentNaam": "Bijlage.doc",
                       "besluitType": {
                         "id": 700,
-                        "descriptionNL": "Actueel gebruiksvoorschrift",
-                        "descriptionEN": ""
+                        "description": "Actueel gebruiksvoorschrift"
                       },
                       "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
                     }
@@ -859,7 +863,7 @@ Met deze service kunnen toelating nummers opgezocht worden. Deze service onderst
             }
 
             
-## Stamdata Stoffen [/public-api/1.0/stamdata/stoffen{?filter%5Bfunctie%5D,filter%5Bquery%5D,filter%5Blang%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Stamdata Stoffen [/public-api/1.0/stamdata/stoffen{?filter%5Bfunctie%5D,filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt paginatie.  
 
@@ -868,8 +872,8 @@ Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt pagin
         + Members
             + `WerkzameStof`
             + `Beschermstof`
-    + filter%5Bquery%5D: ben (string, required) - query parameter met een deel van een stof attribute zijnde, `naamNL`, `naamEN`, `ecNumme`r of `casNummer`. In de zoekvraag wordt dit vertaald naar: `naamNL`, `naamEN`, `ecNummer` of `casNummer` `contains query`, niet hoofdlettergevoelig
-    + filter%5Blang%5D: nl (enum[lang], optional) - language parameter met de afkorting van de gewenste taal. Default is `nl`.
+    + filter%5Bquery%5D: ben (string, required) - query parameter met een deel van een stof attribute zijnde, `naam`, `ecNummer` of `casNummer`. In de zoekvraag wordt dit vertaald naar: `naam`, `ecNummer` of `casNummer` `contains query`, niet hoofdlettergevoelig
+    + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
@@ -890,11 +894,11 @@ Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt pagin
                 "limit":100
             },
             "data": [
-                {"naamEN":"(1-methylethyl)benzenesulfonic acid, sodium salt","naamNL":"(1-methylethyl)benzeensulfonzuur, natriumzout","casNummer":"28348-53-0","id":10601},
-                {"ecNummer":"230-515-8","naamEN":"(2-bromo-2-nitroethenyl)benzene","naamNL":"(2-broom-2-nitrovinyl)benzeen","casNummer":"7166-19-0","id":6939},
-                {"ecNummer":"244-445-0","naamEN":"(benzothiazol-2-ylthio)methyl thiocyanate","naamNL":"(benzothiazool-2-ylthio)methylthiocyanaat","casNummer":"21564-17-0","id":7218},
-                {"ecNummer":"238-588-8","naamEN":"benzylhemiformal","naamNL":"(benzyloxy)methanol","casNummer":"14548-60-8","id":10022},
-                {"ecNummer":"215-551-4","naamEN":"(dodecylbenzyl)trimethylammonium chloride","naamNL":"(dodecylbenzyl)trimethylammonium chloride","casNummer":"1330-85-4","id":2372}
+                {"naam":"(1-methylethyl)benzenesulfonic acid, sodium salt", "casNummer":"28348-53-0","id":10601},
+                {"ecNummer":"230-515-8","naam":"(2-bromo-2-nitroethenyl)benzene","casNummer":"7166-19-0","id":6939},
+                {"ecNummer":"244-445-0","naam":"(benzothiazol-2-ylthio)methyl thiocyanate", "casNummer":"21564-17-0","id":7218},
+                {"ecNummer":"238-588-8","naam":"benzylhemiformal","casNummer":"14548-60-8","id":10022},
+                {"ecNummer":"215-551-4","naam":"(dodecylbenzyl)trimethylammonium chloride","casNummer":"1330-85-4","id":2372}
                 ]   
             }
 
@@ -929,13 +933,13 @@ Met deze service kunnen toelatinghouders opgezocht worden. Deze service onderste
             ]
         }
         
-## Productcodes voor Biocides [/public-api/1.0/stamdata/biocide/productcodes{?filter%5Bquery%5D,filter%5Blang%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Productcodes voor Biocides [/public-api/1.0/stamdata/biocide/productcodes{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen productcodes (PT-Codes) voor Biocides opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
     + filter%5Bquery%5D: PT0 (string, optional) - query parameter met PT code, beschrijving een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
-    + filter%5Blang%5D: nl (enum[lang], optional) - language parameter met de afkorting van de gewenste taal. Default is `nl`.
+    + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
@@ -958,32 +962,29 @@ Met deze service kunnen productcodes (PT-Codes) voor Biocides opgezocht worden. 
             "data": [{
                   "id" : 1,
                   "code" : "PT01",
-                  "descriptionNL" : "Biociden voor menselijke hygiëne",
-                  "descriptionEN" : "Human hygiene biocidal products",
+                  "description" : "Biociden voor menselijke hygiëne",
                   "echaCode" : "PT01"
                 }, {
                   "id" : 2,
                   "code" : "PT02",
-                  "descriptionNL" : "Desinfecterende middelen voor privé-gebruik en voor de openbare gezondheidszorg, alsmede andere desinfectantia",
-                  "descriptionEN" : "Private area and public health area disinfectants and other biocidal products",
+                  "description" : "Desinfecterende middelen voor privé-gebruik en voor de openbare gezondheidszorg, alsmede andere desinfectantia",
                   "echaCode" : "PT02"
                 }, {
                   "id" : 3,
                   "code" : "PT03",
-                  "descriptionNL" : "Biociden voor veterinaire hygiëne-doeleinden",
-                  "descriptionEN" : "Veterinary hygiene biocidal products",
+                  "description" : "Biociden voor veterinaire hygiëne-doeleinden",
                   "echaCode" : "PT03"
                 }]
         }
 
         
-## Doelorganismen voor Biocides [/public-api/1.0/stamdata/biocide/doelorganismen{?filter%5Bquery%5D,filter%5Blang%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Doelorganismen voor Biocides [/public-api/1.0/stamdata/biocide/doelorganismen{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen triviale namen van doelorganismen voor Biocides opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
     + filter%5Bquery%5D: Acarid (string, optional) - query parameter met een triviale organisme naam of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
-    + filter%5Blang%5D: nl (enum[lang], optional) - language parameter met de afkorting van de gewenste taal. Default is `nl`.
+    + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
@@ -1004,20 +1005,20 @@ Met deze service kunnen triviale namen van doelorganismen voor Biocides opgezoch
                 "limit":100
             },
             "data": [
-                {"id": 1, "echaCode": "4998", "descriptionNL": "Acarid mites", "descriptionEN": "Acarid mites"},
-                {"id": 205, "descriptionNL": "Adults | Ants","descriptionEN": "Adults | Ants"},
-                {"id": 2, "echaCode": "4999", "descriptionNL": "Aedes mosquitoes","descriptionEN": "Aedes mosquitoes"},
-                {"id": 3, "echaCode": "5794", "descriptionNL": "Algae","descriptionEN": "Algae"}
+                {"id": 1, "echaCode": "4998", "description": "Acarid mites"},
+                {"id": 205, "description": "Adults | Ants"},
+                {"id": 2, "echaCode": "4999", "description": "Aedes mosquitoes"},
+                {"id": 3, "echaCode": "5794", "description": "Algae"}
               ]
         }        
         
-## Doelorganismen voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/gewas/doelorganismen{?filter%5Bquery%5D,filter%5Blang%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Doelorganismen voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/gewas/doelorganismen{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen doelorganismen van gewasbeschermingsmiddelen opgevraagd worden. Deze service ondersteunt paginatie.
 
 + Parameters
     + filter%5Bquery%5D: ar (string, optional) - query parameter met doelorganisme of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
-    + filter%5Blang%5D: nl (enum[lang], optional) - language parameter met de afkorting van de gewenste taal. Default is `nl`.
+    + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
@@ -1038,19 +1039,19 @@ Met deze service kunnen doelorganismen van gewasbeschermingsmiddelen opgevraagd 
                 "limit":100
             },
             "data": [
-                    {"id": 1, "descriptionNL": "TBD-nl-1", "descriptionEN": "TBD-en-1"},
-                    {"id": 2, "descriptionNL": "TBD-nl-2", "descriptionEN": "BD-en-2"}
+                    {"id": 1, "description": "TBD-nl-1"},
+                    {"id": 2, "description": "TBD-nl-2"}
                 ]
         }
         
 
-## Toepassingsgebieden voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/gewas/toepassingsgebieden{?filter%5Bquery%5D,filter%5Blang%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Toepassingsgebieden voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/gewas/toepassingsgebieden{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen toepassingsgebieden van gewasbeschermingsmiddelen gebaseerd op Definitielijsten Toepassingsgebieden Gewasbeschermingsmiddelen (DTG) opgevraagd worden. Deze service ondersteunt paginatie.
 
 + Parameters
     + filter%5Bquery%5D: ar (string, optional) - query parameter met gewas of eppo code of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
-    + filter%5Blang%5D: nl (enum[lang], optional) - language parameter met de afkorting van de gewenste taal. Default is `nl`.
+    + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
@@ -1072,26 +1073,22 @@ Met deze service kunnen toepassingsgebieden van gewasbeschermingsmiddelen gebase
                 "limit":100
             },
             "data": [{
-                "naamNL": "Aardpeer",
-                "naamEN": "Jerusalem artichoke",
+                "naam": "Aardpeer",
                 "type": "gewas",
                 "eppo": "HELTU"
               },
               {
-                "naamNL": "Japanse aardappel",
-                "naamEN": "Japanese artichoke",
+                "naam": "Japanse aardappel",
                 "type": "gewas",
                 "eppo": "STASB"
               },
               {
-                "naamNL": "Knoflook",
-                "naamEN": "Garlic",
+                "naam": "Knoflook",
                 "type": "subgroep",
                 "eppo": "STASB"
               },
               {
-                "naamNL": "Akkerbouwgewassen",
-                "naamEN": "Arable crops",
+                "naam": "Akkerbouwgewassen",
                 "type": "groep",
                 "eppo": "STASB"
               }
@@ -1099,13 +1096,13 @@ Met deze service kunnen toepassingsgebieden van gewasbeschermingsmiddelen gebase
         }                
         
         
-## Toepassingslocaties voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/gewas/toepassingslocaties{?filter%5Bquery%5D,filter%5Blang%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Toepassingslocaties voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/gewas/toepassingslocaties{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen toepassingslocaties voor Gewasbeschermingsmiddelen opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
     + filter%5Bquery%5D: Bede (string, required) - query parameter met een toepassingslocatie of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
-    + filter%5Blang%5D: nl (enum[lang], optional) - language parameter met de afkorting van de gewenste taal. Default is `nl`.
+    + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
@@ -1126,21 +1123,21 @@ Met deze service kunnen toepassingslocaties voor Gewasbeschermingsmiddelen opgez
                 "limit":100
             },
             "data": [
-                    {"id": 1, "descriptionNL": "Bedekt", "descriptionEN": "Covered"},
-                    {"id": 2, "descriptionNL": "Onbedekt", "descriptionEN": "Uncovered"}
+                    {"id": 1, "description": "Bedekt"},
+                    {"id": 2, "description": "Onbedekt"}
                 ]
         }
         
         
         
         
-## Aard Werking voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/gewas/aardwerkingen{?filter%5Bquery%5D,filter%5Blang%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Aard Werking voor Gewasbeschermingsmiddelen [/public-api/1.0/stamdata/gewas/aardwerkingen{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen aard werkingen voor Gewasbeschermingsmiddelen opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
     + filter%5Bquery%5D: Bede (string, required) - query parameter met aard werking of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
-    + filter%5Blang%5D: nl (enum[lang], optional) - language parameter met de afkorting van de gewenste taal. Default is `nl`.
+    + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
@@ -1161,7 +1158,7 @@ Met deze service kunnen aard werkingen voor Gewasbeschermingsmiddelen opgezocht 
                 "limit":100
             },
             "data": [
-                    {"id": 1, "descriptionNL": "Werking-1", "descriptionEN": "Type-of-use-1"},
-                    {"id": 2, "descriptionNL": "Werking-2", "descriptionEN": "Type-of-use-2"}
+                    {"id": 1, "description": "Werking-1"},
+                    {"id": 2, "description": "Werking-2"}
                 ]
         }
