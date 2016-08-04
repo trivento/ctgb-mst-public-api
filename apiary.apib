@@ -17,7 +17,7 @@ De hier gebruikte types zijn:
 Omdat in query parameters blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden. 
 Dit betekent dat b.v. `filter[veldNaam]` vertaald dient te worden naar: `filter%5BveldNaam%5D`
 
-## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5BLocale%5D,filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouder%5D,filter%5BbiocideToepassingInfo%5D,filter%5BbiocideDoelorganismen%5D,filter%5BgewasToepassingsgebieden%5D,filter%5BgewasDoelorganismen%5D,filter%5BgewasToepassingslocaties%5D,filter%5BgewasAardWerkingen%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
+## Toelatingen summary [/public-api/1.0/toelatingen?filter%5BLocale%5D,filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouder%5D,filter%5BbiocideToepassingInfo%5D,filter%5BbiocideDoelorganismen%5D,filter%5BgewasToepassingsgebieden%5D,filter%5BgewasDoelorganismen%5D,filter%5BgewasToepassingslocaties%5D,filter%5BgewasAardWerkingen%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D]
 
 Met deze service kunnen toelatingen op basis van een groot aantal parameters doorzocht worden. Daarnaast biedt deze service sortering en paginatie.
 
@@ -751,24 +751,32 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
               ]
             },
             "besluiten": [
-              {
-                "documentNaam": "ExternalBesluit.doc",
-                "besluitType": {
-                  "id": 563,
-                  "result": "Accept",
-                  "description": "Uitbreiding toelating"
+                {
+                  "document": {
+                    "docId": "doc-2",
+                    "documentNaam": "Bijlage.html"
+                  },
+                  "besluitType": {
+                    "id": 15,
+                    "description": "Bijlage",
+                    "public": true
+                  },
+                  "datumOndertekening": "2016-08-03T11:49:34.296+02:00"
                 },
-                "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
-              },
-              {
-                "documentNaam": "Bijlage.doc",
-                "besluitType": {
-                  "id": 700,
-                  "description": "Actueel gebruiksvoorschrift"
-                },
-                "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
-              }
-            ]
+                {
+                  "document": {
+                    "docId": "doc-1",
+                    "documentNaam": "Besluit.doc"
+                  },
+                  "besluitType": {
+                    "id": 12,
+                    "result": "Accept",
+                    "description": "Van rechtswege toelating",
+                    "public": true
+                  },
+                  "datumOndertekening": "2016-08-03T11:49:34.285+02:00"
+                }
+              ]
           }
         }
 
@@ -815,21 +823,29 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                   },
                   "besluiten": [
                     {
-                      "documentNaam": "ExternalBesluit.doc",
-                      "besluitType": {
-                        "id": 563,
-                        "result": "Accept",
-                        "description": "Uitbreiding toelating"
+                      "document": {
+                        "docId": "doc-2",
+                        "documentNaam": "Bijlage.html"
                       },
-                      "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                      "besluitType": {
+                        "id": 15,
+                        "description": "Bijlage",
+                        "public": true
+                      },
+                      "datumOndertekening": "2016-08-03T11:49:34.296+02:00"
                     },
                     {
-                      "documentNaam": "Bijlage.doc",
-                      "besluitType": {
-                        "id": 700,
-                        "description": "Actueel gebruiksvoorschrift"
+                      "document": {
+                        "docId": "doc-1",
+                        "documentNaam": "Besluit.doc"
                       },
-                      "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                      "besluitType": {
+                        "id": 12,
+                        "result": "Accept",
+                        "description": "Van rechtswege toelating",
+                        "public": true
+                      },
+                      "datumOndertekening": "2016-08-03T11:49:34.285+02:00"
                     }
                   ]
                 }
