@@ -17,41 +17,44 @@ De hier gebruikte types zijn:
 Omdat in query parameters blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden. 
 Dit betekent dat b.v. `filter[veldNaam]` vertaald dient te worden naar: `filter%5BveldNaam%5D`
 
-## Toelatingen summary [/public-api/1.0/toelatingen?filter%5BLocale%5D,filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouder%5D,filter%5BbiocideToepassingInfo%5D,filter%5BbiocideDoelorganismen%5D,filter%5BgewasToepassingsgebieden%5D,filter%5BgewasDoelorganismen%5D,filter%5BgewasToepassingslocaties%5D,filter%5BgewasAardWerkingen%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D]
+## Toelatingen summary [/public-api/1.0/toelatingen?filter%5BLocale%5D,filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouders%5D,filter%5BbiocideProductcodes%5D,filter%5BbiocideDoelorganismen%5D,filter%5BbiocideToepassingInfo%5D,filter%5BgewasToepassingsgebieden%5D,filter%5BgewasDoelorganismen%5D,filter%5BgewasToepassingslocaties%5D,filter%5BgewasAardWerkingen%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D]
 
 Met deze service kunnen toelatingen op basis van een groot aantal parameters doorzocht worden. Daarnaast biedt deze service sortering en paginatie.
+Meerdere filters worden in de zoekvraag vertaald naar `AND`. Uitzondering is `filter%5BmiddelNaam%5D` en `filter%5BtoelatingNummer%5D`. Deze worden vertaald naar `OR`.
+Datums worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ`.
 
 + Parameters
-    + filter%5BLocale%5D: nl (enum[locale], optional) - locale parameter voor toepassingsgebieden met de afkorting van de gewenste taal. Default is `nl`.
+    + filter%5BLocale%5D: nl (enum[locale], optional) - locale parameter voor toepassingsgebieden met de afkorting van de gewenste taal. Per default `nl` and `en` is returned.
         + Members
                 + `nl`
                 + `en`
-    + filter%5BmiddelNaam%5D (string, optional) - de naam van het middel of een deel ervan.  In de zoekvraag wordt dit vertaald naar `contains naam,` niet hoofdlettergevoelig.
-    + filter%5BmiddelStatus%5D (enum%5BmiddelStatus%5D, optional) - de status van een middel. Meerdere middel statussen worden in de zoekvraag vertaald naar: `OR`.
+    + filter%5BmiddelStatus%5D (enum%5BmiddelStatus%5D, optional) - de status van een middel. 
         + Members
             + `Valid`
             + `Expired`
-    + filter%5BcategorieType%5D (enum%5BcategorieType%5D, optional) - het categorie type van een middel. Meerdere categorie types worden in de zoekvraag vertaald naar: `OR`.
+    + filter%5BcategorieType%5D (enum%5BcategorieType%5D, optional) - het categorie type van een middel.
         + Members
             + `Biocide`
             + `Gewas`
             + `ToevoegingsStof`
-    + filter%5BtoelatingNummer%5D (string, optional) - het toelating nummer van het middel, nl of eu
+    + filter%5BmiddelNaam%5D (string, optional) - de naam van het middel of een deel ervan.  In de zoekvraag wordt dit vertaald naar `contains naam,` niet hoofdlettergevoelig. De filters `filter%5BmiddelNaam%5D` en `filter%5BtoelatingNummer%5D` worden in de zoekvraag vertaald naar `OR`.
+    + filter%5BtoelatingNummer%5D (string, optional) - het toelating nummer van het middel, nl of eu. De filters `filter%5BmiddelNaam%5D` en `filter%5BtoelatingNummer%5D` worden in de zoekvraag vertaald naar `OR`.
     + filter%5BwerkzameStoffen%5D (number, optional) - id's van werkzamestoffen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BbeschermStoffen%5D (number, optional) - id's van beschermstoffen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
-    + filter%5BtoelatingHouder%5D (string, optional) - id's van toelatinghouders, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
-    + filter%5BbiocideToepassingInfo%5D (string, optional) - vrije tekst die zoekt in de toepassingen informatie van biocides.
+    + filter%5BtoelatingHouders%5D (string, optional) - id's van toelatinghouders, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
+    + filter%5BbiocideProductcodes%5D (number, optional) - id's van productcodes, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BbiocideDoelorganismen%5D (number, optional) - id's van triviale doelorganisme namen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
+    + filter%5BbiocideToepassingInfo%5D (string, optional) - vrije tekst die zoekt in de toepassingen informatie van biocides.
     + filter%5BgewasDoelorganismen%5D (number, optional) - id's van geclaimde organismen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BgewasToepassingsgebieden%5D (string, optional) - namen van gewassen gevolgd door locatie in de DTG hierarchie zijnde `groep, subgroep, gewas`, geconcateneerd met `::`. Meerdere paden worden koma separated, deze worden in de zoekvraag vertaald naar: `OR`. Voorbeeld: Toepassingsgebieden voor een gewasbeschermingsmiddel voor `Appel` of `Steenvruchten`: `Appel::gewas,Steenvruchten::subgroep`.
     + filter%5BgewasToepassingslocaties%5D (number, optional) - id's van toepassingslocaties, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BgewasAardWerkingen%5D (number, optional) - id's van aard werkingen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
-    + filter%5BexpiratieDatumVan%5D (string, optional) - expiratie datum vanaf in formaat: `yyyy-MM-dd`
-    + filter%5BexpiratieDatumTot%5D (string, optional) - expiratie datum tot en met in formaat: `yyyy-MM-dd`
-    + filter%5BdatumOndertekeningVan%5D (string, optional) - datum ondertekening vanaf in formaat: `yyyy-MM-dd`
-    + filter%5BdatumOndertekeningTot%5D (string, optional) - datum ondertekening tot en met in formaat: `yyyy-MM-dd`
-    + sort (string optional) - koma separated lijst van veldnamen waarop gesorteerd dient te worden. Default is de sortering _oplopend_. Door een '`-`' aan de veldnaam toe te voegen is de sortering _aflopend_. B.v. `sort=naam,-datumOndertekening`.
-        Er kunnen op de volgende velden gesorteerd worden: `naam`, `categorieType`, `toelatingNummer`, `expiratieDatum`, `datumOndertekening`
+    + filter%5BexpiratieDatumVan%5D (string, optional) - expiratie datum vanaf, in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
+    + filter%5BexpiratieDatumTot%5D (string, optional) - expiratie datum tot en met in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
+    + filter%5BdatumOndertekeningVan%5D (string, optional) - datum ondertekening vanaf in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
+    + filter%5BdatumOndertekeningTot%5D (string, optional) - datum ondertekening tot en met in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
+    + sort (string optional) - koma separated lijst van veldnamen waarop gesorteerd dient te worden. Default is de sortering _oplopend_. Door een '`-`' aan de veldnaam toe te voegen is de sortering _aflopend_. B.v. `sort=middelNaam,-datumOndertekening`.
+        Er kunnen op de volgende velden gesorteerd worden: `middelNaam`, `categorieType`, `toelatingNummer`, `expiratieDatum`, `datumOndertekening`
     + `page%5Boffset%5D` (number, optional) -  aantal toelatingen die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
     + `page%5Blimit%5D` (number, optional) - aantal te retourneren toelatingen
@@ -162,7 +165,7 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
                           "docId": "doc-1",
                           "documentNaam": "Besluit.doc"
                         },
-                        "ingangsDatum": "2016-08-03T11:49:34.296+02:00",
+                        "datumOndertekening": "2016-08-03T11:49:34.296+02:00",
                         "expiratieDatum": "2019-08-03T11:49:34.268+02:00"
                       }
                     ]
@@ -343,7 +346,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                           "docId": "doc-1",
                           "documentNaam": "Besluit.doc"
                         },
-                        "ingangsDatum": "2016-08-03T11:49:34.296+02:00",
+                        "datumOndertekening": "2016-08-03T11:49:34.296+02:00",
                         "expiratieDatum": "2019-08-03T11:49:34.268+02:00"
                       }
                     ]
@@ -514,30 +517,38 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 "ingangsDatum": "2016-01-21T00:00:00.000+01:00"
               },
               "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
-              "actueel": [
+             "actueel": [
                 {
                   "gebruiker": "NietProfessioneel",
-                  "wCode": "W3",
-                  "gebruiksvoorschrift": {
-                    "document": {
-                      "docId": "doc-1",
-                      "documentNaam": "Gebruiksvoorschrift.doc"
-                    },
-                    "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
-                    "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
-                  }
+                  "wCoderingen": [
+                    {
+                      "wCode": "W3",
+                      "gebruiksvoorschrift": {
+                        "document": {
+                          "docId": "doc-1",
+                          "documentNaam": "Gebruiksvoorschrift.doc"
+                        },
+                        "datumOndertekening": "2016-01-21T00:00:00.000+01:00",
+                        "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
+                      }
+                    }
+                  ]
                 },
                 {
                   "gebruiker": "Professioneel",
-                  "wCode": "W1",
-                  "gebruiksvoorschrift": {
-                    "document": {
-                      "docId": "doc-1",
-                      "documentNaam": "Gebruiksvoorschrift.doc"
-                    },
-                    "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
-                    "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
-                  }
+                  "wCoderingen": [
+                    {
+                      "wCode": "W1",
+                      "gebruiksvoorschrift": {
+                        "document": {
+                          "docId": "doc-1",
+                          "documentNaam": "Gebruiksvoorschrift.doc"
+                        },
+                        "datumOndertekening": "2016-01-21T00:00:00.000+01:00",
+                        "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
+                      }
+                    }
+                  ]
                 }
               ],
               "voorgaand": [
@@ -551,7 +562,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                           "docId": "doc-1",
                           "documentNaam": "Gebruiksvoorschrift.doc"
                         },
-                        "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
+                        "datumOndertekening": "2016-01-21T00:00:00.000+01:00",
                         "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
                       },
                       "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
@@ -565,7 +576,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                           "docId": "doc-1",
                           "documentNaam": "Gebruiksvoorschrift.doc"
                         },
-                        "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
+                        "datumOndertekening": "2016-01-21T00:00:00.000+01:00",
                         "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
                       },
                       "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
@@ -578,7 +589,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                           "docId": "doc-1",
                           "documentNaam": "Gebruiksvoorschrift.doc"
                         },
-                        "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
+                        "datumOndertekening": "2016-01-21T00:00:00.000+01:00",
                         "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
                       },
                       "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
@@ -596,7 +607,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                           "docId": "doc-1",
                           "documentNaam": "Gebruiksvoorschrift.doc"
                         },
-                        "ingangsDatum": "2016-01-21T00:00:00.000+01:00",
+                        "datumOndertekening": "2016-01-21T00:00:00.000+01:00",
                         "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
                       },
                       "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
@@ -609,7 +620,6 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
             },
             "toepassingen": [
               {
-                "id": "1337",
                 "naamVanGebruik": "Herbiciden",
                 "geclaimdOrganisme": "Geclaimd organisme",
                 "toepassingsLocaties": [
@@ -684,7 +694,6 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 ]
               },
               {
-                "id": "1340",
                 "naamVanGebruik": "Besproeing",
                 "geclaimdOrganisme": "Geclaimd organisme",
                 "dtgLijstVersion": "2.1",
@@ -884,7 +893,7 @@ Met deze service kunnen toelating nummers opgezocht worden. Deze service onderst
 Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt paginatie.  
 
 + Parameters
-    + filter%5Bfunctie%5D (enum[functie], required) - de functie van de stof. Meerdere functies  worden in de zoekvraag vertaald naar: `OR`. 
+    + filter%5Bfunctie%5D (enum[functie], required) - de functie van de stof.
         + Members
             + `WerkzameStof`
             + `Beschermstof`
@@ -919,12 +928,12 @@ Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt pagin
             }
 
 
-## Stamdata Toelatinghouders [/public-api/1.0/stamdata/toelatinghouders{?filter%5Bnaam%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Stamdata Toelatinghouders [/public-api/1.0/stamdata/toelatinghouders{?filter%5Bquery%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen toelatinghouders opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
-    + filter%5Bnaam%5D: a (string, optional) -  naam van het bedrijf or een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
+    + filter%5Bquery%5D: a (string, optional) -  naam van het bedrijf or een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
     + page%5Boffset%5D (number, optional) -  aantal toelatinghouders die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren toelatinghouders  
@@ -954,7 +963,7 @@ Met deze service kunnen toelatinghouders opgezocht worden. Deze service onderste
 Met deze service kunnen productcodes (PT-Codes) voor Biocides opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
-    + filter%5Bquery%5D: PT0 (string, optional) - query parameter met PT code, beschrijving een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
+    + filter%5Bquery%5D: PT0 (string, optional) - query parameter met PT code, beschrijving of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
     + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
