@@ -46,7 +46,7 @@ Datums worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ
     + filter%5BbiocideDoelorganismen%5D (number, optional) - id's van triviale doelorganisme namen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BbiocideToepassingInfo%5D (string, optional) - vrije tekst die zoekt in de toepassingen informatie van biocides.
     + filter%5BgewasDoelorganismen%5D (number, optional) - id's van geclaimde organismen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
-    + filter%5BgewasToepassingsgebieden%5D (string, optional) - namen van gewassen gevolgd door locatie in de DTG hierarchie zijnde `groep, subgroep, gewas`, geconcateneerd met `::`. Meerdere paden worden koma separated, deze worden in de zoekvraag vertaald naar: `OR`. Voorbeeld: Toepassingsgebieden voor een gewasbeschermingsmiddel voor `Appel` of `Steenvruchten`: `Appel::gewas,Steenvruchten::subgroep`.
+    + filter%5BgewasToepassingsgebieden%5D (string, optional) - namen van gewassen gevolgd door locatie in de DTG hierarchie zijnde `groep, subgroep, gewas, eppo` of engels: `group, subgroup, plant, eppo`, geconcateneerd met `::`. Meerdere paden worden koma separated, deze worden in de zoekvraag vertaald naar: `OR`. Voorbeeld: Toepassingsgebieden voor een gewasbeschermingsmiddel voor `Appel`, `Steenvruchten` of `ISTAC`: `Appel::gewas,Steenvruchten::subgroep,ISTAC::eppo`.
     + filter%5BgewasToepassingslocaties%5D (number, optional) - id's van toepassingslocaties, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BgewasAardWerkingen%5D (number, optional) - id's van aard werkingen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BexpiratieDatumVan%5D (string, optional) - expiratie datum vanaf, in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
@@ -154,6 +154,7 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
                   "ingangsDatum": "2016-08-03T11:49:34.267+02:00"
                 },
                 "expiratieDatum": "2019-08-03T11:49:34.268+02:00",
+                "datumOndertekening": "2016-08-17T22:00:00.000Z",
                 "opgebruikTermijn": "2018-08-03T11:49:34.268+02:00",
                 "afleverTermijn": "2019-08-03T11:49:34.269+02:00",
                 "gebruiksvoorschriften": [
@@ -272,9 +273,7 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
                     "documentNaam": "Bijlage.html"
                   },
                   "besluitType": {
-                    "id": 15,
-                    "description": "Bijlage",
-                    "public": true
+                    "description": "Bijlage"
                   },
                   "datumOndertekening": "2016-08-03T11:49:34.296+02:00"
                 },
@@ -284,10 +283,8 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
                     "documentNaam": "Besluit.doc"
                   },
                   "besluitType": {
-                    "id": 12,
                     "result": "Accept",
-                    "description": "Van rechtswege toelating",
-                    "public": true
+                    "description": "Van rechtswege toelating"
                   },
                   "datumOndertekening": "2016-08-03T11:49:34.285+02:00"
                 }
@@ -335,6 +332,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                   "ingangsDatum": "2016-08-03T11:49:34.267+02:00"
                 },
                 "expiratieDatum": "2019-08-03T11:49:34.268+02:00",
+                "datumOndertekening": "2016-08-17T22:00:00.000Z",
                 "opgebruikTermijn": "2018-08-03T11:49:34.268+02:00",
                 "afleverTermijn": "2019-08-03T11:49:34.269+02:00",
                 "gebruiksvoorschriften": [
@@ -453,9 +451,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                     "documentNaam": "Bijlage.html"
                   },
                   "besluitType": {
-                    "id": 15,
-                    "description": "Bijlage",
-                    "public": true
+                    "description": "Bijlage"
                   },
                   "datumOndertekening": "2016-08-03T11:49:34.296+02:00"
                 },
@@ -465,10 +461,8 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                     "documentNaam": "Besluit.doc"
                   },
                   "besluitType": {
-                    "id": 12,
                     "result": "Accept",
-                    "description": "Van rechtswege toelating",
-                    "public": true
+                    "description": "Van rechtswege toelating"
                   },
                   "datumOndertekening": "2016-08-03T11:49:34.285+02:00"
                 }
@@ -517,6 +511,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 "ingangsDatum": "2016-01-21T00:00:00.000+01:00"
               },
               "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
+              "datumOndertekening": "2016-08-17T22:00:00.000Z",
              "actueel": [
                 {
                   "gebruiker": "NietProfessioneel",
@@ -766,9 +761,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                     "documentNaam": "Bijlage.html"
                   },
                   "besluitType": {
-                    "id": 15,
-                    "description": "Bijlage",
-                    "public": true
+                    "description": "Bijlage"
                   },
                   "datumOndertekening": "2016-08-03T11:49:34.296+02:00"
                 },
@@ -778,10 +771,8 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                     "documentNaam": "Besluit.doc"
                   },
                   "besluitType": {
-                    "id": 12,
                     "result": "Accept",
-                    "description": "Van rechtswege toelating",
-                    "public": true
+                    "description": "Van rechtswege toelating"
                   },
                   "datumOndertekening": "2016-08-03T11:49:34.285+02:00"
                 }
@@ -828,7 +819,8 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                       "nl": 343421,
                       "ingangsDatum": "2016-01-21T00:00:00.000+01:00"
                     },
-                    "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
+                    "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
+                    "datumOndertekening": "2016-08-17T22:00:00.000Z"
                   },
                   "besluiten": [
                     {
@@ -837,9 +829,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                         "documentNaam": "Bijlage.html"
                       },
                       "besluitType": {
-                        "id": 15,
-                        "description": "Bijlage",
-                        "public": true
+                        "description": "Bijlage"
                       },
                       "datumOndertekening": "2016-08-03T11:49:34.296+02:00"
                     },
@@ -849,10 +839,8 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                         "documentNaam": "Besluit.doc"
                       },
                       "besluitType": {
-                        "id": 12,
                         "result": "Accept",
-                        "description": "Van rechtswege toelating",
-                        "public": true
+                        "description": "Van rechtswege toelating"
                       },
                       "datumOndertekening": "2016-08-03T11:49:34.285+02:00"
                     }
@@ -1099,23 +1087,19 @@ Met deze service kunnen toepassingsgebieden van gewasbeschermingsmiddelen gebase
             },
             "data": [{
                 "naam": "Aardpeer",
-                "type": "gewas",
-                "eppo": "HELTU"
+                "type": "groep"
               },
               {
                 "naam": "Japanse aardappel",
-                "type": "gewas",
-                "eppo": "STASB"
+                "type": "gewas"
               },
               {
                 "naam": "Knoflook",
-                "type": "subgroep",
-                "eppo": "STASB"
+                "type": "subgroep"
               },
               {
-                "naam": "Akkerbouwgewassen",
-                "type": "groep",
-                "eppo": "STASB"
+                "naam": "STARB",
+                "type": "eppo"
               }
             ]
         }                
