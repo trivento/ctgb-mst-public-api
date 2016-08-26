@@ -17,14 +17,14 @@ De hier gebruikte types zijn:
 Omdat in query parameters blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden. 
 Dit betekent dat b.v. `filter[veldNaam]` vertaald dient te worden naar: `filter%5BveldNaam%5D`
 
-## Toelatingen summary [/public-api/1.0/toelatingen?filter%5BLocale%5D,filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouders%5D,filter%5BbiocideProductcodes%5D,filter%5BbiocideDoelorganismen%5D,filter%5BbiocideToepassingInfo%5D,filter%5BgewasToepassingsgebieden%5D,filter%5BgewasDoelorganismen%5D,filter%5BgewasToepassingslocaties%5D,filter%5BgewasAardWerkingen%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D]
+## Toelatingen summary [/public-api/1.0/toelatingen?filter%5Blocale%5D,filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouders%5D,filter%5BbiocideProductcodes%5D,filter%5BbiocideDoelorganismen%5D,filter%5BbiocideToepassingInfo%5D,filter%5BgewasToepassingsgebieden%5D,filter%5BgewasDoelorganismen%5D,filter%5BgewasToepassingslocaties%5D,filter%5BgewasAardWerkingen%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D]
 
 Met deze service kunnen toelatingen op basis van een groot aantal parameters doorzocht worden. Daarnaast biedt deze service sortering en paginatie.
 Meerdere filters worden in de zoekvraag vertaald naar `AND`. Uitzondering is `filter%5BmiddelNaam%5D` en `filter%5BtoelatingNummer%5D`. Deze worden vertaald naar `OR`.
 Datums worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ`.
 
 + Parameters
-    + filter%5BLocale%5D: nl (enum[locale], optional) - locale parameter voor toepassingsgebieden met de afkorting van de gewenste taal. Per default `nl` and `en` is returned.
+    + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter voor toepassingsgebieden met de afkorting van de gewenste taal. Per default `nl` and `en` is returned.
         + Members
                 + `nl`
                 + `en`
@@ -107,7 +107,7 @@ Datums worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ
         }
         
 
-## Toelating [/public-api/1.0/toelatingen/{id}?filter%5BLocale%5D]
+## Toelating [/public-api/1.0/toelatingen/{id}?filter%5Blocale%5D]
 
 Het opvragen van een toelating kan resulteren in 3 verschillende types antwoorden:
 - Toelating voor Bicode
@@ -121,7 +121,7 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
 
 + Parameters
     + id: 23456 (number, required) - id van het middel.
-    + filter%5BLocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
+    + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
@@ -293,14 +293,14 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
         }
 
 
-## Toelating Biocide [/public-api/1.0/toelatingen/22222?filter%5BLocale%5D]
+## Toelating Biocide [/public-api/1.0/toelatingen/22222?filter%5Blocale%5D]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) op te vragen.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 22222. Deze retourneerd vervolgens de toelating van een *Biocide*.
 
 + Parameters
-    + filter%5BLocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
+    + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
@@ -471,14 +471,14 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
         }
 
 
-## Toelating Gewas [/public-api/1.0/toelatingen/55555?filter%5BLocale%5D]
+## Toelating Gewas [/public-api/1.0/toelatingen/55555?filter%5Blocale%5D]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) op te vragen.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 55555. Deze retourneerd vervolgens de toelating van een *Gewasbeschermingsmiddel*.
 
 + Parameters
-    + filter%5BLocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
+    + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
@@ -640,13 +640,13 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                             "items": [
                               {
                                 "gewas": "Appel",
-                                "eppo": "MABSD",
+                                "eppo": ["MABSD"],
                                 "bijaantrekkelijk": true,
                                 "teeltOnbedektJaar": "1"
                               },
                               {
                                 "gewas": "Peer",
-                                "eppo": "PYUCO, PYUPC",
+                                "eppo": ["PYUCO, PYUPC"],
                                 "opmerkingen": "Incl. Japanse peer",
                                 "bijaantrekkelijk": true,
                                 "teeltOnbedektJaar": "1"
@@ -661,7 +661,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                           {
                             "groep": "Aardbei",
                             "beperktTot": "wilde Aardbei",
-                            "eppo": "FRAAN",
+                            "eppo": ["FRAAN"],
                             "bijenopmerking": "Op het moment dat bloei plaatsvindt",
                             "bijaantrekkelijk": true,
                             "teeltOnbedektJaar": "1",
@@ -678,7 +678,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                       {
                         "gewas": "Kers",
                         "beperktTot": "rode Kers",
-                        "eppo": "PRNAV, PRNCE",
+                        "eppo": ["PRNAV, PRNCE"],
                         "opmerkingen": "Zoete kers\nZure kers",
                         "bijaantrekkelijk": true,
                         "teeltOnbedektJaar": "1",
@@ -701,7 +701,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                         "items": [
                           {
                             "gewas": "Stamslaboon",
-                            "eppo": "PHSVN",
+                            "eppo": ["PHSVN", "PHSAB"],
                             "opmerkingen": "sperzieboon, boterboon\nwasboon"
                           }
                         ]
@@ -781,14 +781,14 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
         }
 
 
-## Toelating ToevoegingsStof [/public-api/1.0/toelatingen/88888?filter%5BLocale%5D]
+## Toelating ToevoegingsStof [/public-api/1.0/toelatingen/88888?filter%5Blocale%5D]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) op te vragen.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met middel-id 88888. Deze retourneerd vervolgens de toelating van een *Toevoeingsstof*.
 
 + Parameters
-    + filter%5BLocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
+    + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
