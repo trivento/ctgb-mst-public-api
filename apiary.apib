@@ -631,25 +631,30 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 "toepassingsGebieden": [
                   {
                     "groep": "Fruitgewassen",
+                    "selected":true,
                     "items": [
                       {
                         "groep": "Groot fruit",
+                        "selected":false,
                         "items": [
                           {
                             "groep": "Pitvruchten",
+                            "selected":true,
                             "items": [
                               {
                                 "gewas": "Appel",
                                 "eppo": ["MABSD"],
                                 "bijaantrekkelijk": true,
-                                "teeltOnbedektJaar": "1"
+                                "teeltOnbedektJaar": "1",
+                                "selected":true
                               },
                               {
                                 "gewas": "Peer",
                                 "eppo": ["PYUCO, PYUPC"],
                                 "opmerkingen": "Incl. Japanse peer",
                                 "bijaantrekkelijk": true,
-                                "teeltOnbedektJaar": "1"
+                                "teeltOnbedektJaar": "1",
+                                "selected":true
                               }
                             ]
                           }
@@ -657,6 +662,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                       },
                       {
                         "groep": "Kleinfruit",
+                        "selected":true,
                         "items": [
                           {
                             "groep": "Aardbei",
@@ -666,7 +672,8 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                             "bijaantrekkelijk": true,
                             "teeltOnbedektJaar": "1",
                             "teeltBedektJaar": "1 - 2",
-                            "items": []
+                            "items": [],
+                            "selected":true
                           }
                         ]
                       }
@@ -674,6 +681,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                   },
                   {
                     "groep": "Steenvruchten",
+                    "selected":true,
                     "items": [
                       {
                         "gewas": "Kers",
@@ -682,7 +690,8 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                         "opmerkingen": "Zoete kers\nZure kers",
                         "bijaantrekkelijk": true,
                         "teeltOnbedektJaar": "1",
-                        "teeltBedektJaar": "1"
+                        "teeltBedektJaar": "1",
+                        "selected":true
                       }
                     ]
                   }
@@ -695,14 +704,17 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 "toepassingsGebieden": [
                   {
                     "groep": "Peulgroenten",
+                    "selected":false,
                     "items": [
                       {
                         "groep": "Boon met peul",
+                        "selected":false,
                         "items": [
                           {
                             "gewas": "Stamslaboon",
                             "eppo": ["PHSVN", "PHSAB"],
                             "opmerkingen": "sperzieboon, boterboon\nwasboon"
+                            "selected":true
                           }
                         ]
                       }
