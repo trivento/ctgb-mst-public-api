@@ -893,33 +893,6 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
             }
             
             
-
-## Stamdata Toelatingnummers - NOT USED [/public-api/1.0/stamdata/toelatingnummers{?filter%5Bquery%5D,page%5Boffset%5D,page%5Blimit%5D}]
-
-Met deze service kunnen toelating nummers opgezocht worden. Deze service ondersteunt paginatie.
-
-+ Parameters
-    + filter%5Bquery%5D: 421 (string, optional) - query parameter met een deel van het toelating nummer van het middel (nl of eu). In de zoekvraag wordt dit vertaald naar `contains query`, niet hoofdlettergevoelig
-    + page%5Boffset%5D (number, optional) -  aantal toelatingnummers die overgeslagen worden voordat het resultaat geretourneerd wordt
-        + Default: `0`
-    + page%5Blimit%5D (number, optional) - aantal te retourneren toelatingnummers  
-        + Default: `100`
-
-
-### Opvragen Toelatingnummers [GET]
-
-+ Response 200 (application/json)
-
-        {
-            "meta": {
-                "total": 1255,
-                "offset":0,
-                "limit":100
-            },
-            "data": ["234211", "23421", "421663", "NL-0003421-0000"]
-            }
-
-            
 ## Stamdata Stoffen [/public-api/1.0/stamdata/stoffen{?filter%5Bfunctie%5D,filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt paginatie.  
