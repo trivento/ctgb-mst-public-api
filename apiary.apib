@@ -45,7 +45,7 @@ Datums worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ
     + filter%5BbiocideProductcodes%5D (number, optional) - id's van productcodes, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BbiocideDoelorganismen%5D (number, optional) - id's van triviale doelorganisme namen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BbiocideToepassingInfo%5D (string, optional) - vrije tekst die zoekt in de toepassingen informatie van biocides.
-    + filter%5BgewasDoelorganismen%5D (number, optional) - id's van geclaimde organismen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
+    + filter%5BgewasDoelorganismen%5D (number, optional) - id's van doelorganismen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BgewasToepassingsgebieden%5D (string, optional) - namen van gewassen gevolgd door locatie in de DTG hierarchie zijnde `groep, subgroep, gewas, eppo` of engels: `group, subgroup, plant, eppo`, geconcateneerd met `::`. Meerdere paden worden koma separated, deze worden in de zoekvraag vertaald naar: `OR`. Voorbeeld: Toepassingsgebieden voor een gewasbeschermingsmiddel voor `Appel`, `Steenvruchten` of `ISTAC`: `Appel::gewas,Steenvruchten::subgroep,ISTAC::eppo`.
     + filter%5BgewasToepassingslocaties%5D (number, optional) - id's van toepassingslocaties, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BgewasAardWerkingen%5D (number, optional) - id's van aard werkingen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
@@ -630,7 +630,10 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
             "toepassingen": [
               {
                 "naamVanGebruik": "Herbiciden",
-                "geclaimdOrganisme": "Geclaimd organisme",
+                "doelOrganisme": {
+                    "id": 1,
+                    "description": "Doelorganisme"
+                  },
                 "toepassingsLocaties": [
                   {
                     "id": 1,
@@ -718,7 +721,10 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
               },
               {
                 "naamVanGebruik": "Besproeing",
-                "geclaimdOrganisme": "Geclaimd organisme",
+                "doelOrganisme": {
+                    "id": 1,
+                    "description": "Doelorganisme"
+                  },
                 "dtgVersion": "2.1",
                 "toepassingsGebieden": [
                   {
