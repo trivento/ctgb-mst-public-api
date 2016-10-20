@@ -55,9 +55,9 @@ Datums worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ
     + filter%5BdatumOndertekeningTot%5D (string, optional) - datum ondertekening tot en met in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
     + sort (string optional) - koma separated lijst van veldnamen waarop gesorteerd dient te worden. Default is de sortering _oplopend_. Door een '`-`' aan de veldnaam toe te voegen is de sortering _aflopend_. B.v. `sort=middelNaam,-datumOndertekening`.
         Er kunnen op de volgende velden gesorteerd worden: `middelNaam`, `categorieType`, `toelatingNummer`, `expiratieDatum`, `datumOndertekening`
-    + `page%5Boffset%5D` (number, optional) -  aantal toelatingen die overgeslagen worden voordat het resultaat geretourneerd wordt
+    + page%5Boffset%5D (number, optional) -  aantal toelatingen die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
-    + `page%5Blimit%5D` (number, optional) - aantal te retourneren toelatingen
+    + page%5Blimit%5D (number, optional) - aantal te retourneren toelatingen
         + Default: `50`
 
 ### Opvragen Toelatingen [GET]
@@ -146,6 +146,15 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
                   "postalcode": "5635 AE",
                   "city": "Ede",
                   "country": "England"
+                }
+              },
+               "moederMiddel": {
+                "id": "1005",
+                "relatieMetMoeder": "Afgeleid",
+                "toelatingNummer": {
+                    "nl": "43370",
+                    "eu": "NL-6375-1150-000",
+                    "ingangsDatum": "2015-05-18T08:14:17.648Z"
                 }
               },
               "toelating": {
@@ -329,6 +338,15 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                   "country": "England"
                 }
               },
+               "moederMiddel": {
+                "id": "1005",
+                "relatieMetMoeder": "Afgeleid",
+                "toelatingNummer": {
+                    "nl": "43370",
+                    "eu": "NL-6375-1150-000",
+                    "ingangsDatum": "2015-05-18T08:14:17.648Z"
+                }
+              },
               "toelating": {
                 "toelatingNummer": {
                   "nl": 121212,
@@ -510,6 +528,15 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 "country": "Nederland"
               }
             },
+             "moederMiddel": {
+                "id": "1005",
+                "relatieMetMoeder": "Afgeleid",
+                "toelatingNummer": {
+                    "nl": "43370",
+                    "eu": "NL-6375-1150-000",
+                    "ingangsDatum": "2015-05-18T08:14:17.648Z"
+                }
+              },
             "toelating": {
               "toelatingNummer": {
                 "nl": 3204,
