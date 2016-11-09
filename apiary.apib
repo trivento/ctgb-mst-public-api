@@ -17,7 +17,7 @@ De hier gebruikte types zijn:
 Omdat in query parameters blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden. 
 Dit betekent dat b.v. `filter[veldNaam]` vertaald dient te worden naar: `filter%5BveldNaam%5D`
 
-## Toelatingen summary [/public-api/1.0/toelatingen?filter%5Blocale%5D,filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouders%5D,filter%5BbiocideProductcodes%5D,filter%5BbiocideDoelorganismen%5D,filter%5BbiocideToepassingInfo%5D,filter%5BgewasToepassingsgebieden%5D,filter%5BgewasDoelorganismen%5D,filter%5BgewasToepassingslocaties%5D,filter%5BgewasAardWerkingen%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D]
+## Toelatingen summary [/public-api/1.0/toelatingen{?filter%5Blocale%5D,filter%5BmiddelNaam%5D,filter%5BmiddelStatus%5D,filter%5BcategorieType%5D,filter%5BtoelatingNummer%5D,filter%5Bgebruiker%5D,filter%5BwerkzameStoffen%5D,filter%5BbeschermStoffen%5D,filter%5BtoelatingHouders%5D,filter%5BbiocideProductcodes%5D,filter%5BbiocideDoelorganismen%5D,filter%5BbiocideToepassingInfo%5D,filter%5BgewasToepassingsgebieden%5D,filter%5BgewasDoelorganismen%5D,filter%5BgewasToepassingslocaties%5D,filter%5BgewasAardWerkingen%5D,filter%5BexpiratieDatumVan%5D,filter%5BexpiratieDatumTot%5D,filter%5BdatumOndertekeningVan%5D,filter%5BdatumOndertekeningTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen toelatingen op basis van een groot aantal parameters doorzocht worden. Daarnaast biedt deze service sortering en paginatie.
 Meerdere filters worden in de zoekvraag vertaald naar `AND`. Uitzondering is `filter%5BmiddelNaam%5D` en `filter%5BtoelatingNummer%5D`. Deze worden vertaald naar `OR`.
@@ -39,6 +39,11 @@ Datums worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ
             + `ToevoegingsStof`
     + filter%5BmiddelNaam%5D (string, optional) - de naam van het middel of een deel ervan.  In de zoekvraag wordt dit vertaald naar `contains naam,` niet hoofdlettergevoelig. De filters `filter%5BmiddelNaam%5D` en `filter%5BtoelatingNummer%5D` worden in de zoekvraag vertaald naar `OR`.
     + filter%5BtoelatingNummer%5D (string, optional) - het toelating nummer van het middel, nl of eu. De filters `filter%5BmiddelNaam%5D` en `filter%5BtoelatingNummer%5D` worden in de zoekvraag vertaald naar `OR`.
+    + filter%5Bgebruiker%5D (enum%5Bgebruiker%5D, optional) - de gebruiker van een middel.
+        + Members
+            + `Professioneel`
+            + `NietProfessioneel`
+            + `Beide`
     + filter%5BwerkzameStoffen%5D (number, optional) - id's van werkzamestoffen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BbeschermStoffen%5D (number, optional) - id's van beschermstoffen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BtoelatingHouders%5D (string, optional) - id's van toelatinghouders, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
@@ -107,7 +112,7 @@ Datums worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ
         }
         
 
-## Toelating [/public-api/1.0/toelatingen/{id}?filter%5Blocale%5D]
+## Toelating [/public-api/1.0/toelatingen/{id}{?filter%5Blocale%5D}]
 
 Het opvragen van een toelating kan resulteren in 3 verschillende types antwoorden:
 - Toelating voor Bicode
@@ -150,6 +155,7 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
               },
                "moederMiddel": {
                 "id": "1005",
+                "naam": "naam-van-het-moeder-middel",
                 "relatieMetMoeder": "Afgeleid",
                 "toelatingNummer": {
                     "nl": "43370",
@@ -305,7 +311,7 @@ Het `categorieType` in het antwoord document geeft aan welk type toelating het b
         }
 
 
-## Toelating Biocide [/public-api/1.0/toelatingen/22222?filter%5Blocale%5D]
+## Toelating Biocide [/public-api/1.0/toelatingen/22222?{filter%5Blocale%5D}]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) op te vragen.
 
@@ -340,6 +346,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
               },
                "moederMiddel": {
                 "id": "1005",
+                "naam": "naam-van-het-moeder-middel",
                 "relatieMetMoeder": "Afgeleid",
                 "toelatingNummer": {
                     "nl": "43370",
@@ -495,7 +502,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
         }
 
 
-## Toelating Gewas [/public-api/1.0/toelatingen/55555?filter%5Blocale%5D]
+## Toelating Gewas [/public-api/1.0/toelatingen/55555{?filter%5Blocale%5D}]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) op te vragen.
 
@@ -528,24 +535,25 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 "country": "Nederland"
               }
             },
-             "moederMiddel": {
-                "id": "1005",
-                "relatieMetMoeder": "Afgeleid",
-                "toelatingNummer": {
-                    "nl": "43370",
-                    "eu": "NL-6375-1150-000",
-                    "ingangsDatum": "2015-05-18T08:14:17.648Z"
-                }
-              },
+            "moederMiddel": {
+              "id": "1005",
+              "naam": "naam-van-het-moeder-middel",
+              "relatieMetMoeder": "Afgeleid",
+              "toelatingNummer": {
+                "nl": "43370",
+                "eu": "NL-6375-1150-000",
+                "ingangsDatum": "2015-05-18T08:14:17.648Z"
+              }
+            },
             "toelating": {
               "toelatingNummer": {
                 "nl": 3204,
                 "eu": "NL-0005643-0000",
-                "ingangsDatum": "2016-01-21T00:00:00.000+01:00"
+                "ingangsDatum": "2016-01-21T00:00:00.000Z"
               },
-              "expiratieDatum": "2016-01-18T00:00:00.000+01:00",
+              "expiratieDatum": "2016-01-18T00:00:00.000Z",
               "datumOndertekening": "2016-08-17T22:00:00.000Z",
-             "actueel": [
+              "actueel": [
                 {
                   "gebruiker": "NietProfessioneel",
                   "wCoderingen": [
@@ -555,12 +563,12 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                         "document": {
                           "docId": "doc-1",
                           "documentNaam": "Gebruiksvoorschrift.pdf",
-                          "link" : "http://location/doc-1-Gebruiksvoorschrift.pdf"
+                          "link": "http://location/doc-1-Gebruiksvoorschrift.pdf"
                         },
-                        "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
-                       },
-                       "ingangsDatum": "2016-01-18T00:00:00.000+01:00",
-                       "expiratieDatum": "2016-01-18T00:00:00.000+01:00"
+                        "datumOndertekening": "2016-01-21T00:00:00.000Z"
+                      },
+                      "ingangsDatum": "2016-01-18T00:00:00.000Z",
+                      "expiratieDatum": "2016-01-18T00:00:00.000Z"
                     }
                   ]
                 },
@@ -573,12 +581,12 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                         "document": {
                           "docId": "doc-1",
                           "documentNaam": "Gebruiksvoorschrift.pdf",
-                          "link" : "http://location/doc-1-Gebruiksvoorschrift.pdf"
+                          "link": "http://location/doc-1-Gebruiksvoorschrift.pdf"
                         },
-                        "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                        "datumOndertekening": "2016-01-21T00:00:00.000Z"
                       },
-                      "ingangsDatum": "2016-01-18T00:00:00.000+01:00",
-                      "expiratieDatum": "2026-01-18T00:00:00.000+01:00"
+                      "ingangsDatum": "2016-01-18T00:00:00.000Z",
+                      "expiratieDatum": "2026-01-18T00:00:00.000Z"
                     }
                   ]
                 }
@@ -593,14 +601,14 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                         "document": {
                           "docId": "doc-1",
                           "documentNaam": "Gebruiksvoorschrift.pdf",
-                          "link" : "http://location/doc-1-Gebruiksvoorschrift.pdf"
+                          "link": "http://location/doc-1-Gebruiksvoorschrift.pdf"
                         },
-                        "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                        "datumOndertekening": "2016-01-21T00:00:00.000Z"
                       },
-                      "ingangsDatum": "2016-01-18T00:00:00.000+01:00",
-                      "expiratieDatum": "2026-01-18T00:00:00.000+01:00",
-                      "opgebruikTermijn": "2016-01-17T00:00:00.000+01:00",
-                      "afleverTermijn": "2016-01-16T00:00:00.000+01:00"
+                      "ingangsDatum": "2016-01-18T00:00:00.000Z",
+                      "expiratieDatum": "2026-01-18T00:00:00.000Z",
+                      "opgebruikTermijn": "2016-01-17T00:00:00.000Z",
+                      "afleverTermijn": "2016-01-16T00:00:00.000Z"
                     },
                     {
                       "wCode": "W1",
@@ -608,28 +616,28 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                         "document": {
                           "docId": "doc-1",
                           "documentNaam": "Gebruiksvoorschrift.pdf",
-                          "link" : "http://location/doc-1-Gebruiksvoorschrift.pdf"
+                          "link": "http://location/doc-1-Gebruiksvoorschrift.pdf"
                         },
-                        "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                        "datumOndertekening": "2016-01-21T00:00:00.000Z"
                       },
-                      "ingangsDatum": "2016-01-18T00:00:00.000+01:00",
-                      "expiratieDatum": "2026-01-18T00:00:00.000+01:00",
-                      "opgebruikTermijn": "2016-01-17T00:00:00.000+01:00",
-                      "afleverTermijn": "2016-01-16T00:00:00.000+01:00"
+                      "ingangsDatum": "2016-01-18T00:00:00.000Z",
+                      "expiratieDatum": "2026-01-18T00:00:00.000Z",
+                      "opgebruikTermijn": "2016-01-17T00:00:00.000Z",
+                      "afleverTermijn": "2016-01-16T00:00:00.000Z"
                     },
                     {
                       "gebruiksvoorschrift": {
                         "document": {
                           "docId": "doc-1",
                           "documentNaam": "Gebruiksvoorschrift.pdf",
-                          "link" : "http://location/doc-1-Gebruiksvoorschrift.pdf"
+                          "link": "http://location/doc-1-Gebruiksvoorschrift.pdf"
                         },
-                        "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                        "datumOndertekening": "2016-01-21T00:00:00.000Z"
                       },
-                      "ingangsDatum": "2016-01-18T00:00:00.000+01:00",
-                      "expiratieDatum": "2026-01-18T00:00:00.000+01:00",
-                      "opgebruikTermijn": "2016-01-17T00:00:00.000+01:00",
-                      "afleverTermijn": "2016-01-16T00:00:00.000+01:00"
+                      "ingangsDatum": "2016-01-18T00:00:00.000Z",
+                      "expiratieDatum": "2026-01-18T00:00:00.000Z",
+                      "opgebruikTermijn": "2016-01-17T00:00:00.000Z",
+                      "afleverTermijn": "2016-01-16T00:00:00.000Z"
                     }
                   ]
                 },
@@ -641,34 +649,36 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                         "document": {
                           "docId": "doc-1",
                           "documentNaam": "Gebruiksvoorschrift.pdf",
-                          "link" : "http://location/doc-1-Gebruiksvoorschrift.pdf"
+                          "link": "http://location/doc-1-Gebruiksvoorschrift.pdf"
                         },
-                        "datumOndertekening": "2016-01-21T00:00:00.000+01:00"
+                        "datumOndertekening": "2016-01-21T00:00:00.000Z"
                       },
-                      "ingangsDatum": "2016-01-18T00:00:00.000+01:00",
-                      "expiratieDatum": "2026-01-18T00:00:00.000+01:00",
-                      "opgebruikTermijn": "2016-01-17T00:00:00.000+01:00",
-                      "afleverTermijn": "2016-01-16T00:00:00.000+01:00"
+                      "ingangsDatum": "2016-01-18T00:00:00.000Z",
+                      "expiratieDatum": "2026-01-18T00:00:00.000Z",
+                      "opgebruikTermijn": "2016-01-17T00:00:00.000Z",
+                      "afleverTermijn": "2016-01-16T00:00:00.000Z"
                     }
                   ]
                 }
               ]
             },
-            "aardWerkingen": [{
+            "aardWerkingen": [
+              {
                 "id": 8,
                 "description": "Elicitor"
-            },{
+              },
+              {
                 "id": 9,
                 "description": "Fungicide"
-            }
+              }
             ],
             "toepassingen": [
               {
                 "naamVanGebruik": "Herbiciden",
                 "doelOrganisme": {
-                    "id": 1,
-                    "description": "Doelorganisme"
-                  },
+                  "id": 1,
+                  "description": "Doelorganisme"
+                },
                 "toepassingsLocaties": [
                   {
                     "id": 1,
@@ -683,33 +693,37 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 "toepassingsGebieden": [
                   {
                     "groep": "Fruitgewassen",
-                    "selected":true,
-                    "complete":false,
+                    "selected": true,
+                    "complete": false,
                     "items": [
                       {
                         "groep": "Groot fruit",
-                        "selected":false,
-                        "complete":false,
+                        "selected": false,
+                        "complete": false,
                         "items": [
                           {
                             "groep": "Pitvruchten",
-                            "selected":true,
-                            "complete":true,
+                            "selected": true,
+                            "complete": true,
                             "items": [
                               {
                                 "gewas": "Appel",
-                                "eppo": ["MABSD"],
+                                "eppo": [
+                                  "MABSD"
+                                ],
                                 "bijaantrekkelijk": true,
                                 "teeltOnbedektJaar": "1",
-                                "selected":true
+                                "selected": true
                               },
                               {
                                 "gewas": "Peer",
-                                "eppo": ["PYUCO, PYUPC"],
+                                "eppo": [
+                                  "PYUCO, PYUPC"
+                                ],
                                 "opmerkingen": "Incl. Japanse peer",
                                 "bijaantrekkelijk": true,
                                 "teeltOnbedektJaar": "1",
-                                "selected":true
+                                "selected": true
                               }
                             ]
                           }
@@ -717,19 +731,21 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                       },
                       {
                         "groep": "Kleinfruit",
-                        "selected":true,
-                        "complete":false,
+                        "selected": true,
+                        "complete": false,
                         "items": [
                           {
                             "groep": "Aardbei",
                             "beperktTot": "wilde Aardbei",
-                            "eppo": ["FRAAN"],
+                            "eppo": [
+                              "FRAAN"
+                            ],
                             "bijenopmerking": "Op het moment dat bloei plaatsvindt",
                             "bijaantrekkelijk": true,
                             "teeltOnbedektJaar": "1",
                             "teeltBedektJaar": "1 - 2",
                             "items": [],
-                            "selected":true
+                            "selected": true
                           }
                         ]
                       }
@@ -737,52 +753,132 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                   },
                   {
                     "groep": "Steenvruchten",
-                    "selected":true,
-                    "complete":false,
+                    "selected": true,
+                    "complete": false,
                     "items": [
                       {
                         "gewas": "Kers",
                         "beperktTot": "rode Kers",
-                        "eppo": ["PRNAV, PRNCE"],
+                        "eppo": [
+                          "PRNAV, PRNCE"
+                        ],
                         "opmerkingen": "Zoete kers\nZure kers",
                         "bijaantrekkelijk": true,
                         "teeltOnbedektJaar": "1",
                         "teeltBedektJaar": "1",
-                        "selected":true
+                        "selected": true
                       }
                     ]
                   }
-                ]
+                ],
+                "groeiStadium": {
+                  "from": 12,
+                  "to": 12
+                },
+                "toepassingsTijdstip": {
+                  "fromMonth": 3,
+                  "toMonth": 3
+                },
+                "aantalToepassingen": {
+                  "perGebruik": 12,
+                  "perGewasSeizoen": 12
+                },
+                "minimaleIntervalTussenToepassingen": 12,
+                "maximumMiddelDosis": {
+                  "ratio": 12,
+                  "schaal": 12,
+                  "eenheid": {
+                    "id": 13,
+                    "unitNL": "g/ha",
+                    "unitEN": "g/ha"
+                  }
+                },
+                "maximumMiddelDosisPerGewasSeizoen": {
+                  "ratio": 12,
+                  "schaal": 12,
+                  "eenheid": {
+                    "id": 13,
+                    "unitNL": "g/ha",
+                    "unitEN": "g/ha"
+                  }
+                },
+                "watervolumeSchaal": {
+                  "min": 12,
+                  "max": 12
+                },
+                "isWatervolumeAfhankelijkVanGewasStadium": true,
+                "veiligheidstermijnDagen": 12,
+                "zaadDichtheid": 11
               },
               {
                 "naamVanGebruik": "Besproeing",
                 "doelOrganisme": {
-                    "id": 1,
-                    "description": "Doelorganisme"
-                  },
+                  "id": 1,
+                  "description": "Doelorganisme"
+                },
                 "dtgVersion": "2.1",
                 "toepassingsGebieden": [
                   {
                     "groep": "Peulgroenten",
-                    "selected":false,
-                    "complete":false,
+                    "selected": false,
+                    "complete": false,
                     "items": [
                       {
                         "groep": "Boon met peul",
-                        "selected":false,
-                        "complete":false,
+                        "selected": false,
+                        "complete": false,
                         "items": [
                           {
                             "gewas": "Stamslaboon",
-                            "eppo": ["PHSVN", "PHSAB"],
+                            "eppo": [
+                              "PHSVN",
+                              "PHSAB"
+                            ],
                             "opmerkingen": "sperzieboon, boterboon\nwasboon",
-                            "selected":true
+                            "selected": true
                           }
                         ]
                       }
                     ]
                   }
-                ]
+                ],
+                "groeiStadium": {
+                  "from": 12,
+                  "to": 12
+                },
+                "toepassingsTijdstip": {
+                  "fromMonth": 1,
+                  "toMonth": 2
+                },
+                "aantalToepassingen": {
+                  "perGebruik": 12,
+                  "perGewasSeizoen": 12
+                },
+                "minimaleIntervalTussenToepassingen": 12,
+                "maximumMiddelDosis": {
+                  "ratio": 12,
+                  "schaal": 12,
+                  "eenheid": {
+                    "id": 12,
+                    "unit": "Trunk injection:"
+                  }
+                },
+                "maximumMiddelDosisPerGewasSeizoen": {
+                  "ratio": 12,
+                  "schaal": 12,
+                  "eenheid": {
+                    "id": 13,
+                    "unit": "g/ha"
+                  }
+                },
+                "watervolumeSchaal": {
+                  "min": 12,
+                  "max": 12
+                },
+                "isWatervolumeAfhankelijkVanGewasStadium": true,
+                "veiligheidstermijnDagen": 12,
+                "zaadDichtheid": 12,
+                "opmerkingen": "opmerking"
               }
             ],
             "samenstellingen": {
@@ -829,35 +925,37 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
               ]
             },
             "besluiten": [
-                {
-                  "document": {
-                    "docId": "doc-2",
-                    "documentNaam": "Bijlage.html",
-                    "link" : "http://location/doc-2_Bijlage.html"
-                  },
-                  "besluitType": {
-                    "description": "Bijlage"
-                  },
-                  "datumOndertekening": "2016-08-03T11:49:34.296+02:00"
+              {
+                "document": {
+                  "docId": "doc-2",
+                  "documentNaam": "Bijlage.html",
+                  "link": "http://location/doc-2_Bijlage.html"
                 },
-                {
-                  "document": {
-                    "docId": "doc-1",
-                    "documentNaam": "Besluit.pdf",
-                    "link" : "http://location/doc-1_Besluit.pdf"
-                  },
-                  "besluitType": {
-                    "result": "Accept",
-                    "description": "Van rechtswege toelating"
-                  },
-                  "datumOndertekening": "2016-08-03T11:49:34.285+02:00"
-                }
-              ]
+                "besluitType": {
+                  "description": "Bijlage"
+                },
+                "datumOndertekening": "2016-08-03T11:49:34.296Z"
+              },
+              {
+                "document": {
+                  "docId": "doc-1",
+                  "documentNaam": "Besluit.pdf",
+                  "link": "http://location/doc-1_Besluit.pdf"
+                },
+                "besluitType": {
+                  "result": "Accept",
+                  "description": "Van rechtswege toelating"
+                },
+                "datumOndertekening": "2016-08-03T11:49:34.285Z"
+              }
+            ]
           }
         }
 
 
-## Toelating ToevoegingsStof [/public-api/1.0/toelatingen/88888?filter%5Blocale%5D]
+
+
+## Toelating ToevoegingsStof [/public-api/1.0/toelatingen/88888{?filter%5Blocale%5D}]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een middel-id verschillende toelating types (Biocides/Gewas/ToevoegingsStof) op te vragen.
 
