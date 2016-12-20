@@ -24,7 +24,7 @@ Meerdere filters worden in de zoekvraag vertaald naar `AND`. Uitzondering is `fi
 Dates worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ`.
 
 + Parameters
-    + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter voor fieldsOfUse met de afkorting van de gewenste taal. Per default `nl` and `en` is returned.
+    + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter voor targetCrops met de afkorting van de gewenste taal. Per default `nl` and `en` is returned.
         + Members
                 + `nl`
                 + `en`
@@ -313,7 +313,7 @@ Het `categoryType` in het antwoord document geeft aan welk type toelating het be
 
 ## Authorisation Biocide [/public-api/1.0/authorisations/22222?{filter%5Blocale%5D}]
 
-Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een product-id verschillende toelating types (Biocides/PPP/Adjuvant) op te vragen.
+Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een product-id verschillende toelating types (Biocides/ppp/Adjuvant) op te vragen.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 22222. Deze retourneerd vervolgens de authorisation van een *Biocide*.
 
@@ -504,7 +504,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 ## Authorisation PPP [/public-api/1.0/authorisations/55555{?filter%5Blocale%5D}]
 
-Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een product-id verschillende toelating types (Biocides/PPP/Adjuvant) op te vragen.
+Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een product-id verschillende toelating types (Biocides/ppp/Adjuvant) op te vragen.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 55555. Deze retourneerd vervolgens de toelating van een *Plant Protection Product (PPP)*.
 
@@ -957,7 +957,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 ## Authorisation Adjuvant [/public-api/1.0/authorisations/88888{?filter%5Blocale%5D}]
 
-Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een product-id verschillende toelating types (Biocides/PPP/Adjuvant) op te vragen.
+Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een product-id verschillende toelating types (Biocides/ppp/Adjuvant) op te vragen.
 
 Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 88888. Deze retourneerd vervolgens de toelating van een *Adjuvant*.
 
@@ -1155,9 +1155,9 @@ Met deze service kunnen productcodes (PT-Codes) voor Biocides opgezocht worden. 
         }
 
 
-## TargetOrganisms voor Biocides [/public-api/1.0/masterdata/biocide/targetOrganisms{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Targetorganisms voor Biocides [/public-api/1.0/masterdata/biocide/targetorganisms{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
-Met deze service kunnen triviale namen van targetOrganisms voor Biocides opgezocht worden. Deze service ondersteunt paginatie.
+Met deze service kunnen triviale namen van targetorganisms voor Biocides opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
     + filter%5Bquery%5D: Acarid (string, optional) - query parameter met een triviale organisme naam of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
@@ -1171,7 +1171,7 @@ Met deze service kunnen triviale namen van targetOrganisms voor Biocides opgezoc
         + Default: `100`
 
 
-### Request TargetOrganisms voor Biocides [GET]
+### Request Targetorganisms voor Biocides [GET]
 
 + Response 200 (application/json)
 
@@ -1189,9 +1189,9 @@ Met deze service kunnen triviale namen van targetOrganisms voor Biocides opgezoc
               ]
         }
 
-## TargetOrganisms voor PPPs [/public-api/1.0/masterdata/PPP/targetOrganisms{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Targetorganisms voor PPPs [/public-api/1.0/masterdata/ppp/targetorganisms{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
-Met deze service kunnen targetOrganisms van PPP opgevraagd worden. Deze service ondersteunt paginatie.
+Met deze service kunnen targetorganisms van PPP opgevraagd worden. Deze service ondersteunt paginatie.
 
 + Parameters
     + filter%5Bquery%5D: ar (string, optional) - query parameter met targetOrganism of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
@@ -1205,7 +1205,7 @@ Met deze service kunnen targetOrganisms van PPP opgevraagd worden. Deze service 
         + Default: `100`
 
 
-### Request TargetOrganisms voor PPP [GET]
+### Request Targetorganisms voor PPPs [GET]
 
 + Response 200 (application/json)
 
@@ -1222,24 +1222,24 @@ Met deze service kunnen targetOrganisms van PPP opgevraagd worden. Deze service 
         }
 
 
-## FieldsOfUse voor PPP [/public-api/1.0/masterdata/PPP/fieldsOfUse{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Targetcrops voor PPPs [/public-api/1.0/masterdata/ppp/targetcrops{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
-Met deze service kunnen fieldsOfUse van PPP gebaseerd op Definitielijsten FieldsOfUse PPP (DTG) opgevraagd worden. Deze service ondersteunt paginatie.
+Met deze service kunnen targetcrops van PPP gebaseerd op Definitielijsten Toepassingsgebieden Gewasbeschermingsmiddelen (DTG) opgevraagd worden. Deze service ondersteunt paginatie.
 
 + Parameters
-    + filter%5Bquery%5D: ar (string, optional) - query parameter met PPP of eppo code of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
+    + filter%5Bquery%5D: ar (string, optional) - query parameter met plant, group of eppo code of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
     + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
-    + page%5Boffset%5D (number, optional) -  aantal PPPs die overgeslagen worden voordat het resultaat geretourneerd wordt
+    + page%5Boffset%5D (number, optional) -  aantal gewassen die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
-    + page%5Blimit%5D (number, optional) - aantal te retourneren PPPs
+    + page%5Blimit%5D (number, optional) - aantal te retourneren gewassen
         + Default: `100`
 
 
 
-### Request FieldsOfUse voor PPP [GET]
+### Request Targetcrops voor PPPs [GET]
 
 + Response 200 (application/json)
 
@@ -1269,9 +1269,9 @@ Met deze service kunnen fieldsOfUse van PPP gebaseerd op Definitielijsten Fields
         }
 
 
-## Targetlocations voor PPP [/public-api/1.0/masterdata/PPP/targetlocations{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Targetlocations voor PPPs [/public-api/1.0/masterdata/ppp/targetlocations{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
-Met deze service kunnen targetlocations voor PPP opgezocht worden. Deze service ondersteunt paginatie.
+Met deze service kunnen targetlocations voor PPPs opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
     + filter%5Bquery%5D: Bede (string, required) - query parameter met een targetlocations of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
@@ -1285,7 +1285,7 @@ Met deze service kunnen targetlocations voor PPP opgezocht worden. Deze service 
         + Default: `100`
 
 
-### Request Targetlocations voor PPP [GET]
+### Request Targetlocations voor PPPs [GET]
 
 + Response 200 (application/json)
 
@@ -1304,9 +1304,9 @@ Met deze service kunnen targetlocations voor PPP opgezocht worden. Deze service 
 
 
 
-## Aard Werking voor PPP [/public-api/1.0/masterdata/PPP/outcometypes{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## Outcometypes voor PPPs [/public-api/1.0/masterdata/ppp/outcometypes{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
-Met deze service kunnen aard werkingen voor PPP opgezocht worden. Deze service ondersteunt paginatie.
+Met deze service kunnen outcometypes voor PPP opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
     + filter%5Bquery%5D: Bede (string, required) - query parameter met aard werking of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
@@ -1320,7 +1320,7 @@ Met deze service kunnen aard werkingen voor PPP opgezocht worden. Deze service o
         + Default: `100`
 
 
-### Request Aard Werking voor PPP [GET]
+### Request Outcometypes voor PPPs [GET]
 
 + Response 200 (application/json)
 
