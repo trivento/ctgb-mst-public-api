@@ -137,178 +137,234 @@ Het `categoryType` in het antwoord document geeft aan welk type toelating het be
 + Response 200 (application/json)
 
         {
-          "data": {
-              "id": "30754eb76d1548269b5ab237ec29b78c",
-              "name": "Wizard",
-              "categoryType": "Biocide",
-              "userType": "Both",
-              "authorisationHolder": {
-                "id": "22aed014-5b6a-8e6b-c815-54456d8079c4",
-                "companyName": "BAYER",
-                "address": {
-                  "street": "Bayernslaan",
-                  "number": "888",
-                  "postalcode": "5635 AE",
-                  "city": "Ede",
-                  "country": "Engcountry"
-                }
-              },
-               "motherProduct": {
-                "id": "1005",
-                "name": "name-van-het-mother-product",
-                "relatieMetMother": "Afgeleid",
-                "registrationNumber": {
-                    "nl": "43370",
-                    "eu": "NL-6375-1150-000",
-                    "authorisationStartDate": "2015-05-18T08:14:17.648Z"
-                }
-              },
-              "authorisation": {
-                "registrationNumber": {
-                  "nl": 121212,
-                  "eu": "EU-1234-9999-000",
-                  "authorisationStartDate": "2016-08-03T11:49:34.267+02:00"
-                },
-                "expirationDate": "2019-08-03T11:49:34.268+02:00",
-                "lastRenewalDate": "2016-08-17T22:00:00.000Z",
-                "graceUsageDate": "2018-08-03T11:49:34.268+02:00",
-                "graceSaleDistrDate": "2019-08-03T11:49:34.269+02:00",
-                "instructionsOfUse": [
-                  {
-                    "userType": "Professional",
-                    "documents": [
-                      {
-                        "document": {
-                          "docId": "doc-1",
-                          "documentName": "Decision.pdf",
-                          "link" : "http://location/doc-1_Decision.pdf"
-                        },
-                        "lastRenewalDate": "2016-08-03T11:49:34.296+02:00"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "compositions": {
-                "formulationType": {
-                  "id": 1,
-                  "code": "AE",
-                  "description": "Aerosol spuitbus"
-                },
-                "substances": [
-                  {
-                    "substance": {
-                      "id": 19,
-                      "companyName": "acefaat",
-                      "ecNumber": "250-241-2",
-                      "casNumber": "30560-19-1"
-                    },
-                    "function": {
-                      "id": 40,
-                      "description": "Active substance"
-                    },
-                    "concentration": "456",
-                    "concentrationUnit": {
-                      "id": 20,
-                      "unit": "G/L",
-                      "description": "gram per liter"
-                    }
-                  }
-                ]
-              },
-              "uses": {
-                "generic": {
-                  "instructionForUse": "InstructionForUse",
-                  "riskMitigation": "RisicoBeperkendemaatregel",
-                  "likelyEffects": "effecten en maatregelen"
-                },
-                "uses": [
-                  {
-                    "nameOfUse": "Arctische Flora",
-                    "productType": {
-                      "id": 10,
-                      "code": "PT01",
-                      "description": "Biociden voor menselijke hygiëne"
-                    },
-                    "description": "Dit is een description toegelaten userType",
-                    "targetCrops": [
-                      {
-                        "type": "Binnenshuis",
-                        "description": "Binnenshuis"
-                      },
-                      {
-                        "type": "Buitenshuis",
-                        "description": "Buitenshuis"
-                      }
-                    ],
-                    "fieldOfUseDescription": "descriptionUserTypesgebied",
-                    "userTypeCategories": [
-                      {
-                        "type": "GenericPubliek",
-                        "description": "Generic Publiek",
-                        "userType": "NonProfessional"
-                      },
-                      {
-                        "type": "Professional",
-                        "description": "Professional",
-                        "userType": "Professional"
-                      }
-                    ],
-                    "targetOrganisms": [
-                      {
-                        "id": 13,
-                        "description": "Acarid mites"
-                      }
-                    ],
-                    "applicationMethods": [
-                      {
-                        "method": {
-                          "id": 13,
-                          "description": "Bait application"
-                        },
-                        "description": "description",
-                        "dose": "dose",
-                        "dilution": 1,
-                        "timing": "aantalTiming"
-                      }
-                    ],
-                    "instructionForUse": {
-                      "useInstructions": "specifieke instructies",
-                      "riskMitigation": "risicoBeperkendemaatregelen",
-                      "likelyEffects": "LikelyEffects",
-                      "disposal": "disposal",
-                      "storage": "storage"
-                    }
-                  }
-                ]
-              },
-              "decisions": [
-                {
-                  "document": {
-                    "docId": "doc-2",
-                    "documentName": "Attachement.html",
-                    "link" : "http://location/doc-2_Attachement.html"
-                  },
-                  "decisionType": {
-                    "description": "Attachement"
-                  },
-                  "lastRenewalDate": "2016-08-03T11:49:34.296+02:00"
-                },
-                {
-                  "document": {
-                    "docId": "doc-1",
-                    "documentName": "Decision.pdf",
-                    "link" : "http://location/doc-1_Decision.pdf"
-                  },
-                  "decisionType": {
-                    "result": "Accept",
-                    "description": "Van rechtswege authorisation"
-                  },
-                  "lastRenewalDate": "2016-08-03T11:49:34.285+02:00"
-                }
-              ]
+          "id": "da2b87662490471abf72c0d422697647",
+          "name": "Wizard",
+          "categoryType": "Biocide",
+          "userType": "Both",
+          "authorisationHolder": {
+            "id": "11",
+            "companyName": "BAYER",
+            "address": {
+              "street": "Bayernslaan",
+              "number": "888",
+              "postalcode": "5635 AE",
+              "city": "Ede",
+              "country": "England"
             }
+          },
+          "authorisation": {
+            "registrationNumber": {
+              "nl": "121212",
+              "eu": "EU-1234-9999-000",
+              "authorisationStartDate": "2016-12-21T09:25:28.838Z"
+            },
+            "lastRenewalDate": "2016-12-21T09:25:28.839Z",
+            "expirationDate": "2019-12-21T09:25:28.839Z",
+            "graceUsageDate": "2018-12-21T09:25:28.840Z",
+            "graceSaleDistrDate": "2019-12-21T09:25:28.840Z",
+            "instructionsOfUse": [
+              {
+                "userType": "Professional",
+                "documents": [
+                  {
+                    "document": {
+                      "docId": "doc-1_456",
+                      "documentName": "Besluit.doc.pdf",
+                      "link": "doc-1_456_Besluit.doc.pdf"
+                    },
+                    "lastRenewalDate": "2016-12-21T09:25:28.860Z"
+                  }
+                ]
+              }
+            ]
+          },
+          "compositions": {
+            "formulationType": {
+              "id": 1,
+              "code": "AE",
+              "description": "Aerosol spuitbus"
+            },
+            "substances": [
+              {
+                "substance": {
+                  "id": 19,
+                  "name": "acefaat",
+                  "ecNumber": "250-241-2",
+                  "casNumber": "30560-19-1"
+                },
+                "function": {
+                  "id": 40,
+                  "description": "Werkzame stof"
+                },
+                "concentration": "456",
+                "concentrationUnit": {
+                  "id": 20,
+                  "unit": "G/L",
+                  "description": "gram per liter"
+                }
+              }
+            ]
+          },
+          "uses": {
+            "generic": {
+              "instructionForUse": "InstructionForUse",
+              "riskMitigation": "RisicoBeperkendemaatregel",
+              "likelyEffects": "effecten en maatregelen"
+            },
+            "uses": [
+              {
+                "nameOfUse": "Arctische Flora",
+                "productType": {
+                  "id": 10,
+                  "code": "PT01",
+                  "description": "Biociden voor menselijke hygiëne"
+                },
+                "description": "Dit is een description toegelaten gebruik",
+                "fieldsOfUse": [
+                  {
+                    "type": "Indoor",
+                    "description": "Binnenshuis"
+                  },
+                  {
+                    "type": "Outdoor",
+                    "description": "Buitenshuis"
+                  }
+                ],
+                "fieldOfUseDescription": "descriptiongebruiksgebied",
+                "userTypeCategories": [
+                  {
+                    "type": "GeneralPublic",
+                    "description": "Algemeen Publiek",
+                    "userType": "NonProfessional"
+                  },
+                  {
+                    "type": "Professional",
+                    "description": "Professional",
+                    "userType": "Professional"
+                  }
+                ],
+                "targetOrganisms": [
+                  {
+                    "id": 13,
+                    "description": "Mijten"
+                  }
+                ],
+                "applicationMethods": [
+                  {
+                    "method": {
+                      "id": 13,
+                      "description": "Bait application"
+                    },
+                    "description": "description",
+                    "dose": "dose",
+                    "dilution": 1,
+                    "timing": "aantalTiming"
+                  }
+                ],
+                "instructionForUse": {
+                  "useInstructions": "specifieke instructies",
+                  "riskMitigation": "risicoBeperkendemaatregelen",
+                  "likelyEffects": "LikelyEffects",
+                  "disposal": "disposal",
+                  "storage": "storage"
+                }
+              },
+              {
+                "nameOfUse": "Arctische Flora",
+                "productType": {
+                  "id": 11,
+                  "code": "PT02",
+                  "description": "Desinfecterende products voor privé-gebruik en voor de openbare gezondheidszorg, alsmede andere desinfectantia"
+                },
+                "description": "Dit is een description toegelaten gebruik",
+                "fieldsOfUse": [
+                  {
+                    "type": "Indoor",
+                    "description": "Binnenshuis"
+                  },
+                  {
+                    "type": "Outdoor",
+                    "description": "Buitenshuis"
+                  }
+                ],
+                "fieldOfUseDescription": "descriptiongebruiksgebied",
+                "userTypeCategories": [
+                  {
+                    "type": "GeneralPublic",
+                    "description": "Algemeen Publiek",
+                    "userType": "NonProfessional"
+                  },
+                  {
+                    "type": "Professional",
+                    "description": "Professional",
+                    "userType": "Professional"
+                  }
+                ],
+                "targetOrganisms": [
+                  {
+                    "id": 13,
+                    "description": "Mijten"
+                  }
+                ],
+                "applicationMethods": [
+                  {
+                    "method": {
+                      "id": 13,
+                      "description": "Bait application"
+                    },
+                    "description": "description",
+                    "dose": "dose",
+                    "dilution": 1,
+                    "timing": "aantalTiming"
+                  }
+                ],
+                "instructionForUse": {
+                  "useInstructions": "specifieke instructies",
+                  "riskMitigation": "risicoBeperkendemaatregelen",
+                  "likelyEffects": "LikelyEffects",
+                  "disposal": "disposal",
+                  "storage": "storage"
+                }
+              }
+            ]
+          },
+          "decisions": [
+            {
+              "document": {
+                "docId": "doc-2_789",
+                "documentName": "Bijlage.html.html",
+                "link": "doc-2_789_Bijlage.html.html"
+              },
+              "decisionType": {
+                "description": "Bijlage"
+              },
+              "lastRenewalDate": "2016-12-21T09:25:28.860Z"
+            },
+            {
+              "document": {
+                "docId": "doc-1_456",
+                "documentName": "Besluit.doc.pdf",
+                "link": "doc-1_456_Besluit.doc.pdf"
+              },
+              "decisionType": {
+                "result": "Accept",
+                "description": "Van rechtswege toelating"
+              },
+              "lastRenewalDate": "2016-12-21T09:25:28.860Z"
+            }
+          ],
+          "motherProduct": {
+            "id": "84ae14c6c6a44b7b8d36cf9348022568",
+            "name": "Wizard",
+            "relationWithMother": "Parallel",
+            "registrationNumber": {
+              "nl": "121212",
+              "eu": "EU-1234-9999-000",
+              "authorisationStartDate": "2016-12-21T09:25:28.838Z"
+            }
+          }
         }
+
 
 
 ## Authorisation Biocide [/public-api/1.0/authorisations/22222?{filter%5Blocale%5D}]
@@ -328,177 +384,232 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 + Response 200 (application/json)
 
         {
-          "data": {
-              "id": "30754eb76d1548269b5ab237ec29b78c",
-              "name": "Wizard",
-              "categoryType": "Biocide",
-              "userType": "Both",
-              "authorisationHolder": {
-                "id": "22aed014-5b6a-8e6b-c815-54456d8079c4",
-                "companyName": "BAYER",
-                "address": {
-                  "street": "Bayernslaan",
-                  "number": "888",
-                  "postalcode": "5635 AE",
-                  "city": "Ede",
-                  "country": "Engcountry"
-                }
-              },
-               "motherProduct": {
-                "id": "1005",
-                "name": "name-van-het-mother-product",
-                "relatieMetMother": "Afgeleid",
-                "registrationNumber": {
-                    "nl": "43370",
-                    "eu": "NL-6375-1150-000",
-                    "authorisationStartDate": "2015-05-18T08:14:17.648Z"
-                }
-              },
-              "authorisation": {
-                "registrationNumber": {
-                  "nl": 121212,
-                  "eu": "EU-1234-9999-000",
-                  "authorisationStartDate": "2016-08-03T11:49:34.267+02:00"
-                },
-                "lastRenewalDate": "2016-08-17T22:00:00.000Z",
-                "expirationDate": "2019-08-03T11:49:34.268+02:00",
-                "graceUsageDate": "2018-08-03T11:49:34.268+02:00",
-                "graceSaleDistrDate": "2019-08-03T11:49:34.269+02:00",
-                "instructionsOfUse": [
-                  {
-                    "userType": "Professional",
-                    "documents": [
-                      {
-                        "document": {
-                          "docId": "doc-1",
-                          "documentName": "Decision.pdf",
-                          "link" : "http://location/doc-1_Decision.pdf"
-                        },
-                        "lastRenewalDate": "2016-08-03T11:49:34.296+02:00"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "compositions": {
-                "formulationType": {
-                  "id": 1,
-                  "code": "AE",
-                  "description": "Aerosol spuitbus"
-                },
-                "substances": [
-                  {
-                    "substance": {
-                      "id": 19,
-                      "name": "acefaat",
-                      "ecNumber": "250-241-2",
-                      "casNumber": "30560-19-1"
-                    },
-                    "function": {
-                      "id": 40,
-                      "description": "Active substance"
-                    },
-                    "concentration": "456",
-                    "concentrationUnit": {
-                      "id": 20,
-                      "unit": "G/L",
-                      "description": "gram per liter"
-                    }
-                  }
-                ]
-              },
-              "uses": {
-                "generic": {
-                  "instructionForUse": "InstructionForUse",
-                  "riskMitigation": "RisicoBeperkendemaatregel",
-                  "likelyEffects": "effecten en maatregelen"
-                },
-                "uses": [
-                  {
-                    "nameOfUse": "Arctische Flora",
-                    "productType": {
-                      "id": 10,
-                      "code": "PT01",
-                      "description": "Biociden voor menselijke hygiëne"
-                    },
-                    "description": "Dit is een description toegelaten userType",
-                    "targetCrops": [
-                      {
-                        "type": "Binnenshuis",
-                        "description": "Binnenshuis"
-                      },
-                      {
-                        "type": "Buitenshuis",
-                        "description": "Buitenshuis"
-                      }
-                    ],
-                    "fieldOfUseDescription": "descriptionUserTypesgebied",
-                    "userTypeCategories": [
-                      {
-                        "type": "GenericPubliek",
-                        "description": "Generic Publiek",
-                        "userType": "NonProfessional"
-                      },
-                      {
-                        "type": "Professional",
-                        "description": "Professional",
-                        "userType": "Professional"
-                      }
-                    ],
-                    "targetOrganisms": [
-                      {
-                        "id": 13,
-                        "description": "Acarid mites"
-                      }
-                    ],
-                    "applicationMethods": [
-                      {
-                        "method": {
-                          "id": 13,
-                          "description": "Bait application"
-                        },
-                        "description": "description",
-                        "dose": "dose",
-                        "dilution": 1,
-                        "timing": "aantalTiming"
-                      }
-                    ],
-                    "instructionForUse": {
-                      "useInstructions": "specifieke instructies",
-                      "riskMitigation": "risicoBeperkendemaatregelen",
-                      "likelyEffects": "LikelyEffects",
-                      "disposal": "disposal",
-                      "storage": "storage"
-                    }
-                  }
-                ]
-              },
-              "decisions": [
-                {
-                  "document": {
-                    "docId": "doc-2",
-                    "documentName": "Attachement.html",
-                    "link" : "http://location/doc-2_Attachement.html"
-                  },
-                  "decisionType": {
-                    "description": "Attachement"
-                  },
-                  "lastRenewalDate": "2016-08-03T11:49:34.296+02:00"
-                },
-                {
-                  "document": {
-                    "docId": "doc-1",
-                    "documentName": "Decision.pdf",
-                    "link" : "http://location/doc-1_Decision.pdf"
-                  },
-                  "decisionType": {
-                    "result": "Accept",
-                    "description": "Van rechtswege authorisation"
-                  },
-                  "lastRenewalDate": "2016-08-03T11:49:34.285+02:00"
-                }
-              ]
+          "id": "da2b87662490471abf72c0d422697647",
+          "name": "Wizard",
+          "categoryType": "Biocide",
+          "userType": "Both",
+          "authorisationHolder": {
+            "id": "11",
+            "companyName": "BAYER",
+            "address": {
+              "street": "Bayernslaan",
+              "number": "888",
+              "postalcode": "5635 AE",
+              "city": "Ede",
+              "country": "England"
             }
+          },
+          "authorisation": {
+            "registrationNumber": {
+              "nl": "121212",
+              "eu": "EU-1234-9999-000",
+              "authorisationStartDate": "2016-12-21T09:25:28.838Z"
+            },
+            "lastRenewalDate": "2016-12-21T09:25:28.839Z",
+            "expirationDate": "2019-12-21T09:25:28.839Z",
+            "graceUsageDate": "2018-12-21T09:25:28.840Z",
+            "graceSaleDistrDate": "2019-12-21T09:25:28.840Z",
+            "instructionsOfUse": [
+              {
+                "userType": "Professional",
+                "documents": [
+                  {
+                    "document": {
+                      "docId": "doc-1_456",
+                      "documentName": "Besluit.doc.pdf",
+                      "link": "doc-1_456_Besluit.doc.pdf"
+                    },
+                    "lastRenewalDate": "2016-12-21T09:25:28.860Z"
+                  }
+                ]
+              }
+            ]
+          },
+          "compositions": {
+            "formulationType": {
+              "id": 1,
+              "code": "AE",
+              "description": "Aerosol spuitbus"
+            },
+            "substances": [
+              {
+                "substance": {
+                  "id": 19,
+                  "name": "acefaat",
+                  "ecNumber": "250-241-2",
+                  "casNumber": "30560-19-1"
+                },
+                "function": {
+                  "id": 40,
+                  "description": "Werkzame stof"
+                },
+                "concentration": "456",
+                "concentrationUnit": {
+                  "id": 20,
+                  "unit": "G/L",
+                  "description": "gram per liter"
+                }
+              }
+            ]
+          },
+          "uses": {
+            "generic": {
+              "instructionForUse": "InstructionForUse",
+              "riskMitigation": "RisicoBeperkendemaatregel",
+              "likelyEffects": "effecten en maatregelen"
+            },
+            "uses": [
+              {
+                "nameOfUse": "Arctische Flora",
+                "productType": {
+                  "id": 10,
+                  "code": "PT01",
+                  "description": "Biociden voor menselijke hygiëne"
+                },
+                "description": "Dit is een description toegelaten gebruik",
+                "fieldsOfUse": [
+                  {
+                    "type": "Indoor",
+                    "description": "Binnenshuis"
+                  },
+                  {
+                    "type": "Outdoor",
+                    "description": "Buitenshuis"
+                  }
+                ],
+                "fieldOfUseDescription": "descriptiongebruiksgebied",
+                "userTypeCategories": [
+                  {
+                    "type": "GeneralPublic",
+                    "description": "Algemeen Publiek",
+                    "userType": "NonProfessional"
+                  },
+                  {
+                    "type": "Professional",
+                    "description": "Professional",
+                    "userType": "Professional"
+                  }
+                ],
+                "targetOrganisms": [
+                  {
+                    "id": 13,
+                    "description": "Mijten"
+                  }
+                ],
+                "applicationMethods": [
+                  {
+                    "method": {
+                      "id": 13,
+                      "description": "Bait application"
+                    },
+                    "description": "description",
+                    "dose": "dose",
+                    "dilution": 1,
+                    "timing": "aantalTiming"
+                  }
+                ],
+                "instructionForUse": {
+                  "useInstructions": "specifieke instructies",
+                  "riskMitigation": "risicoBeperkendemaatregelen",
+                  "likelyEffects": "LikelyEffects",
+                  "disposal": "disposal",
+                  "storage": "storage"
+                }
+              },
+              {
+                "nameOfUse": "Arctische Flora",
+                "productType": {
+                  "id": 11,
+                  "code": "PT02",
+                  "description": "Desinfecterende products voor privé-gebruik en voor de openbare gezondheidszorg, alsmede andere desinfectantia"
+                },
+                "description": "Dit is een description toegelaten gebruik",
+                "fieldsOfUse": [
+                  {
+                    "type": "Indoor",
+                    "description": "Binnenshuis"
+                  },
+                  {
+                    "type": "Outdoor",
+                    "description": "Buitenshuis"
+                  }
+                ],
+                "fieldOfUseDescription": "descriptiongebruiksgebied",
+                "userTypeCategories": [
+                  {
+                    "type": "GeneralPublic",
+                    "description": "Algemeen Publiek",
+                    "userType": "NonProfessional"
+                  },
+                  {
+                    "type": "Professional",
+                    "description": "Professional",
+                    "userType": "Professional"
+                  }
+                ],
+                "targetOrganisms": [
+                  {
+                    "id": 13,
+                    "description": "Mijten"
+                  }
+                ],
+                "applicationMethods": [
+                  {
+                    "method": {
+                      "id": 13,
+                      "description": "Bait application"
+                    },
+                    "description": "description",
+                    "dose": "dose",
+                    "dilution": 1,
+                    "timing": "aantalTiming"
+                  }
+                ],
+                "instructionForUse": {
+                  "useInstructions": "specifieke instructies",
+                  "riskMitigation": "risicoBeperkendemaatregelen",
+                  "likelyEffects": "LikelyEffects",
+                  "disposal": "disposal",
+                  "storage": "storage"
+                }
+              }
+            ]
+          },
+          "decisions": [
+            {
+              "document": {
+                "docId": "doc-2_789",
+                "documentName": "Bijlage.html.html",
+                "link": "doc-2_789_Bijlage.html.html"
+              },
+              "decisionType": {
+                "description": "Bijlage"
+              },
+              "lastRenewalDate": "2016-12-21T09:25:28.860Z"
+            },
+            {
+              "document": {
+                "docId": "doc-1_456",
+                "documentName": "Besluit.doc.pdf",
+                "link": "doc-1_456_Besluit.doc.pdf"
+              },
+              "decisionType": {
+                "result": "Accept",
+                "description": "Van rechtswege toelating"
+              },
+              "lastRenewalDate": "2016-12-21T09:25:28.860Z"
+            }
+          ],
+          "motherProduct": {
+            "id": "84ae14c6c6a44b7b8d36cf9348022568",
+            "name": "Wizard",
+            "relationWithMother": "Parallel",
+            "registrationNumber": {
+              "nl": "121212",
+              "eu": "EU-1234-9999-000",
+              "authorisationStartDate": "2016-12-21T09:25:28.838Z"
+            }
+          }
         }
 
 
@@ -519,437 +630,275 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 + Response 200 (application/json)
 
         {
-          "data": {
-            "id": "55555",
-            "name": "TRIFOCIDE VLOEIBAAR DNOC",
-            "categoryType": "PPP",
-            "userType": "Both",
-            "authorisationHolder": {
-              "id": "22aed014-5b6a-8e6b-c815-54456d8079c4",
-              "companyName": "Techno Trading Holcountry",
-              "address": {
-                "street": "Groesweg",
-                "number": "13",
-                "postalcode": "5993 NN",
-                "city": "Maasbree",
-                "country": "Nedercountry"
+          "id" : "1234",
+          "name" : "name",
+          "categoryType" : "PPP",
+          "userType" : "Professional",
+          "authorisationHolder" : {
+            "id" : "11",
+            "companyName" : "BAYER",
+            "address" : {
+              "street" : "Bayernslaan",
+              "number" : "888",
+              "postalcode" : "5635 AE",
+              "city" : "Ede",
+              "country" : "England"
+            }
+          },
+          "authorisation" : {
+            "registrationNumber" : {
+              "nl" : "121212",
+              "eu" : "EU-1234-9999-000",
+              "authorisationStartDate" : "2016-12-21T09:39:24.232Z"
+            },
+            "lastRenewalDate" : "2016-12-21T09:39:24.237Z",
+            "expirationDate" : "2016-11-21T09:39:24.765Z",
+            "actual" : [ {
+              "userType" : "Professional",
+              "wCodings" : [ {
+                "wCode" : "W1",
+                "instructionOfUse" : {
+                  "document" : {
+                    "docId" : "doc-1_456",
+                    "documentName" : "v2.pdf",
+                    "link" : "doc-1_456_v2.pdf"
+                  },
+                  "lastRenewalDate" : "2016-12-21T09:39:24.247Z"
+                },
+                "authorisationStartDate" : "2016-12-21T09:39:24.767Z",
+                "expirationDate" : "2016-11-21T09:39:24.765Z"
+              } ]
+            } ],
+            "previous" : [ {
+              "userType" : "Professional",
+              "wCodings" : [ {
+                "instructionOfUse" : {
+                  "document" : {
+                    "docId" : "doc-1_456",
+                    "documentName" : "v1.pdf",
+                    "link" : "doc-1_456_v1.pdf"
+                  },
+                  "lastRenewalDate" : "2016-12-21T09:39:24.247Z"
+                },
+                "authorisationStartDate" : "2016-12-21T09:39:24.767Z",
+                "expirationDate" : "2016-11-21T09:39:24.765Z",
+                "graceUsageDate" : "2015-12-21T09:39:24.765Z",
+                "graceSaleDistrDate" : "2014-12-21T09:39:24.765Z"
+              } ]
+            } ]
+          },
+          "outcomeTypes" : [ {
+            "id" : 1,
+            "description" : "acaricide"
+          }, {
+            "id" : 2,
+            "description" : "bactericide"
+          } ],
+          "compositions" : {
+            "formulationType" : {
+              "id" : 1,
+              "code" : "AE",
+              "description" : "Aerosol spuitbus"
+            },
+            "substances" : [ {
+              "substance" : {
+                "id" : 19,
+                "name" : "acefaat",
+                "ecNumber" : "250-241-2",
+                "casNumber" : "30560-19-1"
+              },
+              "function" : {
+                "id" : 40,
+                "description" : "Werkzame stof"
+              },
+              "concentration" : "456",
+              "concentrationUnit" : {
+                "id" : 20,
+                "unit" : "G/L",
+                "description" : "gram per liter"
+              }
+            }, {
+              "substance" : {
+                "id" : 12,
+                "name" : "aluminiumfosfide",
+                "ecNumber" : "244-088-0",
+                "casNumber" : "20859-73-8"
+              },
+              "function" : {
+                "id" : 40,
+                "description" : "Werkzame stof"
+              },
+              "concentration" : "456",
+              "concentrationUnit" : {
+                "id" : 20,
+                "unit" : "G/KG",
+                "description" : "gram per kilogram"
+              }
+            } ]
+          },
+          "uses" : [ {
+            "nameOfUse" : "Herbiciden",
+            "targetOrganism" : {
+              "id" : 0,
+              "description" : "Geclaimd organise"
+            },
+            "targetLocations" : [ {
+              "id" : 1,
+              "description" : "Bedekt"
+            }, {
+              "id" : 2,
+              "description" : "Onbedekt"
+            } ],
+            "dtgVersion" : "2.1",
+            "targetCrops" : [ {
+              "group" : "Akkerbouwgewassen",
+              "items" : [ {
+                "group" : "Aardappelen",
+                "items" : [ {
+                  "crop" : "Pootaardappel",
+                  "eppo" : [ "SOLTU" ],
+                  "limitedTo" : "Piepers",
+                  "attractiveToHoneybees" : true,
+                  "remarksHoneybees" : "Voor pollen",
+                  "cropCyclesUncoveredYear" : "1",
+                  "selected" : true
+                } ],
+                "selected" : false,
+                "complete" : false
+              }, {
+                "group" : "Bieten",
+                "items" : [ ],
+                "attractiveToHoneybees" : false,
+                "selected" : true,
+                "complete" : false
+              } ],
+              "selected" : false,
+              "complete" : false
+            } ],
+            "growthStage" : {
+              "from" : 10,
+              "to" : 40
+            },
+            "applicationTiming" : {
+              "fromMonth" : 2,
+              "toMonth" : 12
+            },
+            "amountOfApplications" : {
+              "perUse" : 10,
+              "perCropSeason" : 8
+            },
+            "minimumIntervalBetweenApplications" : 4,
+            "maximumProductDose" : {
+              "ratio" : 2,
+              "scale" : 4,
+              "measure" : {
+                "id" : 14,
+                "unit" : "kg/ton"
               }
             },
-            "motherProduct": {
-              "id": "1005",
-              "namename": "name-van-het-mother-product",
-              "relatieMetMother": "Afgeleid",
-              "registrationNumber": {
-                "nl": "43370",
-                "eu": "NL-6375-1150-000",
-                "authorisationStartDate": "2015-05-18T08:14:17.648Z"
+            "maximumProductDosePerCropSeason" : {
+              "ratio" : 4,
+              "scale" : 3,
+              "measure" : {
+                "id" : 14,
+                "unit" : "g/kg zaad"
               }
             },
-            "authorisation": {
-              "registrationNumber": {
-                "nl": 3204,
-                "eu": "NL-0005643-0000",
-                "authorisationStartDate": "2016-01-21T00:00:00.000Z"
-              },
-              "expirationDate": "2016-01-18T00:00:00.000Z",
-              "lastRenewalDate": "2016-08-17T22:00:00.000Z",
-              "actual": [
-                {
-                  "userType": "NonProfessional",
-                  "wCodes": [
-                    {
-                      "wCode": "W3",
-                      "instructionOfUse": {
-                        "document": {
-                          "docId": "doc-1",
-                          "documentName": "InstructionOfUse.pdf",
-                          "link": "http://location/doc-1-InstructionOfUse.pdf"
-                        },
-                        "lastRenewalDate": "2016-01-21T00:00:00.000Z"
-                      },
-                      "authorisationStartDate": "2016-01-18T00:00:00.000Z",
-                      "expirationDate": "2016-01-18T00:00:00.000Z"
-                    }
-                  ]
-                },
-                {
-                  "userType": "Professional",
-                  "wCodes": [
-                    {
-                      "wCode": "W1",
-                      "instructionOfUse": {
-                        "document": {
-                          "docId": "doc-1",
-                          "documentName": "InstructionOfUse.pdf",
-                          "link": "http://location/doc-1-InstructionOfUse.pdf"
-                        },
-                        "lastRenewalDate": "2016-01-21T00:00:00.000Z"
-                      },
-                      "authorisationStartDate": "2016-01-18T00:00:00.000Z",
-                      "expirationDate": "2026-01-18T00:00:00.000Z"
-                    }
-                  ]
-                }
-              ],
-              "previous": [
-                {
-                  "userType": "NonProfessional",
-                  "wCodes": [
-                    {
-                      "wCode": "W2",
-                      "instructionOfUse": {
-                        "document": {
-                          "docId": "doc-1",
-                          "documentName": "InstructionOfUse.pdf",
-                          "link": "http://location/doc-1-InstructionOfUse.pdf"
-                        },
-                        "lastRenewalDate": "2016-01-21T00:00:00.000Z"
-                      },
-                      "authorisationStartDate": "2016-01-18T00:00:00.000Z",
-                      "expirationDate": "2026-01-18T00:00:00.000Z",
-                      "graceUsageDate": "2016-01-17T00:00:00.000Z",
-                      "graceSaleDistrDate": "2016-01-16T00:00:00.000Z"
-                    },
-                    {
-                      "wCode": "W1",
-                      "instructionOfUse": {
-                        "document": {
-                          "docId": "doc-1",
-                          "documentName": "InstructionOfUse.pdf",
-                          "link": "http://location/doc-1-InstructionOfUse.pdf"
-                        },
-                        "lastRenewalDate": "2016-01-21T00:00:00.000Z"
-                      },
-                      "authorisationStartDate": "2016-01-18T00:00:00.000Z",
-                      "expirationDate": "2026-01-18T00:00:00.000Z",
-                      "graceUsageDate": "2016-01-17T00:00:00.000Z",
-                      "graceSaleDistrDate": "2016-01-16T00:00:00.000Z"
-                    },
-                    {
-                      "instructionOfUse": {
-                        "document": {
-                          "docId": "doc-1",
-                          "documentName": "InstructionOfUse.pdf",
-                          "link": "http://location/doc-1-InstructionOfUse.pdf"
-                        },
-                        "lastRenewalDate": "2016-01-21T00:00:00.000Z"
-                      },
-                      "authorisationStartDate": "2016-01-18T00:00:00.000Z",
-                      "expirationDate": "2026-01-18T00:00:00.000Z",
-                      "graceUsageDate": "2016-01-17T00:00:00.000Z",
-                      "graceSaleDistrDate": "2016-01-16T00:00:00.000Z"
-                    }
-                  ]
-                },
-                {
-                  "userType": "Professional",
-                  "wCodes": [
-                    {
-                      "instructionOfUse": {
-                        "document": {
-                          "docId": "doc-1",
-                          "documentName": "InstructionOfUse.pdf",
-                          "link": "http://location/doc-1-InstructionOfUse.pdf"
-                        },
-                        "lastRenewalDate": "2016-01-21T00:00:00.000Z"
-                      },
-                      "authorisationStartDate": "2016-01-18T00:00:00.000Z",
-                      "expirationDate": "2026-01-18T00:00:00.000Z",
-                      "graceUsageDate": "2016-01-17T00:00:00.000Z",
-                      "graceSaleDistrDate": "2016-01-16T00:00:00.000Z"
-                    }
-                  ]
-                }
-              ]
+            "watervolumeScale" : {
+              "min" : 4,
+              "max" : 100
             },
-            "outcomeTypes": [
-              {
-                "id": 8,
-                "description": "Elicitor"
-              },
-              {
-                "id": 9,
-                "description": "Fungicide"
-              }
-            ],
-            "uses": [
-              {
-                "nameOfUse": "Herbiciden",
-                "targetOrganism": {
-                  "id": 1,
-                  "description": "TargetOrganism"
-                },
-                "targetLocations": [
-                  {
-                    "id": 1,
-                    "description": "Bedekt"
-                  },
-                  {
-                    "id": 2,
-                    "description": "Uncovered"
-                  }
-                ],
-                "dtgVersion": "2.1",
-                "targetCrops": [
-                  {
-                    "group": "Fruitgewassen",
-                    "selected": true,
-                    "complete": false,
-                    "items": [
-                      {
-                        "group": "Groot fruit",
-                        "selected": false,
-                        "complete": false,
-                        "items": [
-                          {
-                            "group": "Pitvruchten",
-                            "selected": true,
-                            "complete": true,
-                            "items": [
-                              {
-                                "ppp": "Appel",
-                                "eppo": [
-                                  "MABSD"
-                                ],
-                                "attractiveToHoneybees": true,
-                                "cropCyclesUncoveredYear": "1",
-                                "selected": true
-                              },
-                              {
-                                "ppp": "Peer",
-                                "eppo": [
-                                  "PYUCO, PYUPC"
-                                ],
-                                "remarks": "Incl. Japanse peer",
-                                "attractiveToHoneybees": true,
-                                "cropCyclesUncoveredYear": "1",
-                                "selected": true
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "group": "Kleinfruit",
-                        "selected": true,
-                        "complete": false,
-                        "items": [
-                          {
-                            "group": "Aardbei",
-                            "limitedTo": "wilde Aardbei",
-                            "eppo": [
-                              "FRAAN"
-                            ],
-                            "bijenremarks": "Op het moment dat bloei cityvindt",
-                            "attractiveToHoneybees": true,
-                            "cropCyclesUncoveredYear": "1",
-                            "cropCyclesCoveredYear": "1 - 2",
-                            "items": [],
-                            "selected": true
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "group": "Steenvruchten",
-                    "selected": true,
-                    "complete": false,
-                    "items": [
-                      {
-                        "ppp": "Kers",
-                        "limitedTo": "rode Kers",
-                        "eppo": [
-                          "PRNAV, PRNCE"
-                        ],
-                        "remarks": "Zoete kers\nZure kers",
-                        "attractiveToHoneybees": true,
-                        "cropCyclesUncoveredYear": "1",
-                        "cropCyclesCoveredYear": "1",
-                        "selected": true
-                      }
-                    ]
-                  }
-                ],
-                "growthStage": {
-                  "from": 12,
-                  "to": 12
-                },
-                "applicationTiming": {
-                  "fromMonth": 3,
-                  "toMonth": 3
-                },
-                "amountOfApplications": {
-                  "perUse": 12,
-                  "perCropSeason": 12
-                },
-                "minimumIntervalBetweenApplications": 12,
-                "maximumProductDose": {
-                  "ratio": 12,
-                  "scale": 12,
-                  "measure": {
-                    "id": 13,
-                    "unitNL": "g/ha",
-                    "unitEN": "g/ha"
-                  }
-                },
-                "maximumProductDosePerCropSeason": {
-                  "ratio": 12,
-                  "scale": 12,
-                  "measure": {
-                    "id": 13,
-                    "unitNL": "g/ha",
-                    "unitEN": "g/ha"
-                  }
-                },
-                "watervolumeScale": {
-                  "min": 12,
-                  "max": 12
-                },
-                "isWatervolumeDependingOnGrowthStage": true,
-                "phiDays": 12,
-                "seedDensity": 11
-              },
-              {
-                "nameOfUse": "Besproeing",
-                "targetOrganism": {
-                  "id": 1,
-                  "description": "TargetOrganism"
-                },
-                "dtgVersion": "2.1",
-                "targetCrops": [
-                  {
-                    "group": "Peulgroenten",
-                    "selected": false,
-                    "complete": false,
-                    "items": [
-                      {
-                        "group": "Boon met peul",
-                        "selected": false,
-                        "complete": false,
-                        "items": [
-                          {
-                            "ppp": "Stamslaboon",
-                            "eppo": [
-                              "PHSVN",
-                              "PHSAB"
-                            ],
-                            "remarks": "sperzieboon, boterboon\nwasboon",
-                            "selected": true
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "growthStage": {
-                  "from": 12,
-                  "to": 12
-                },
-                "applicationTiming": {
-                  "fromMonth": 1,
-                  "toMonth": 2
-                },
-                "amountOfApplications": {
-                  "perUse": 12,
-                  "perCropSeason": 12
-                },
-                "minimumIntervalBetweenApplications": 12,
-                "maximumProductDose": {
-                  "ratio": 12,
-                  "scale": 12,
-                  "measure": {
-                    "id": 12,
-                    "unit": "Trunk injection:"
-                  }
-                },
-                "maximumProductDosePerCropSeason": {
-                  "ratio": 12,
-                  "scale": 12,
-                  "measure": {
-                    "id": 13,
-                    "unit": "g/ha"
-                  }
-                },
-                "watervolumeScale": {
-                  "min": 12,
-                  "max": 12
-                },
-                "isWatervolumeDependingOnGrowthStage": true,
-                "phiDays": 12,
-                "seedDensity": 12,
-                "remarks": "remarks"
-              }
-            ],
-            "compositions": {
-              "formulationType": {
-                "id": 72,
-                "code": "RB",
-                "description": "Lokproduct (klaar voor userType)"
-              },
-              "substances": [
-                {
-                  "substance": {
-                    "id": 11287,
-                    "name": "(2-butoxyethoxy)azijnzuur",
-                    "casNumber": "82941-26-2"
-                  },
-                  "function": {
-                    "id": 5,
-                    "description": "Active substance"
-                  },
-                  "concentration": "12",
-                  "concentrationUnit": {
-                    "id": 2,
-                    "unit": "%V/V",
-                    "description": "volumeprocent"
-                  }
-                },
-                {
-                  "substance": {
-                    "id": 11287,
-                    "name": "(2-butoxyethoxy)azijnzuur",
-                    "casNumber": "82941-26-2"
-                  },
-                  "function": {
-                    "id": 6,
-                    "description": "Safener"
-                  },
-                  "concentration": "1",
-                  "concentrationUnit": {
-                    "id": 4,
-                    "unit": "CFU/G",
-                    "description": "kolonievormende sporen per gram"
-                  }
-                }
-              ]
+            "isWatervolumeDependingOnGrowthStage" : true,
+            "phiDays" : 4,
+            "seedDensity" : 5,
+            "remarks" : "remarks"
+          }, {
+            "nameOfUse" : "Insecticiden",
+            "targetOrganism" : {
+              "id" : 0,
+              "description" : "Geclaimd organisme"
             },
-            "decisions": [
-              {
-                "document": {
-                  "docId": "doc-2",
-                  "documentName": "Attachement.html",
-                  "link": "http://location/doc-2_Attachement.html"
-                },
-                "decisionType": {
-                  "description": "Attachement"
-                },
-                "lastRenewalDate": "2016-08-03T11:49:34.296Z"
-              },
-              {
-                "document": {
-                  "docId": "doc-1",
-                  "documentName": "Decision.pdf",
-                  "link": "http://location/doc-1_Decision.pdf"
-                },
-                "decisionType": {
-                  "result": "Accept",
-                  "description": "Van rechtswege authorisation"
-                },
-                "lastRenewalDate": "2016-08-03T11:49:34.285Z"
+            "targetLocations" : [ {
+              "id" : 1,
+              "description" : "Bedekt"
+            }, {
+              "id" : 2,
+              "description" : "Onbedekt"
+            } ],
+            "dtgVersion" : "2.1",
+            "targetCrops" : [ {
+              "group" : "Akkerbouwgewassen",
+              "items" : [ {
+                "group" : "Aardappelen",
+                "items" : [ {
+                  "crop" : "Pootaardappel",
+                  "eppo" : [ "SOLTU" ],
+                  "limitedTo" : "Piepers",
+                  "attractiveToHoneybees" : true,
+                  "remarksHoneybees" : "Voor pollen",
+                  "cropCyclesUncoveredYear" : "1",
+                  "selected" : true
+                } ],
+                "selected" : false,
+                "complete" : false
+              }, {
+                "group" : "Bieten",
+                "items" : [ ],
+                "attractiveToHoneybees" : false,
+                "selected" : true,
+                "complete" : false
+              } ],
+              "selected" : false,
+              "complete" : false
+            } ],
+            "growthStage" : {
+              "from" : 20,
+              "to" : 30
+            },
+            "applicationTiming" : {
+              "fromMonth" : 3,
+              "toMonth" : 4
+            },
+            "amountOfApplications" : {
+              "perUse" : 4,
+              "perCropSeason" : 3
+            },
+            "minimumIntervalBetweenApplications" : 4,
+            "maximumProductDose" : {
+              "ratio" : 2,
+              "scale" : 4,
+              "measure" : {
+                "id" : 14,
+                "unit" : "kg/ton"
               }
-            ]
-          }
+            },
+            "maximumProductDosePerCropSeason" : {
+              "ratio" : 4,
+              "scale" : 3,
+              "measure" : {
+                "id" : 14,
+                "unit" : "g/kg zaad"
+              }
+            },
+            "watervolumeScale" : {
+              "min" : 2,
+              "max" : 10
+            },
+            "isWatervolumeDependingOnGrowthStage" : true,
+            "phiDays" : 4
+          } ],
+          "decisions" : [ {
+            "document" : {
+              "docId" : "doc-1_456",
+              "documentName" : "Besluit.doc.pdf",
+              "link" : "doc-1_456_Besluit.doc.pdf"
+            },
+            "decisionType" : {
+              "result" : "Accept",
+              "description" : "Van rechtswege toelating"
+            },
+            "lastRenewalDate" : "2016-12-21T09:39:24.247Z"
+          } ]
         }
 
 
@@ -971,73 +920,72 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 + Response 200 (application/json)
 
-            {
-                "data": {
-                  "id" : "88888",
-                  "name": "ACTIROB B",
-                  "categoryType": "Adjuvant",
-                  "userType": "Professional",
-                  "authorisationHolder": {
-                    "id": "22aed014-5b6a-8e6b-c815-54456d8079c4",
-                    "companyName": "FA. S. V.D. WERF",
-                    "address": {
-                      "street": "Cartografenweg",
-                      "number": "34",
-                      "postalcode": "5141 MT",
-                      "city": "Waalwijk",
-                      "country": "Nedercountry"
-                    }
-                  },
-                  "authorisation": {
-                    "registrationNumber": {
-                      "nl": 343421,
-                      "authorisationStartDate": "2016-01-21T00:00:00.000+01:00"
-                    },
-                    "lastRenewalDate": "2016-08-17T22:00:00.000Z",
-                    "expirationDate": "2019-01-18T00:00:00.000+01:00",
-                    "instructionsOfUse": [
-                      {
-                        "userType": "Professional",
-                        "documents": [
-                          {
-                            "document": {
-                              "docId": "doc-1",
-                              "documentName": "Decision.pdf",
-                              "link" : "http://location/doc-1_Decision.pdf"
-                            },
-                            "lastRenewalDate": "2016-08-03T11:49:34.296+02:00"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  "decisions": [
-                    {
-                      "document": {
-                        "docId": "doc-2",
-                        "documentName": "Attachement.html",
-                        "link" : "http://location/doc-2_Attachement.html"
-                      },
-                      "decisionType": {
-                        "description": "Attachement"
-                      },
-                      "lastRenewalDate": "2016-08-03T11:49:34.296+02:00"
-                    },
-                    {
-                      "document": {
-                        "docId": "doc-1",
-                        "documentName": "Decision.pdf",
-                        "link" : "http://location/doc-1_Decision.pdf"
-                      },
-                      "decisionType": {
-                        "result": "Accept",
-                        "description": "Van rechtswege authorisation"
-                      },
-                      "lastRenewalDate": "2016-08-03T11:49:34.285+02:00"
-                    }
-                  ]
-                }
+        {
+          "id": "a723681a55f6474787c59dfc2908a723",
+          "name": "Wizard",
+          "categoryType": "Adjuvant",
+          "userType": "NonProfessional",
+          "authorisationHolder": {
+            "id": "11",
+            "companyName": "BAYER",
+            "address": {
+              "street": "Bayernslaan",
+              "number": "888",
+              "postalcode": "5635 AE",
+              "city": "Ede",
+              "country": "England"
             }
+          },
+          "authorisation": {
+            "registrationNumber": {
+              "nl": "121212",
+              "eu": "EU-1234-9999-000",
+              "authorisationStartDate": "2016-12-20T14:51:30.070Z"
+            },
+            "expirationDate": "2019-12-20T14:51:30.080Z",
+            "instructionsOfUse": [
+              {
+                "userType": "Professional",
+                "documents": [
+                  {
+                    "document": {
+                      "docId": "doc-1_456",
+                      "documentName": "Besluit.doc.pdf",
+                      "link": "doc-1_456_Besluit.doc.pdf"
+                    },
+                    "lastRenewalDate": "2016-12-20T14:51:30.095Z"
+                  }
+                ]
+              }
+            ],
+            "lastRenewalDate": "2016-12-20T14:51:30.080Z"
+          },
+          "decisions": [
+            {
+              "document": {
+                "docId": "doc-2_789",
+                "documentName": "Bijlage.html.html",
+                "link": "doc-2_789_Bijlage.html.html"
+              },
+              "decisionType": {
+                "description": "Bijlage"
+              },
+              "lastRenewalDate": "2016-12-20T14:51:30.095Z"
+            },
+            {
+              "document": {
+                "docId": "doc-1_456",
+                "documentName": "Besluit.doc.pdf",
+                "link": "doc-1_456_Besluit.doc.pdf"
+              },
+              "decisionType": {
+                "result": "Accept",
+                "description": "Van rechtswege toelating"
+              },
+              "lastRenewalDate": "2016-12-20T14:51:30.095Z"
+            }
+          ]
+        }
 
 
 ## Masterdata Substances [/public-api/1.0/masterdata/substances{?filter%5Bfunction%5D,filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
@@ -1183,9 +1131,9 @@ Met deze service kunnen triviale namen van targetorganisms voor Biocides opgezoc
             },
             "data": [
                 {"id": 1, "echaCode": "4998", "description": "Acarid mites"},
-                {"id": 205, "description": "Adults | Ants"},
-                {"id": 2, "echaCode": "4999", "description": "Aedes mosquitoes"},
-                {"id": 3, "echaCode": "5794", "description": "Algae"}
+                {"id": 2, "description": "Adults | Ants"},
+                {"id": 3, "echaCode": "4999", "description": "Aedes mosquitoes"},
+                {"id": 4, "echaCode": "5794", "description": "Algae"}
               ]
         }
 
