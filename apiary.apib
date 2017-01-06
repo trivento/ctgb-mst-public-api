@@ -17,7 +17,7 @@ De hier gebruikte types zijn:
 Omdat in query parameters blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden.
 Dit betekent dat b.v. `filter[fieldName]` vertaald dient te worden naar: `filter%5BfieldName%5D`
 
-## Authorisations summary [/public-api/1.0/authorisations{?filter%5Blocale%5D,filter%5BproductName%5D,filter%5BproductStatus%5D,filter%5BcategoryType%5D,filter%5BregistrationNumber%5D,filter%5BuserType%5D,filter%5BactiveSubstances%5D,filter%5BsafenerSubstances%5D,filter%5BauthorisationHolders%5D,filter%5BbiocideProductcodes%5D,filter%5BbiocideTargetOrganisms%5D,filter%5BbiocideTargetInfo%5D,filter%5BpppTargetCrops%5D,filter%5BpppTargetOrganisms%5D,filter%5BpppTargetlocations%5D,filter%5BpppOutcomeTypes%5D,filter%5BexpirationDateFrom%5D,filter%5BexpirationDateTo%5D,filter%5BlastRenewalDateFrom%5D,filter%5BlastRenewalDateTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
+## Authorisations summary [/public-api/1.0/authorisations{?filter%5Blocale%5D,filter%5BproductName%5D,filter%5BproductStatus%5D,filter%5BcategoryType%5D,filter%5BregistrationNumber%5D,filter%5BuserType%5D,filter%5BactiveSubstances%5D,filter%5BsafenerSubstances%5D,filter%5BauthorisationHolders%5D,filter%5BbiocideProductTypes%5D,filter%5BbiocideTargetOrganisms%5D,filter%5BbiocideTargetInfo%5D,filter%5BpppTargetCrops%5D,filter%5BpppTargetOrganisms%5D,filter%5BpppTargetlocations%5D,filter%5BpppOutcomeTypes%5D,filter%5BexpirationDateFrom%5D,filter%5BexpirationDateTo%5D,filter%5BlastRenewalDateFrom%5D,filter%5BlastRenewalDateTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen authorisations op basis van een groot aantal parameters doorzocht worden. Daarnaast biedt deze service sortering en paginatie.
 Meerdere filters worden in de zoekvraag vertaald naar `AND`. Uitzondering is `filter%5BproductName%5D` en `filter%5BregistrationNumber%5D`. Deze worden vertaald naar `OR`.
@@ -47,7 +47,7 @@ Dates worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ`
     + filter%5BactiveSubstances%5D (number, optional) - id's van activesubstances, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BsafenerSubstances%5D (number, optional) - id's van safenersubstances, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BauthorisationHolders%5D (string, optional) - id's van authorisationholders, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
-    + filter%5BbiocideProductcodes%5D (number, optional) - id's van productcodes, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
+    + filter%5BbiocideProductTypes%5D (number, optional) - id's van productTypes, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BbiocideTargetOrganisms%5D (number, optional) - id's van triviale targetOrganism namen, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
     + filter%5BbiocideTargetInfo%5D (string, optional) - vrije tekst die zoekt in de uses informatie van biocides.
     + filter%5BpppTargetOrganisms%5D (number, optional) - id's van targetOrganisms, koma separated. Meerdere id's worden in de zoekvraag vertaald naar: `OR`.
@@ -1352,9 +1352,9 @@ Met deze service kunnen authorisationholders opgezocht worden. Deze service onde
             ]
         }
 
-## Productcodes voor Biocides [/public-api/1.0/masterdata/biocide/productcodes{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
+## ProductTypes voor Biocides [/public-api/1.0/masterdata/biocide/producttypes{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
-Met deze service kunnen productcodes (PT-Codes) voor Biocides opgezocht worden. Deze service ondersteunt paginatie.
+Met deze service kunnen productTypes (PT-Codes) voor Biocides opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
     + filter%5Bquery%5D: PT0 (string, optional) - query parameter met PT code, description of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
@@ -1362,9 +1362,9 @@ Met deze service kunnen productcodes (PT-Codes) voor Biocides opgezocht worden. 
         + Members
                 + `nl`
                 + `en`
-    + page%5Boffset%5D (number, optional) -  aantal productcodes die overgeslagen worden voordat het resultaat geretourneerd wordt
+    + page%5Boffset%5D (number, optional) -  aantal productTypes die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
-    + page%5Blimit%5D (number, optional) - aantal te retourneren productcodes
+    + page%5Blimit%5D (number, optional) - aantal te retourneren productTypes
         + Default: `100`
 
 
