@@ -786,8 +786,8 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
           "data": {
             "id": "1234",
             "name": "name",
-            "categoryType": {type: "PPP", description: "Gewas"},
-            "userType": {type: "Professional", description: "Professioneel"},
+            "categoryType": {"type": "PPP", "description": "Gewas"},
+            "userType": {"type": "Professional", "description": "Professioneel"},
             "authorisationHolder": {
               "id": "11",
               "companyName": "BAYER",
@@ -809,7 +809,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
               "expirationDate": "2016-11-21T09:39:24.765Z",
               "actual": [
                 {
-                  "userType": {type: "Professional", description: "Professioneel"},
+                  "userType": {"type": "Professional", "description": "Professioneel"},
                   "wCodings": [
                     {
                       "wCode": "W1",
@@ -829,7 +829,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
               ],
               "previous": [
                 {
-                  "userType": {type: "Professional", description: "Professioneel"},
+                  "userType": {"type": "Professional", "description": "Professioneel"},
                   "wCodings": [
                     {
                       "instructionOfUse": {
@@ -1019,15 +1019,22 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                         "group": "Aardappelen",
                         "items": [
                           {
-                            "crop": "Pootaardappel",
-                            "eppo": [
-                              "SOLTU"
+                            "group": "Industriele Aardappelen",
+                            "items": [
+                              {
+                                "crop": "Zetmeelaardappel",
+                                "eppo": [
+                                  "SOLTU"
+                                ],
+                                "limitedTo": "Piepers",
+                                "attractiveToHoneybees": true,
+                                "remarksHoneybees": "Voor pollen",
+                                "cropCyclesUncoveredYear": "1",
+                                "selected": true
+                              }
                             ],
-                            "limitedTo": "Piepers",
-                            "attractiveToHoneybees": true,
-                            "remarksHoneybees": "Voor pollen",
-                            "cropCyclesUncoveredYear": "1",
-                            "selected": true
+                            "selected": false,
+                            "complete": false
                           }
                         ],
                         "selected": false,
@@ -1090,7 +1097,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                   "link": "doc-1_456_Besluit.doc.pdf"
                 },
                 "decisionType": {
-                  "result": {type: "Accept", description: "Honoreren"},
+                  "result": {"type": "Accept", "description": "Honoreren"},
                   "description": "Van rechtswege toelating"
                 },
                 "lastRenewalDate": "2016-12-21T09:39:24.247Z"
@@ -1101,7 +1108,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 "name": "ABC",
                 "labelling": [
                   {
-                    "userType": {type: "Professional", description: "Professioneel"},
+                    "userType": {"type": "Professional", "description": "Professioneel"},
                     "signalWord": {
                       "type": "Danger",
                       "description": "Gevaar"
