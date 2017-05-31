@@ -1447,10 +1447,154 @@ Met deze service kunnen targetorganisms van PPP opgevraagd worden. Deze service 
                 "limit":100
             },
             "data": [
-                    {"id": 1, "description": "TBD-nl-1"},
-                    {"id": 2, "description": "TBD-nl-2"}
+                        {
+                          "name": "Vogels",
+                          "type": "group"
+                        },
+                        {
+                          "name": "Kraaien",
+                          "type": "subgroup"
+                        },
+                        {
+                          "name": "zwarte kraai",
+                          "type": "organism"
+                        },
+                        {
+                          "name": "Bacterievuur",
+                          "type": "disease"
+                        },
+                        {
+                          "name": "STARB",
+                          "type": "eppo"
+                        }
                 ]
         }
+
+
+## Targetorganisms lists voor PPPs [/public-api/1.0/masterdata/ppp/targetorganisms/lists{?filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
+
+Met deze service kunnen targetorganisms van PPP opgevraagd worden. Deze service ondersteunt paginatie.
+
++ Parameters
+    + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
+        + Members
+                + `nl`
+                + `en`
+    + page%5Boffset%5D (number, optional) -  aantal  target organisms lijsten die overgeslagen worden voordat het resultaat geretourneerd wordt
+        + Default: `0`
+    + page%5Blimit%5D (number, optional) - aantal te retourneren target organisms lijsten
+        + Default: `100`
+
+
+### Request Targetorganisms lists voor PPPs [GET]
+
++ Response 200 (application/json)
+
+        {
+            "meta": {
+                "total": 1,
+                "offset":0,
+                "limit":100
+            },
+            "data": [ {
+                  "version" : "1.0",
+                  "list" : [ {
+                    "groupScientific" : "Aves",
+                    "group" : "Vogels",
+                    "items" : [ {
+                      "groupScientific" : "Corvidae",
+                      "group" : "Kraaien",
+                      "items" : [ {
+                        "organismScientific" : "Corvus corone",
+                        "organism" : "zwarte kraai",
+                        "eppo" : "CORVCOB"
+                      }, {
+                        "organismScientific" : "Corvus",
+                        "organism" : "kraai",
+                        "eppo" : "CORVSPB"
+                      } ]
+                    }, {
+                      "groupScientific" : "Passeridae",
+                      "group" : "Mussen",
+                      "items" : [ {
+                        "organismScientific" : "Passer domesticus",
+                        "organism" : "huismus",
+                        "eppo" : "PASSDOB"
+                      } ]
+                    } ]
+                  }, {
+                    "groupScientific" : "Bacteria",
+                    "group" : "Bacterien",
+                    "items" : [ {
+                      "groupScientific" : "Comamonadaceae",
+                      "items" : [ {
+                        "organismScientific" : "Acidovorax avenae pv. cattleyae",
+                        "organism" : "acidovorax avenae subsp. cattleyae",
+                        "eppo" : "ACVRACB"
+                      }, {
+                        "organismScientific" : "Xylophilus ampelinus",
+                        "organism" : "xylophilus ampelinus",
+                        "eppo" : "XANTAMB"
+                      } ]
+                    }, {
+                      "groupScientific" : "Enterobacteriaceae",
+                      "items" : [ {
+                        "organismScientific" : "Erwinia amylovora",
+                        "organism" : "erwinia amylovora",
+                        "diseases" : [ "Bacterievuur", "Perenvuur" ],
+                        "eppo" : "ERWIAMB"
+                      }, {
+                        "organismScientific" : "Erwinia carotovora subsp. atroseptica",
+                        "organism" : "erwinia carotovora subsp. atroseptica",
+                        "eppo" : "ERWIATB"
+                      }, {
+                        "organismScientific" : "Pectobacterium carotovorum subsp. carotovorum",
+                        "organism" : "erwinia carotovora subsp. carotovora",
+                        "eppo" : "ERWICAB"
+                      }, {
+                        "organismScientific" : "Erwinia chrysanthemi",
+                        "organism" : "erwinia chrysanthemi",
+                        "eppo" : "ERWICHB"
+                      }, {
+                        "organismScientific" : "Erwinia cypripedii",
+                        "organism" : "erwinia cypripedii",
+                        "eppo" : "ERWICYB"
+                      }, {
+                        "organismScientific" : "Pantoea agglomerans",
+                        "organism" : "pantoea agglomerans",
+                        "eppo" : "ERWIHEB"
+                      }, {
+                        "organismScientific" : "Erwinia rhapontici",
+                        "organism" : "erwinia rhapontici",
+                        "eppo" : "ERWIRHB"
+                      }, {
+                        "organismScientific" : "Erwinia salicis",
+                        "organism" : "erwinia salicis",
+                        "eppo" : "ERWISAB"
+                      }, {
+                        "organismScientific" : "Erwinia",
+                        "organism" : "erwinia soorten",
+                        "eppo" : "ERWISPB"
+                      }, {
+                        "organismScientific" : "Pantoea stewartii",
+                        "organism" : "erwinia stewartii",
+                        "eppo" : "ERWISTB"
+                      }, {
+                        "organismScientific" : "Erwinia tracheiphila",
+                        "organism" : "erwinia tracheiphila",
+                        "eppo" : "ERWITRB"
+                      }, {
+                        "organismScientific" : "Erwinia herbicola pv. gypsophilae",
+                        "organism" : "erwinia herbicola pv. gypsophilae",
+                        "eppo" : "PNTOAGB"
+                      } ]
+                    } ],
+                    "remarks" : "bruinrot"
+                  } ]
+                } ]
+
+        }
+
 
 
 ## Targetcrops voor PPPs [/public-api/1.0/masterdata/ppp/targetcrops{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
@@ -1497,6 +1641,117 @@ Met deze service kunnen targetcrops van PPP gebaseerd op Definitielijsten Toepas
                 "type": "eppo"
               }
             ]
+        }
+
+## Targetcrops lists voor PPPs [/public-api/1.0/masterdata/ppp/targetcrops/lists{?filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
+
+Met deze service kunnen de Definitielijsten Toepassingsgebieden Gewasbeschermingsmiddelen (DTG) opgevraagd worden. Deze service ondersteunt paginatie.
+
++ Parameters
+    + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
+        + Members
+                + `nl`
+                + `en`
+    + page%5Boffset%5D (number, optional) -  aantal gewassen lijsten die overgeslagen worden voordat het resultaat geretourneerd wordt
+        + Default: `0`
+    + page%5Blimit%5D (number, optional) - aantal te retourneren gewassen lijsten
+        + Default: `100`
+
+
+
+### Request Targetcrops lists voor PPPs [GET]
+
++ Response 200 (application/json)
+
+        {
+            "meta": {
+                "total": 2,
+                "offset":0,
+                "limit":100
+            },
+            "data": [ {
+                  "id" : 1,
+                  "version" : "1.0",
+                  "list" : [ {
+                    "group" : "Paddenstoelenteelt",
+                    "items" : [ {
+                      "group" : "Eetbare paddenstoelen",
+                      "items" : [ {
+                        "crop" : "Champignon",
+                        "eppo" : [ "AGARBI" ],
+                        "remarks" : "Witte champignon, kastanje champignon, portobello"
+                      }, {
+                        "crop" : "Oesterzwam",
+                        "eppo" : [ "PLEUOS" ],
+                        "remarks" : "Gewone oesterzwam, trechteroesterzwam, goudkleurige esterzwam, kruisdistel oesterzwam, zalmoesterzwam, roze oesterzwam"
+                      }, {
+                        "crop" : "Overige paddestoelen",
+                        "eppo" : [ "LENTED", "LPSTNU", "PHOLNA", "AGARAR", "COPNCO", "FLMUVE", "AGCYCY", "HYPZMA", "STPRRU", "GRIFFR", "GANOLU", "AURIAU", "AGARBZ" ],
+                        "remarks" : "Shiitake, paarse schijnridderzwam, nameko, anijschampignon, geschubde inktzwam, fluweelpootje, populierleemhoed, shimeji, blauwplaatstropharia, eikhaas, lakzwam, judasoor, amandelchampignon"
+                      } ]
+                    } ]
+                  }, {
+                    "group" : "Sierteeltgewassen",
+                    "items" : [ {
+                      "group" : "Bloembol- en bloemknolgewassen",
+                      "items" : [ {
+                        "crop" : "Bloembollen en bloemknollen",
+                        "remarks" : "Vermeerderingsteelt van amaryllis, dahlia, gladiool, hyacint, lelie, narcis, tulp, iris, krokus, overige bloembollen en bloemknollen."
+                      }, {
+                        "crop" : "Bolbloemen en knolbloemen",
+                        "remarks" : "bloementeelt / potplantenteelt van bloembollen en bloemknollen van amaryllis, dahlia, gladiool, hyacint, lelie, narcis, tulp, iris, krokus, overige bloembollen en bloemknollen"
+                      } ]
+                    } ]
+                  } ],
+                  "expirationDate" : "2022-08-31T22:00:00.000Z"
+                }, {
+                  "id" : 3,
+                  "version" : "2.1",
+                  "list" : [ {
+                    "group" : "Paddenstoelenteelt",
+                    "items" : [ {
+                      "group" : "Eetbare paddenstoelen",
+                      "items" : [ {
+                        "crop" : "Champignon",
+                        "eppo" : [ "AGARBI" ],
+                        "remarks" : "Witte champignon, kastanje champignon, portobello",
+                        "attractiveToHoneybees" : false,
+                        "cropCycleCoveredDays" : "35"
+                      }, {
+                        "crop" : "Oesterzwam",
+                        "eppo" : [ "PLEUOS" ],
+                        "remarks" : "Gewone oesterzwam, trechteroesterzwam, goudkleurige esterzwam, kruisdistel oesterzwam, zalmoesterzwam, roze oesterzwam",
+                        "attractiveToHoneybees" : false,
+                        "cropCycleCoveredDays" : "56"
+                      }, {
+                        "crop" : "Overige paddestoelen",
+                        "eppo" : [ "LENTED", "LPSTNU", "PHOLNA", "AGARAR", "COPNCO", "FLMUVE", "AGCYCY", "HYPZMA", "STPRRU", "GRIFFR", "GANOLU", "AURIAU", "AGARBZ" ],
+                        "remarks" : "Shiitake, paarse schijnridderzwam, nameko, anijschampignon, geschubde inktzwam, fluweelpootje, populierleemhoed, shimeji, blauwplaatstropharia, eikhaas, lakzwam, judasoor, amandelchampignon",
+                        "attractiveToHoneybees" : false,
+                        "cropCycleCoveredDays" : "56"
+                      } ]
+                    } ]
+                  }, {
+                    "group" : "Sierteeltgewassen",
+                    "items" : [ {
+                      "group" : "Bloembol- en bloemknolgewassen",
+                      "items" : [ {
+                        "crop" : "Bloembollen en bloemknollen",
+                        "remarks" : "Vermeerderingsteelt van amaryllis, dahlia, gladiool, hyacint, lelie, narcis, tulp, iris, krokus, overige bloembollen en bloemknollen.",
+                        "attractiveToHoneybees" : true,
+                        "remarksHoneybees" : "Op het moment dat bloei plaatsvindt",
+                        "cropCyclesUncoveredYear" : "1"
+                      }, {
+                        "crop" : "Bolbloemen en knolbloemen",
+                        "remarks" : "bloementeelt / potplantenteelt van bloembollen en bloemknollen van amaryllis, dahlia, gladiool, hyacint, lelie, narcis, tulp, iris, krokus, overige bloembollen en bloemknollen",
+                        "attractiveToHoneybees" : true,
+                        "remarksHoneybees" : "Op het moment dat bloei plaatsvindt",
+                        "cropCyclesUncoveredYear" : "1"
+                      } ]
+                    } ]
+                  } ],
+                  "expirationDate" : "2022-08-31T22:00:00.000Z"
+                } ]
         }
 
 
@@ -1565,4 +1820,6 @@ Met deze service kunnen outcometypes voor PPP opgezocht worden. Deze service ond
                     {"id": 1, "description": "Werking-1"},
                     {"id": 2, "description": "Werking-2"}
                 ]
-        }Bu
+        }
+
+
