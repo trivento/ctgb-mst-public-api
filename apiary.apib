@@ -907,10 +907,36 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
             "uses": [
               {
                 "nameOfUse": "Herbiciden",
-                "targetOrganism": {
-                  "id": 0,
-                  "description": "Geclaimd organise"
-                },
+                "targetOrganismListVersion" : "1.0",
+                "targetOrganisms" : [ {
+                  "groupScientific" : "Acari",
+                  "group" : "Mijten",
+                  "items" : [ {
+                    "groupScientific" : "Acaridae",
+                    "group" : "Acaridae",
+                    "items" : [ {
+                      "organismScientific" : "Rhizoglyphus echinopus",
+                      "organism" : "bollenmijt",
+                      "eppo" : "RHIGECB",
+                      "selected" : true
+                    } ],
+                    "selected" : false,
+                    "complete" : false
+                  }, {
+                    "groupScientific" : "Eriophyidae",
+                    "group" : "Galmijten",
+                    "items" : [ {
+                      "organismScientific" : "Aceria tulipae",
+                      "organism" : "tulpengalmijt",
+                      "eppo" : "ACEITUB",
+                      "selected" : true
+                    } ],
+                    "selected" : false,
+                    "complete" : false
+                  } ],
+                  "selected" : false,
+                  "complete" : false
+                } ],
                 "targetLocations": [
                   {
                     "id": 1,
@@ -1821,5 +1847,3 @@ Met deze service kunnen outcometypes voor PPP opgezocht worden. Deze service ond
                     {"id": 2, "description": "Werking-2"}
                 ]
         }
-
-
