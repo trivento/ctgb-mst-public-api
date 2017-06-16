@@ -904,217 +904,263 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
                 }
               ]
             },
-            "uses": [
-              {
-                "nameOfUse": "Herbiciden",
-                "targetOrganismListVersion" : "1.0",
-                "targetOrganisms" : [ {
-                  "groupScientific" : "Acari",
-                  "group" : "Mijten",
-                  "items" : [ {
-                    "groupScientific" : "Acaridae",
-                    "group" : "Acaridae",
-                    "items" : [ {
-                      "organismScientific" : "Rhizoglyphus echinopus",
-                      "organism" : "bollenmijt",
-                      "eppo" : "RHIGECB",
-                      "selected" : true
-                    } ],
-                    "selected" : false,
-                    "complete" : false
-                  }, {
-                    "groupScientific" : "Eriophyidae",
-                    "group" : "Galmijten",
-                    "items" : [ {
-                      "organismScientific" : "Aceria tulipae",
-                      "organism" : "tulpengalmijt",
-                      "eppo" : "ACEITUB",
-                      "selected" : true
-                    } ],
-                    "selected" : false,
-                    "complete" : false
-                  } ],
-                  "selected" : false,
-                  "complete" : false
-                } ],
-                "targetLocations": [
-                  {
-                    "id": 1,
-                    "description": "Bedekt"
+             "uses": [
+                {
+                  "nameOfUse": {
+                    "name": "Herbiciden",
+                    "usesSummary": "Cultuurgrasland, Groot fruit, Aardbei, Vijg, Braam"
                   },
-                  {
-                    "id": 2,
-                    "description": "Onbedekt"
-                  }
-                ],
-                "dtgVersion": "2.1",
-                "targetCrops": [
-                  {
-                    "group": "Akkerbouwgewassen",
-                    "items": [
-                      {
-                        "group": "Aardappelen",
-                        "items": [
-                          {
-                            "crop": "Pootaardappel",
-                            "eppo": [
-                              "SOLTU"
-                            ],
-                            "limitedTo": "Piepers",
-                            "attractiveToHoneybees": true,
-                            "remarksHoneybees": "Voor pollen",
-                            "cropCyclesUncoveredYear": "1",
-                            "selected": true
-                          }
-                        ],
-                        "selected": false,
-                        "complete": false
-                      },
-                      {
-                        "group": "Bieten",
-                        "items": [],
-                        "attractiveToHoneybees": false,
-                        "selected": true,
-                        "complete": false
-                      }
-                    ],
-                    "selected": false,
-                    "complete": false
-                  }
-                ],
-                "growthStage": {
-                  "from": 10,
-                  "to": 40
-                },
-                "applicationTiming": {
-                  "fromMonth": 2,
-                  "toMonth": 12
-                },
-                "amountOfApplications": {
-                  "perUse": 10,
-                  "perCropSeason": 8
-                },
-                "minimumIntervalBetweenApplications": 4,
-                "maximumProductDose": {
-                  "ratio": 2,
-                  "scale": 4,
-                  "measure": {
-                    "id": 14,
-                    "unit": "kg/ton"
-                  }
-                },
-                "maximumProductDosePerCropSeason": {
-                  "ratio": 4,
-                  "scale": 3,
-                  "measure": {
-                    "id": 14,
-                    "unit": "g/kg zaad"
-                  }
-                },
-                "watervolumeScale": {
-                  "min": 4,
-                  "max": 100
-                },
-                "isWatervolumeDependingOnGrowthStage": true,
-                "phiDays": 4,
-                "seedDensity": 5,
-                "remarks": "remarks"
-              },
-              {
-                "nameOfUse": "Insecticiden",
-                "targetOrganism": {
-                  "id": 0,
-                  "description": "Geclaimd organisme"
-                },
-                "targetLocations": [
-                  {
-                    "id": 1,
-                    "description": "Bedekt"
+                  "userType": {
+                    "type": "Both",
+                    "descriptionEN": "Both",
+                    "descriptionNL": "Beide"
                   },
-                  {
-                    "id": 2,
-                    "description": "Onbedekt"
-                  }
-                ],
-                "dtgVersion": "2.1",
-                "targetCrops": [
-                  {
-                    "group": "Akkerbouwgewassen",
-                    "items": [
-                      {
-                        "group": "Aardappelen",
-                        "items": [
-                          {
-                            "group": "Industriele Aardappelen",
-                            "items": [
-                              {
-                                "crop": "Zetmeelaardappel",
-                                "eppo": [
-                                  "SOLTU"
-                                ],
-                                "limitedTo": "Piepers",
-                                "attractiveToHoneybees": true,
-                                "remarksHoneybees": "Voor pollen",
-                                "cropCyclesUncoveredYear": "1",
-                                "selected": true
-                              }
-                            ],
-                            "selected": false,
-                            "complete": false
-                          }
-                        ],
-                        "selected": false,
-                        "complete": false
-                      },
-                      {
-                        "group": "Bieten",
-                        "items": [],
-                        "attractiveToHoneybees": false,
-                        "selected": true,
-                        "complete": false
-                      }
-                    ],
-                    "selected": false,
-                    "complete": false
-                  }
-                ],
-                "growthStage": {
-                  "from": 20,
-                  "to": 30
+                  "targetOrganismListVersion": "1.0",
+                  "targetOrganisms": [
+                    {
+                      "groupScientific": "Acari",
+                      "groupNL": "Mijten",
+                      "items": [
+                        {
+                          "groupScientific": "Acaridae",
+                          "groupNL": "Acaridae",
+                          "items": [
+                            {
+                              "organismScientific": "Rhizoglyphus echinopus",
+                              "organismNL": "bollenmijt",
+                              "organismEN": "bulb mite",
+                              "eppo": "RHIGECB",
+                              "selected": true
+                            }
+                          ],
+                          "selected": false,
+                          "complete": false
+                        },
+                        {
+                          "groupScientific": "Eriophyidae",
+                          "groupNL": "Galmijten",
+                          "items": [
+                            {
+                              "organismScientific": "Aceria tulipae",
+                              "organismNL": "tulpengalmijt",
+                              "organismEN": "wheat curl mite",
+                              "eppo": "ACEITUB",
+                              "selected": true
+                            }
+                          ],
+                          "selected": false,
+                          "complete": false
+                        }
+                      ],
+                      "selected": false,
+                      "complete": false
+                    }
+                  ],
+                  "targetLocations": [
+                    {
+                      "id": 1,
+                      "descriptionNL": "Bedekt",
+                      "descriptionEN": "Covered"
+                    },
+                    {
+                      "id": 2,
+                      "descriptionNL": "Onbedekt",
+                      "descriptionEN": "Uncovered"
+                    }
+                  ],
+                  "dtgVersion": "2.1",
+                  "targetCrops": [
+                    {
+                      "groupNL": "Akkerbouwgewassen",
+                      "groupEN": "Arable crops",
+                      "items": [
+                        {
+                          "groupNL": "Aardappelen",
+                          "groupEN": "Potatoes",
+                          "items": [
+                            {
+                              "cropNL": "Pootaardappel",
+                              "cropEN": "Seed potato",
+                              "eppo": [
+                                "SOLTU"
+                              ],
+                              "limitedToNL": "Piepers",
+                              "limitedToEN": "Piepers",
+                              "attractiveToHoneybees": true,
+                              "remarksHoneybeesNL": "Voor pollen",
+                              "remarksHoneybeesEN": "For pollen",
+                              "cropCyclesUncoveredYear": "1",
+                              "selected": true
+                            }
+                          ],
+                          "selected": false,
+                          "complete": false
+                        },
+                        {
+                          "groupNL": "Bieten",
+                          "groupEN": "Beet",
+                          "items": [],
+                          "attractiveToHoneybees": false,
+                          "selected": true,
+                          "complete": false
+                        }
+                      ],
+                      "selected": false,
+                      "complete": false
+                    }
+                  ],
+                  "applicationMethod": {
+                    "id": 4,
+                    "descriptionNL": "Spreading",
+                    "descriptionEN": "Spreading"
+                  },
+                  "growthStage": {
+                    "from": "10",
+                    "to": "40"
+                  },
+                  "applicationTiming": {
+                    "fromMonth": 2,
+                    "toMonth": 12
+                  },
+                  "amountOfApplications": {
+                    "perUse": 10,
+                    "perCropSeason": 8
+                  },
+                  "minimumIntervalBetweenApplications": 4,
+                  "maximumProductDose": {
+                    "ratio": 2,
+                    "scale": 4,
+                    "measure": {
+                      "id": 14,
+                      "unitNL": "kg/ton",
+                      "unitEN": "kg/tonne"
+                    }
+                  },
+                  "maximumProductDosePerCropSeason": {
+                    "ratio": 4,
+                    "scale": 3,
+                    "measure": {
+                      "id": 14,
+                      "unitNL": "g/kg zaad",
+                      "unitEN": "g/kg seed"
+                    }
+                  },
+                  "watervolumeScale": {
+                    "min": 4,
+                    "max": 100
+                  },
+                  "isWatervolumeDependingOnGrowthStage": true,
+                  "phiDays": 4,
+                  "seedDensity": 5,
+                  "remarks": "remarks"
                 },
-                "applicationTiming": {
-                  "fromMonth": 3,
-                  "toMonth": 4
-                },
-                "amountOfApplications": {
-                  "perUse": 4,
-                  "perCropSeason": 3
-                },
-                "minimumIntervalBetweenApplications": 4,
-                "maximumProductDose": {
-                  "ratio": 2,
-                  "scale": 4,
-                  "measure": {
-                    "id": 14,
-                    "unit": "kg/ton"
-                  }
-                },
-                "maximumProductDosePerCropSeason": {
-                  "ratio": 4,
-                  "scale": 3,
-                  "measure": {
-                    "id": 14,
-                    "unit": "g/kg zaad"
-                  }
-                },
-                "watervolumeScale": {
-                  "min": 2,
-                  "max": 10
-                },
-                "isWatervolumeDependingOnGrowthStage": true,
-                "phiDays": 4
-              }
-            ],
+                {
+                  "nameOfUse": {
+                    "name": "Insecticiden",
+                    "usesSummary": "Cultuurgrasland, Groot fruit, Aardbei, Vijg, Braam"
+                  },
+                  "userType": {
+                    "type": "Both",
+                    "descriptionEN": "Both",
+                    "descriptionNL": "Beide"
+                  },
+                  "targetOrganismListVersion": "1.0",
+                  "targetOrganisms": [
+                    {
+                      "groupScientific": "Acari",
+                      "groupNL": "Mijten",
+                      "items": [
+                        {
+                          "groupScientific": "Acaridae",
+                          "groupNL": "Acaridae",
+                          "items": [
+                            {
+                              "organismScientific": "Rhizoglyphus echinopus",
+                              "organismNL": "bollenmijt",
+                              "organismEN": "bulb mite",
+                              "eppo": "RHIGECB",
+                              "selected": true
+                            }
+                          ],
+                          "selected": false,
+                          "complete": false
+                        },
+                        {
+                          "groupScientific": "Eriophyidae",
+                          "groupNL": "Galmijten",
+                          "items": [
+                            {
+                              "organismScientific": "Aceria tulipae",
+                              "organismNL": "tulpengalmijt",
+                              "organismEN": "wheat curl mite",
+                              "eppo": "ACEITUB",
+                              "selected": true
+                            }
+                          ],
+                          "selected": false,
+                          "complete": false
+                        }
+                      ],
+                      "selected": false,
+                      "complete": false
+                    }
+                  ],
+                  "targetLocations": [
+                    {
+                      "id": 1,
+                      "descriptionNL": "Bedekt",
+                      "descriptionEN": "Covered"
+                    },
+                    {
+                      "id": 2,
+                      "descriptionNL": "Onbedekt",
+                      "descriptionEN": "Uncovered"
+                    }
+                  ],
+                  "dtgVersion": "2.1",
+                  "targetCrops": [
+                    {
+                      "groupNL": "Akkerbouwgewassen",
+                      "groupEN": "Arable crops",
+                      "items": [
+                        {
+                          "groupNL": "Aardappelen",
+                          "groupEN": "Potatoes",
+                          "items": [
+                            {
+                              "cropNL": "Pootaardappel",
+                              "cropEN": "Seed potato",
+                              "eppo": [
+                                "SOLTU"
+                              ],
+                              "limitedToNL": "Piepers",
+                              "limitedToEN": "Piepers",
+                              "attractiveToHoneybees": true,
+                              "remarksHoneybeesNL": "Voor pollen",
+                              "remarksHoneybeesEN": "For pollen",
+                              "cropCyclesUncoveredYear": "1",
+                              "selected": true
+                            }
+                          ],
+                          "selected": false,
+                          "complete": false
+                        },
+                        {
+                          "groupNL": "Bieten",
+                          "groupEN": "Beet",
+                          "items": [],
+                          "attractiveToHoneybees": false,
+                          "selected": true,
+                          "complete": false
+                        }
+                      ],
+                      "selected": false,
+                      "complete": false
+                    }
+                  ],
+                  "isWatervolumeDependingOnGrowthStage": true
+                }
+              ],
             "decisions": [
               {
                 "document": {
