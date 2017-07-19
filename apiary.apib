@@ -1,9 +1,11 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: https://public.mst-acc.ctgb.nl
 
 # MST Public API
 
 De MST public API faciliteert het doorzoeken en opvragen van toegelaten biocides, gewasbeschermingsmiddelen en toevoegingsstoffen.
+
+Een korte introductie over de opzet en het gebruik van de API vind je [hier](https://docs.google.com/presentation/d/1gzXIrY8BRUgI0z59wcpNCIkQmveCFxx5ARcCwJEVG0Q/edit?usp=sharing).
 
 Deze API maakt gebruik van de [jsonapi](http://jsonapi.org/recommendations/) standaard.
 
@@ -58,8 +60,7 @@ Dates worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ`
     + filter%5BexpirationDateTo%5D (string, optional) - expiratie datum tot en met in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
     + filter%5BlastRenewalDateFrom%5D (string, optional) - datum ondertekening vanaf in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
     + filter%5BlastRenewalDateTot%5D (string, optional) - datum ondertekening tot en met in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
-    + sort (string optional) - coma separated lijst van veldnamen waarop gesorteerd dient te worden. Default is de sortering _oplopend_. Door een '`-`' aan de veldnaam toe te voegen is de sortering _aflopend_. B.v. `sort=productName,-lastRenewalDate`.
-        Er kunnen op de volgende velden gesorteerd worden: `productName`, `categoryType`, `registrationNumber`, `expirationDate`, `lastRenewalDate`
+    + sort (string optional) - coma separated lijst van veldnamen waarop gesorteerd dient te worden. Default is de sortering `oplopend`. Door een '`-`' aan de veldnaam toe te voegen is de sortering `aflopend`. B.v. `sort=productName,-lastRenewalDate`. Er kunnen op de volgende velden gesorteerd worden: `productName`, `categoryType`, `registrationNumber`, `expirationDate`, `lastRenewalDate`.
     + page%5Boffset%5D (number, optional) -  aantal authorisations die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren authorisations
@@ -125,7 +126,7 @@ Het `categoryType.type` in het antwoord document geeft aan welk type toelating h
 - `Adjuvant`
 
 + Parameters
-    + id: 23456 (number, required) - id van het product.
+    + id: 2240 (number, required) - id van het product.
     + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
@@ -444,11 +445,11 @@ Het `categoryType.type` in het antwoord document geeft aan welk type toelating h
 
 
 
-## Authorisation Biocide [/public-api/1.0/authorisations/22222?{filter%5Blocale%5D}]
+## Authorisation Biocide [/public-api/1.0/authorisations/2240?{filter%5Blocale%5D}]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een product-id verschillende toelating types (Biocides/ppp/Adjuvant) op te vragen.
 
-Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 22222. Deze retourneerd vervolgens de authorisation van een *Biocide*.
+Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 2240. Deze retourneerd vervolgens de authorisation van een *Biocide*.
 
 + Parameters
     + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
@@ -766,11 +767,11 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
         }
 
 
-## Authorisation PPP [/public-api/1.0/authorisations/55555{?filter%5Blocale%5D}]
+## Authorisation PPP [/public-api/1.0/authorisations/686{?filter%5Blocale%5D}]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een product-id verschillende toelating types (Biocides/ppp/Adjuvant) op te vragen.
 
-Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 55555. Deze retourneerd vervolgens de toelating van een *Plant Protection Product (PPP)*.
+Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 686. Deze retourneerd vervolgens de toelating van een *Plant Protection Product (PPP)*.
 
 + Parameters
     + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
@@ -1231,11 +1232,11 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 
 
-## Authorisation Adjuvant [/public-api/1.0/authorisations/88888{?filter%5Blocale%5D}]
+## Authorisation Adjuvant [/public-api/1.0/authorisations/15745{?filter%5Blocale%5D}]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een product-id verschillende toelating types (Biocides/ppp/Adjuvant) op te vragen.
 
-Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 88888. Deze retourneerd vervolgens de toelating van een *Adjuvant*.
+Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 15745. Deze retourneerd vervolgens de toelating van een *Adjuvant*.
 
 + Parameters
     + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
@@ -1317,13 +1318,12 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
         }
 
 
-
 ## Masterdata Substances [/public-api/1.0/masterdata/substances{?filter%5Bfunction%5D,filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
-    + filter%5Bfunction%5D (enum[function], required) - de function van de substance.
+    + filter%5Bfunction%5D: ActiveSubstance (enum[function], required) - de function van de substance.
         + Members
             + `ActiveSubstance`
             + `Safener`
@@ -1355,7 +1355,8 @@ Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt pagin
                 {"ecNumber":"238-588-8","name":"benzylhemiformal","casNumber":"14548-60-8","id":10022},
                 {"ecNumber":"215-551-4","name":"(dodecylbenzyl)trimethylammonium chloride","casNumber":"1330-85-4","id":2372}
                 ]
-            }
+        }
+
 
 
 ## Masterdata Authorisationholders [/public-api/1.0/masterdata/authorisationholders{?filter%5Bquery%5D,page%5Boffset%5D,page%5Blimit%5D}]
@@ -1363,7 +1364,7 @@ Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt pagin
 Met deze service kunnen authorisationholders opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
-    + filter%5Bquery%5D: a (string, optional) -  naam van het bedrijf or een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
+    + filter%5Bquery%5D: a (string, optional) -  naam van het bedrijf of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
     + page%5Boffset%5D (number, optional) -  aantal authorisationholders die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren toelatinghouders
@@ -1438,7 +1439,7 @@ Met deze service kunnen productTypes (PT-Codes) voor Biocides opgezocht worden. 
 Met deze service kunnen triviale namen van targetorganisms voor Biocides opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
-    + filter%5Bquery%5D: Acarid (string, optional) - query parameter met een triviale organisme naam of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
+    + filter%5Bquery%5D: Al (string, optional) - query parameter met een triviale organisme naam of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
     + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
@@ -1842,7 +1843,7 @@ Met deze service kunnen targetlocations voor PPPs opgezocht worden. Deze service
 Met deze service kunnen outcometypes voor PPP opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
-    + filter%5Bquery%5D: Bede (string, required) - query parameter met aard werking of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
+    + filter%5Bquery%5D: ac (string, required) - query parameter met aard werking of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
     + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
