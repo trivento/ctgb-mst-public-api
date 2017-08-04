@@ -1,11 +1,9 @@
 FORMAT: 1A
-HOST: https://public.mst-acc.ctgb.nl
+HOST: http://polls.apiblueprint.org/
 
 # MST Public API
 
 De MST public API faciliteert het doorzoeken en opvragen van toegelaten biocides, gewasbeschermingsmiddelen en toevoegingsstoffen.
-
-Een korte introductie over de opzet en het gebruik van de API vind je [hier](https://docs.google.com/presentation/d/1gzXIrY8BRUgI0z59wcpNCIkQmveCFxx5ARcCwJEVG0Q/edit?usp=sharing).
 
 Deze API maakt gebruik van de [jsonapi](http://jsonapi.org/recommendations/) standaard.
 
@@ -19,7 +17,16 @@ De hier gebruikte types zijn:
 Omdat in query parameters blokhaken (`[]`) niet toegestaan zijn dienen deze url-encode te worden.
 Dit betekent dat b.v. `filter[fieldName]` vertaald dient te worden naar: `filter%5BfieldName%5D`
 
-## Authorisations summary [/public-api/1.0/authorisations{?filter%5Blocale%5D,filter%5BproductName%5D,filter%5BproductStatus%5D,filter%5BcategoryType%5D,filter%5BregistrationNumber%5D,filter%5BuserType%5D,filter%5BactiveSubstances%5D,filter%5BsafenerSubstances%5D,filter%5BauthorisationHolders%5D,filter%5BbiocideProductTypes%5D,filter%5BbiocideTargetOrganisms%5D,filter%5BbiocideTargetInfo%5D,filter%5BpppTargetCrops%5D,filter%5BpppTargetOrganisms%5D,filter%5BpppTargetLocations%5D,filter%5BpppOutcomeTypes%5D,filter%5BexpirationDateFrom%5D,filter%5BexpirationDateTo%5D,filter%5BlastRenewalDateFrom%5D,filter%5BlastRenewalDateTot%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
+# Changelog
+Recente wijzigingen:
+- Toevoeging van zoekfilter `filter[lastModifiedDateFrom]` en `filter[lastModifiedDateTo]`. 
+-- Met deze filters kunnen middelen op basis van hun laatst doorgevoerde wijziging gezocht kunnen worden. Het veld `lastModifiedDate` is tevens aan elk middel incl. Authorisation summary opgenomen. `lastModifiedDate` representeert de laatst doorgevoerde wijzigingen van een middel, b.v. ook een interne aanpassing or correctie na publicatie. Dit in tegenstelling tot `lastRenewalDate` dat de datum ondertekening van het college betreft hetgeen ook bij een interne correctie ongewijzigd blijft.
+- Toevoeging van stamdata lastmodified service
+-- Met de stamdata lastmodified service kan ingezien worden welk type stamdata waanneer voor het laatste gewijzigd is. 
+- Toevoeging van Application Methods service voor PPPs
+l
+
+## Authorisations summary [/public-api/1.0/authorisations{?filter%5Blocale%5D,filter%5BproductName%5D,filter%5BproductStatus%5D,filter%5BcategoryType%5D,filter%5BregistrationNumber%5D,filter%5BuserType%5D,filter%5BactiveSubstances%5D,filter%5BsafenerSubstances%5D,filter%5BauthorisationHolders%5D,filter%5BbiocideProductTypes%5D,filter%5BbiocideTargetOrganisms%5D,filter%5BbiocideTargetInfo%5D,filter%5BpppTargetCrops%5D,filter%5BpppTargetOrganisms%5D,filter%5BpppTargetLocations%5D,filter%5BpppOutcomeTypes%5D,filter%5BexpirationDateFrom%5D,filter%5BexpirationDateTo%5D,filter%5BlastRenewalDateFrom%5D,filter%5BlastRenewalDateTo%5D,filter%5BlastModifiedDateFrom%5D,filter%5BlastModifiedDateTo%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen authorisations op basis van een groot aantal parameters doorzocht worden. Daarnaast biedt deze service sortering en paginatie.
 Meerdere filters worden in de zoekvraag vertaald naar `AND`. Uitzondering is `filter%5BproductName%5D` en `filter%5BregistrationNumber%5D`. Deze worden vertaald naar `OR`.
@@ -59,8 +66,11 @@ Dates worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ`
     + filter%5BexpirationDateFrom%5D (string, optional) - expiratie datum vanaf, in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
     + filter%5BexpirationDateTo%5D (string, optional) - expiratie datum tot en met in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
     + filter%5BlastRenewalDateFrom%5D (string, optional) - datum ondertekening vanaf in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
-    + filter%5BlastRenewalDateTot%5D (string, optional) - datum ondertekening tot en met in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
-    + sort (string optional) - coma separated lijst van veldnamen waarop gesorteerd dient te worden. Default is de sortering `oplopend`. Door een '`-`' aan de veldnaam toe te voegen is de sortering `aflopend`. B.v. `sort=productName,-lastRenewalDate`. Er kunnen op de volgende velden gesorteerd worden: `productName`, `categoryType`, `registrationNumber`, `expirationDate`, `lastRenewalDate`.
+    + filter%5BlastRenewalDateTo%5D (string, optional) - datum ondertekening tot en met in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
+    + filter%5BlastModifiedDateFrom%5D (string, optional) - datum vanaf wanneer middelen voor het laatst gewijzigd zijn. `lastModifiedDate` representeert alle mogelijke wijzigingen van een product, (b.v. ook interne aanpassing na publicatie) in tegenstelling tot `lastRenewalDate` wat een procedurele datum betreft. De waarde is in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
+    + filter%5BlastModifiedDateTo%5D (string, optional) - datum tot wanneer middelen voor het laatst gewijzigd zijn.`lastModifiedDate` representeert alle mogelijke wijzigingen van een product, (b.v. ook interne aanpassing na publicatie) in tegenstelling tot `lastRenewalDate` wat een procedurele datum betreft. De waarde is in ISO formaat: b.v. `yyyy-MM-ddTHH:mm:ssZ`. `yyyy-MM-dd` is ook mogelijk en vertaald zich naar: `yyyy-MM-ddT00:00:00Z`
+    + sort (string optional) - coma separated lijst van veldnamen waarop gesorteerd dient te worden. Default is de sortering _oplopend_. Door een '`-`' aan de veldnaam toe te voegen is de sortering _aflopend_. B.v. `sort=productName,-lastRenewalDate`.
+        Er kunnen op de volgende velden gesorteerd worden: `productName`, `categoryType`, `registrationNumber`, `expirationDate`, `lastRenewalDate`
     + page%5Boffset%5D (number, optional) -  aantal authorisations die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren authorisations
@@ -126,7 +136,7 @@ Het `categoryType.type` in het antwoord document geeft aan welk type toelating h
 - `Adjuvant`
 
 + Parameters
-    + id: 2240 (number, required) - id van het product.
+    + id: 23456 (number, required) - id van het product.
     + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
@@ -141,6 +151,7 @@ Het `categoryType.type` in het antwoord document geeft aan welk type toelating h
         {
           "data": {
             "id": "da2b87662490471abf72c0d422697647",
+            "lastModifiedDate":"2016-12-21T09:30:28.839Z",
             "name": "Wizard",
             "categoryType": {type: "Biocide", description: "Biocide"},
             "userType": {type: "Both", description: "Beide"},
@@ -445,11 +456,11 @@ Het `categoryType.type` in het antwoord document geeft aan welk type toelating h
 
 
 
-## Authorisation Biocide [/public-api/1.0/authorisations/2240?{filter%5Blocale%5D}]
+## Authorisation Biocide [/public-api/1.0/authorisations/22222?{filter%5Blocale%5D}]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een product-id verschillende toelating types (Biocides/ppp/Adjuvant) op te vragen.
 
-Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 2240. Deze retourneerd vervolgens de authorisation van een *Biocide*.
+Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 22222. Deze retourneerd vervolgens de authorisation van een *Biocide*.
 
 + Parameters
     + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
@@ -464,6 +475,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
         {
           "data": {
             "id": "da2b87662490471abf72c0d422697647",
+            "lastModifiedDate":"2016-12-21T09:30:28.839Z",
             "name": "Wizard",
             "categoryType": {type: "Biocide", description: "Biocide"},
             "userType": {type: "Both", description: "Beide"},
@@ -767,11 +779,11 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
         }
 
 
-## Authorisation PPP [/public-api/1.0/authorisations/686{?filter%5Blocale%5D}]
+## Authorisation PPP [/public-api/1.0/authorisations/55555{?filter%5Blocale%5D}]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een product-id verschillende toelating types (Biocides/ppp/Adjuvant) op te vragen.
 
-Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 686. Deze retourneerd vervolgens de toelating van een *Plant Protection Product (PPP)*.
+Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 55555. Deze retourneerd vervolgens de toelating van een *Plant Protection Product (PPP)*.
 
 + Parameters
     + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
@@ -786,6 +798,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
         {
           "data": {
             "id": "1234",
+            "lastModifiedDate":"2016-12-21T09:30:28.839Z",
             "name": "name",
             "categoryType": {"type": "PPP", "description": "Gewas"},
             "userType": {"type": "Professional", "description": "Professioneel"},
@@ -1232,11 +1245,11 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 
 
-## Authorisation Adjuvant [/public-api/1.0/authorisations/15745{?filter%5Blocale%5D}]
+## Authorisation Adjuvant [/public-api/1.0/authorisations/88888{?filter%5Blocale%5D}]
 
 Apiary ondersteunt nog geen conditionele responses. Dwz dat het niet mogelijk is om op basis van een product-id verschillende toelating types (Biocides/ppp/Adjuvant) op te vragen.
 
-Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 15745. Deze retourneerd vervolgens de toelating van een *Adjuvant*.
+Een workaround is het toevoegen van een additionele resource, hier toelating met product-id 88888. Deze retourneerd vervolgens de toelating van een *Adjuvant*.
 
 + Parameters
     + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
@@ -1251,6 +1264,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
         {
           "data": {
             "id": "a723681a55f6474787c59dfc2908a723",
+            "lastModifiedDate":"2016-12-21T09:30:28.839Z",
             "name": "Wizard",
             "categoryType": {type: "Adjuvant", description: "Toevoegingsstof"},
             "userType": {type: "NonProfessional", description: "Niet Professioneel"},
@@ -1318,12 +1332,13 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
         }
 
 
+
 ## Masterdata Substances [/public-api/1.0/masterdata/substances{?filter%5Bfunction%5D,filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
 
 Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
-    + filter%5Bfunction%5D: ActiveSubstance (enum[function], required) - de function van de substance.
+    + filter%5Bfunction%5D (enum[function], required) - de function van de substance.
         + Members
             + `ActiveSubstance`
             + `Safener`
@@ -1355,8 +1370,7 @@ Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt pagin
                 {"ecNumber":"238-588-8","name":"benzylhemiformal","casNumber":"14548-60-8","id":10022},
                 {"ecNumber":"215-551-4","name":"(dodecylbenzyl)trimethylammonium chloride","casNumber":"1330-85-4","id":2372}
                 ]
-        }
-
+            }
 
 
 ## Masterdata Authorisationholders [/public-api/1.0/masterdata/authorisationholders{?filter%5Bquery%5D,page%5Boffset%5D,page%5Blimit%5D}]
@@ -1364,7 +1378,7 @@ Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt pagin
 Met deze service kunnen authorisationholders opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
-    + filter%5Bquery%5D: a (string, optional) -  naam van het bedrijf of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
+    + filter%5Bquery%5D: a (string, optional) -  naam van het bedrijf or een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
     + page%5Boffset%5D (number, optional) -  aantal authorisationholders die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren toelatinghouders
@@ -1439,7 +1453,7 @@ Met deze service kunnen productTypes (PT-Codes) voor Biocides opgezocht worden. 
 Met deze service kunnen triviale namen van targetorganisms voor Biocides opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
-    + filter%5Bquery%5D: Al (string, optional) - query parameter met een triviale organisme naam of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
+    + filter%5Bquery%5D: Acarid (string, optional) - query parameter met een triviale organisme naam of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
     + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
@@ -1843,7 +1857,7 @@ Met deze service kunnen targetlocations voor PPPs opgezocht worden. Deze service
 Met deze service kunnen outcometypes voor PPP opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
-    + filter%5Bquery%5D: ac (string, required) - query parameter met aard werking of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
+    + filter%5Bquery%5D: Bede (string, required) - query parameter met aard werking of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
     + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
@@ -1868,4 +1882,71 @@ Met deze service kunnen outcometypes voor PPP opgezocht worden. Deze service ond
                     {"id": 1, "description": "Werking-1"},
                     {"id": 2, "description": "Werking-2"}
                 ]
+        }
+
+## Application Methods voor PPPs [/public-api/1.0/masterdata/ppp/applicationmethods{?filter%5Bquery%5D,filter%5Blocale%5D,page%5Boffset%5D,page%5Blimit%5D}]
+
+Met deze service kunnen application methods voor PPP opgezocht worden. Deze service ondersteunt paginatie.
+
++ Parameters
+    + filter%5Bquery%5D: Dr (string, required) - query parameter met aard werking of een deel ervan. In de zoekvraag wordt dit vertaald naar `contains naam`, niet hoofdlettergevoelig
+    + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
+        + Members
+                + `nl`
+                + `en`
+    + page%5Boffset%5D (number, optional) -  aantal aard werkingen die overgeslagen worden voordat het resultaat geretourneerd wordt
+        + Default: `0`
+    + page%5Blimit%5D (number, optional) - aantal te retourneren aard werkingen
+        + Default: `100`
+
+
+### Request Application Methods voor PPPs [GET]
+
++ Response 200 (application/json)
+
+        {
+            "meta": {
+                "total": 1255,
+                "offset":0,
+                "limit":100
+            },
+            "data": [
+                {"descriptionNL":"Dompelbehandeling","descriptionEN":"Dip application","id":5},
+                {"descriptionNL":"Doodspuiten","descriptionEN":"Doodspuiten","id":36},
+                {"descriptionNL":"Drukken","descriptionEN":"Drukken","id":37},
+                {"descriptionNL":"Druppelbehandeling","descriptionEN":"Drip application","id":3},
+                {"descriptionNL":"Dummy pil","descriptionEN":"Dummy pil","id":20}
+                ]
+        }
+        
+        
+        
+## Masterdata last modified service [/public-api/1.0/masterdata/lastmodified{?filter%5Bquery%5D,page%5Boffset%5D,page%5Blimit%5D}]
+
+Deze service geeft per type masterdata de datum van de laatste wijziging weer. Welke masterdata entiteit gewijzigd is kan hiermee niet achterhaald worden. De laatste wijzigingsdatum geeft globaal weer dat er in de lijst van een type masterdata iets veranderd is.  
+
++ Parameters  
+    + filter%5Bquery%5D: ben (string, optional) - query parameter met een deel van een substance attribute zijnde, `name`, `ecNumber` of `casNumber`. In de zoekvraag wordt dit vertaald naar: `name`, `ecNumber` of `casNumber` `contains query`, niet hoofdlettergevoelig
+    + page%5Boffset%5D (number, optional) -  aantal substances die overgeslagen worden voordat het resultaat geretourneerd wordt
+        + Default: `0`
+    + page%5Blimit%5D (number, optional) - aantal te retourneren substances
+        + Default: `100`
+
+
+### Request masterdata last modified [GET]
+
++ Response 200 (application/json)
+
+        {
+            "meta": {
+                "total": 734,
+                "offset":0,
+                "limit":100
+            },
+            "data": [
+                {"url":"http://public.mst.ctgb.nl/public-api/1.0/masterdata/ppp/outcometypes?filter%5Bquery%5D=","path":"ppp/outcometypes","masterdataType":"OutcomeType","lastModifiedDate":"2017-08-04T12:36:07.389Z"},
+                {"url":"http://public.mst.ctgb.nl/public-api/1.0/masterdata/ppp/targetlocations?filter%5Bquery%5D=","path":"ppp/targetlocations","masterdataType":"PPPTargetLocation","lastModifiedDate":"2017-08-04T12:36:07.389Z"}
+                {"url":"http://public.mst.ctgb.nl/public-api/1.0/masterdata/ppp/targetcrops/lists?filter%5Bquery%5D=","path":"ppp/targetcrops/lists","masterdataType":"DTGList","lastModifiedDate":"2017-08-04T12:36:07.389Z"},
+                {"url":"http://public.mst.ctgb.nl/public-api/1.0/masterdata/authorisationholders?filter%5Bquery%5D=","path":"authorisationholders","masterdataType":"AuthorisationHolder","lastModifiedDate":"2017-08-04T12:36:07.389Z"}
+            ]
         }
