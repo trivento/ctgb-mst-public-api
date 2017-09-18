@@ -10,7 +10,7 @@ Een korte introductie over de design principes en het gebruik van de API kun je 
 ## Changelog
 Recente wijzigingen:
 - Toevoeging van zoekfilter `filter[lastModifiedDateFrom]` en `filter[lastModifiedDateTo]`. 
-  Met deze filters kunnen middelen op basis van hun laatst doorgevoerde wijziging gezocht kunnen worden. Het veld `lastModifiedDate` is tevens aan elk middel incl. Authorisation summary opgenomen. `lastModifiedDate` representeert de laatst doorgevoerde wijzigingen van een middel, b.v. ook een interne aanpassing or correctie na publicatie. Dit in tegenstelling tot `lastRenewalDate` dat de datum ondertekening van het college betreft hetgeen ook bij een interne correctie ongewijzigd blijft.
+  Met deze filters kunnen middelen op basis van hun laatst doorgevoerde wijziging gezocht kunnen worden. Het veld `lastModifiedDate` is tevens aan elk middel incl. Authorisation summary opgenomen. `lastModifiedDate` representeert de laatst doorgevoerde wijzigingen van een middel, b.v. ook een interne aanpassing of correctie na publicatie. Dit in tegenstelling tot `lastRenewalDate` dat de datum ondertekening van het college betreft hetgeen b.v. bij een interne correctie van middel gegevens ongewijzigd blijft.
 - Toevoeging van stamdata lastmodified service
   Met de stamdata lastmodified service kan ingezien worden welk type stamdata waanneer voor het laatste gewijzigd is. 
 - Toevoeging van Application Methods service voor PPPs
@@ -1935,10 +1935,10 @@ Met deze service kunnen application methods voor PPP opgezocht worden. Deze serv
 Deze service geeft per type masterdata de datum van de laatste wijziging weer. Welke masterdata entiteit gewijzigd is kan hiermee niet achterhaald worden. De laatste wijzigingsdatum geeft globaal weer dat er in de lijst van een type masterdata iets veranderd is.  
 
 + Parameters  
-    + filter%5Bquery%5D: ben (string, optional) - query parameter met een deel van een substance attribute zijnde, `name`, `ecNumber` of `casNumber`. In de zoekvraag wordt dit vertaald naar: `name`, `ecNumber` of `casNumber` `contains query`, niet hoofdlettergevoelig
-    + page%5Boffset%5D (number, optional) -  aantal substances die overgeslagen worden voordat het resultaat geretourneerd wordt
+    + filter%5Bquery%5D: ben (string, optional) - query parameter met een deel af de hele naam van een type masterdata
+    + page%5Boffset%5D (number, optional) -  aantal entiteiten die overgeslagen worden voordat het resultaat geretourneerd wordt
         + Default: `0`
-    + page%5Blimit%5D (number, optional) - aantal te retourneren substances
+    + page%5Blimit%5D (number, optional) - aantal te retourneren entiteiten
         + Default: `100`
 
 
