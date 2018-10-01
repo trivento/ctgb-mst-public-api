@@ -126,7 +126,7 @@ Dates worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ`
         }
 
 
-## Authorisation [/public-api/1.0/authorisations/{id}{?filter%5Blocale%5D}]
+## Authorisation [/public-api/1.0/authorisations/{id}{?filter%5Blocale%5D,filter%5BpppTargetCrops%5D,filter%5BpppTargetOrganisms%5D}]
 
 Het opvragen van een authorisation kan resulteren in 3 verschillende types antwoorden:
 - Authorisation for Bicode
@@ -138,12 +138,16 @@ Het `categoryType.type` in het antwoord document geeft aan welk type toelating h
 - `PPP`
 - `Adjuvant`
 
+De filters `filter[pppTargetCrops] en filter[pppTargetOrganisms]` zorgen ervoor de toepassingen die voldoen aan deze filter(s) bovenaan de lijst staan.
+
 + Parameters
     + id: 23456 (number, required) - id van het product.
     + filter%5Blocale%5D: nl (enum[locale], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
                 + `en`
+    + filter%5BpppTargetOrganisms%5D (number, optional) - namen van targetOrganisms, gevolgd door locatie in de aantaster lijst hierarchie zijnde `groep, subgroep, aantaster, ziekte, eppo` of engels: `group, subgroup, organism, disease, eppo`, geconcateneerd met `::`. Meerdere paden worden coma separated, deze worden in de zoekvraag vertaald naar: `OR`. Voorbeeld: targetorganism `Mijten`, `Bollenmijt`, `Rot`, of `ABCAFH`: `Mijten::groep,Bollemijt::aantaster,ABCAFH::eppo,Rot::ziekte`.
+    + filter%5BpppTargetCrops%5D (string, optional) - namen van PPPs gevolgd door locatie in de DTG hierarchie zijnde `groep, subgroep, gewas, eppo` of engels: `group, subgroup, plant, eppo`, geconcateneerd met `::`. Meerdere paden worden coma separated, deze worden in de zoekvraag vertaald naar: `OR`. Voorbeeld: targetcrops voor een PPP voor `Appel`, `Steenvruchten` of `ISTAC`: `Appel::gewas,Steenvruchten::subgroep,ISTAC::eppo`.
 
 
 ### Request Authorisation  [GET]
