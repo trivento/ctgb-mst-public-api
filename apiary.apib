@@ -13,6 +13,9 @@ De Toelatingendatabank (https://toelatingen.ctgb.nl/) maakt eveneens gebruik van
 
 ## Changelog
 Recente wijzigingen:
+- Toevoeging lowrisk boolean op productniveau. 
+  Met deze boolean wordt aangegeven of het product van het type lowrisk is. Eenzelfde boolean was al aanwezig op stof niveau.
+  Een product kan als lowrisk gemarkeerd worden als alle actieve stoffen lowrisk zijn.
 - Toevoeging van zoekfilter `filter[lastModifiedDateFrom]` en `filter[lastModifiedDateTo]`. 
   Met deze filters kunnen middelen op basis van hun laatst doorgevoerde wijziging gezocht kunnen worden. Het veld `lastModifiedDate` is tevens aan elk middel incl. Authorisation summary opgenomen. `lastModifiedDate` representeert de laatst doorgevoerde wijzigingen van een middel, b.v. ook een interne aanpassing of correctie na publicatie. Dit in tegenstelling tot `lastRenewalDate` dat de datum ondertekening van het college betreft hetgeen b.v. bij een interne correctie van middel gegevens ongewijzigd blijft.
 - Toevoeging van stamdata lastmodified service
@@ -817,6 +820,7 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
             "id": "1234",
             "lastModifiedDate":"2016-12-21T09:30:28.839Z",
             "name": "name",
+            "lowrisk": false,
             "categoryType": {"type": "PPP", "description": "Gewas"},
             "userType": {"type": "Professional", "description": "Professioneel"},
             "authorisationHolder": {
