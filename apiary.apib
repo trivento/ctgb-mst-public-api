@@ -15,6 +15,8 @@ De Toelatingendatabank (https://toelatingen.ctgb.nl/) maakt eveneens gebruik van
 
 ## Changelog
 Recente wijzigingen:
+- Toevoeging van zoekfilter `filter[query]`.
+  Met deze filter wordt ook de de ongestructureerde data (wettelijke gebruiksvoorschriften) doorzocht
 - Toevoeging lowrisk boolean op productniveau. 
   Met deze boolean wordt aangegeven of het product van het type lowrisk is. Eenzelfde boolean was al aanwezig op stof niveau.
   Een product kan als lowrisk gemarkeerd worden als alle actieve stoffen lowrisk zijn.
@@ -40,7 +42,7 @@ Omdat in query parameters blokhaken (`[]`) niet toegestaan zijn dienen deze url-
 Dit betekent dat b.v. `filter[fieldName]` vertaald dient te worden naar: `filter%5BfieldName%5D`
 
 
-## Authorisations summary [/public-api/1.0/authorisations{?filter%5Blocale%5D,filter%5BproductName%5D,filter%5BproductStatus%5D,filter%5BcategoryType%5D,filter%5BregistrationNumber%5D,filter%5BuserType%5D,filter%5BactiveSubstances%5D,filter%5BsafenerSubstances%5D,filter%5BauthorisationHolders%5D,filter%5BbiocideProductTypes%5D,filter%5BbiocideTargetOrganisms%5D,filter%5BbiocideTargetInfo%5D,filter%5BpppTargetCrops%5D,filter%5BpppTargetOrganisms%5D,filter%5BpppTargetLocations%5D,filter%5BpppOutcomeTypes%5D,filter%5BexpirationDateFrom%5D,filter%5BexpirationDateTo%5D,filter%5BlastRenewalDateFrom%5D,filter%5BlastRenewalDateTo%5D,filter%5BlastModifiedDateFrom%5D,filter%5BlastModifiedDateTo%5D,sort,page%5Boffset%5D,page%5Blimit%5D}]
+## Authorisations summary [/public-api/1.0/authorisations{?filter%5Blocale%5D,filter%5BproductName%5D,filter%5BproductStatus%5D,filter%5BcategoryType%5D,filter%5BregistrationNumber%5D,filter%5BuserType%5D,filter%5BactiveSubstances%5D,filter%5BsafenerSubstances%5D,filter%5BauthorisationHolders%5D,filter%5BbiocideProductTypes%5D,filter%5BbiocideTargetOrganisms%5D,filter%5BbiocideTargetInfo%5D,filter%5BpppTargetCrops%5D,filter%5BpppTargetOrganisms%5D,filter%5BpppTargetLocations%5D,filter%5BpppOutcomeTypes%5D,filter%5BexpirationDateFrom%5D,filter%5BexpirationDateTo%5D,filter%5BlastRenewalDateFrom%5D,filter%5BlastRenewalDateTo%5D,filter%5BlastModifiedDateFrom%5D,filter%5BlastModifiedDateTo%5D,sort,page%5Boffset%5D,page%5Blimit%5D,filter%5Bquery%5D}]
 
 Met deze service kunnen authorisations op basis van een groot aantal parameters doorzocht worden. Daarnaast biedt deze service sortering en paginatie.
 Meerdere filters worden in de zoekvraag vertaald naar `AND`. Uitzondering is `filter%5BproductName%5D` en `filter%5BregistrationNumber%5D`. Deze worden vertaald naar `OR`.
@@ -89,6 +91,7 @@ Dates worden in het volgende ISO format teruggegeven: `yyyy-MM-ddTHH:mm:ss.SSSZ`
         + Default: `0`
     + page%5Blimit%5D (number, optional) - aantal te retourneren authorisations
         + Default: `50`
+    + filter%5Bquery%5D (string, optional) - zoekterm.  In de tekst wordt gezocht op gehele woorden, niet hoofdlettergevoelig. De filter `filter%5Bquery%5D` wordt in de zoekvraag vertaald naar `AND`.
 
 ### Request Authorisations [GET]
 
