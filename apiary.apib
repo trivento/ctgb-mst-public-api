@@ -162,6 +162,7 @@ De filters `filter[pppTargetCrops] en filter[pppTargetOrganisms]` zorgen ervoor 
 
 
 ### Request Authorisation  [GET]
+> Velden uit het Address object worden niet meer geretourneerd. Het object Address zal ook per 1 december verwijderd worden.
 
 + Response 200 (application/json)
 
@@ -177,11 +178,11 @@ De filters `filter[pppTargetCrops] en filter[pppTargetOrganisms]` zorgen ervoor 
               "id": "11",
               "companyName": "BAYER",
               "address": {
-                "street": "Bayernslaan",
-                "number": "888",
-                "postalcode": "5635 AE",
-                "city": "Ede",
-                "country": "England"
+                "street": "Field will be removed",
+                "number": "Field will be removed",
+                "postalcode": "Field will be removed",
+                "city": "Field will be removed",
+                "country": "Field will be removed"
               }
             },
             "authorisation": {
@@ -504,6 +505,8 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 ### Request Authorisation Biocide [GET]
 
+> Velden uit het address object van de authorisationHolder worden niet meer geretourneerd. Het object address zal ook per 1 december verwijderd worden.
+
 + Response 200 (application/json)
 
         {
@@ -517,11 +520,11 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
               "id": "11",
               "companyName": "BAYER",
               "address": {
-                "street": "Bayernslaan",
-                "number": "888",
-                "postalcode": "5635 AE",
-                "city": "Ede",
-                "country": "England"
+                "street": "Field will be removed",
+                "number": "Field will be removed",
+                "postalcode": "Field will be removed",
+                "city": "Field will be removed",
+                "country": "Field will be removed"
               }
             },
             "authorisation": {
@@ -844,6 +847,8 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 ### Request Authorisation PPP [GET]
 
+> Velden uit het address object van de authorisationHolder worden niet meer geretourneerd. Het object address zal ook per 1 december verwijderd worden.
+
 + Response 200 (application/json)
 
         {
@@ -858,11 +863,11 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
               "id": "11",
               "companyName": "BAYER",
               "address": {
-                "street": "Bayernslaan",
-                "number": "888",
-                "postalcode": "5635 AE",
-                "city": "Ede",
-                "country": "England"
+                "street": "Field will be removed",
+                "number": "Field will be removed",
+                "postalcode": "Field will be removed",
+                "city": "Field will be removed",
+                "country": "Field will be removed"
               }
             },
             "authorisation": {
@@ -1331,6 +1336,8 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 
 ### Request Authorisation Adjuvant [GET]
 
+> Velden uit het address object van de authorisationHolder worden niet meer geretourneerd. Het object address zal ook per 1 december verwijderd worden.
+
 + Response 200 (application/json)
 
         {
@@ -1344,11 +1351,11 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
               "id": "11",
               "companyName": "BAYER",
               "address": {
-                "street": "Bayernslaan",
-                "number": "888",
-                "postalcode": "5635 AE",
-                "city": "Ede",
-                "country": "England"
+                "street": "Field will be removed",
+                "number": "Field will be removed",
+                "postalcode": "Field will be removed",
+                "city": "Field will be removed",
+                "country": "Field will be removed"
               }
             },
             "authorisation": {
@@ -1410,12 +1417,12 @@ Een workaround is het toevoegen van een additionele resource, hier toelating met
 Met deze service kunnen stoffen opgezocht worden. Deze service ondersteunt paginatie.
 
 + Parameters
-    + filter%5Bfunction%5D (enum[function], required) - de function van de substance.
+    + filter%5Bfunction%5D (enum[function], optional) - de function van de substance.
         + Members
             + `ActiveSubstance`
             + `Safener`
         + Default: `ActiveSubstance`
-    + filter%5Bquery%5D: ben (string, required) - query parameter met een deel van een substance attribute zijnde, `name`, `ecNumber` of `casNumber`. In de zoekvraag wordt dit vertaald naar: `name`, `ecNumber` of `casNumber` `contains query`, niet hoofdlettergevoelig
+    + filter%5Bquery%5D: ben (string, optional) - query parameter met een deel van een substance attribute zijnde, `name`, `ecNumber` of `casNumber`. In de zoekvraag wordt dit vertaald naar: `name`, `ecNumber` of `casNumber` `contains query`, niet hoofdlettergevoelig
     + filter%5Blocale%5D: nl (enum[lang], optional) - locale parameter met de afkorting van de gewenste taal. Default is `nl`.
         + Members
                 + `nl`
@@ -1460,6 +1467,8 @@ Met deze service kunnen authorisationholders opgezocht worden. Deze service onde
 
 ### Request Authorisationholders [GET]
 
+> Velden uit het address object van de authorisationHolder worden niet meer geretourneerd. Het object address zal ook per 1 december verwijderd worden.
+
 + Response 200 (application/json)
 
         {
@@ -1469,10 +1478,10 @@ Met deze service kunnen authorisationholders opgezocht worden. Deze service onde
                 "limit":100
             },
             "data": [
-                {"id":"9384adf1212", "companyName" : "BAYER", "address" : {"street" : "Bayernslaan","number" : "888", "postalcode" : "5635 AE", "city" : "Ede", "country" : "Engcountry"}},
-                {"id":"32323ad1213", "companyName":"Wacon Aquaven B.V.","address":{"street":"Noorderhaven","number":"100","postalcode":"8861 AR","city":"Harlingen","country":"Nedercountry"}},
-                {"id":"12ddaerwe17", "companyName":"FA. S. V.D. WERF","address":{"street":"Cartografenweg","number":"34","postalcode":"5141 MT","city":"Waalwijk","country":"Nedercountry"}},
-                {"id":"33434ss1230", "companyName":"Techno Trading Holcountry","address":{"street":"Groesweg","number":"13","postalcode":"5993 NN","city":"Maasbree","country":"Nedercountry"}}
+                {"id":"9384adf1212", "companyName" : "BAYER", "address" : {"street": "Field will be removed","number":"Field will be removed","postalcode":"Field will be removed","city":"Field will be removed","country":"Field will be removed"}},
+                {"id":"32323ad1213", "companyName":"Wacon Aquaven B.V.","address":{"street": "Field will be removed","number":"Field will be removed","postalcode":"Field will be removed","city":"Field will be removed","country":"Field will be removed"}},
+                {"id":"12ddaerwe17", "companyName":"FA. S. V.D. WERF","address":{"street": "Field will be removed","number":"Field will be removed","postalcode":"Field will be removed","city":"Field will be removed","country":"Field will be removed"}},
+                {"id":"33434ss1230", "companyName":"Techno Trading Holcountry","address":{"street": "Field will be removed","number":"Field will be removed","postalcode":"Field will be removed","city":"Field will be removed","country":"Field will be removed"}}
             ]
         }
 
